@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/authentication/register_screens/screen_one.dart';
+import 'package:game_app/views/authentication/reset_pasword_screen/frogot_passord_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -26,7 +31,7 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(30.0),
+            padding: const EdgeInsets.all(40.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -34,27 +39,39 @@ class _LogInScreenState extends State<LogInScreen> {
                   controller: _userName,
                   lableText: "User Name",
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 CustomInput(
                   controller: _passwor,
                   lableText: "Passord",
                 ),
-                SizedBox(height: 50),
-                Container(
-                  width: size.width * 0.4,
-                  height: 40,
-                  decoration: BoxDecoration(
+                const SizedBox(height: 50),
+                CustomButton(
+                  size: size,
+                  textValue: "Login",
+                  onTap: () {},
+                ),
+                const SizedBox(height: 30),
+                InkWell(
+                  onTap: () {
+                    UtilFunction.navigateTo(context, FrogotPassword());
+                  },
+                  child: const CustomText(
+                    text: "Forget Password?",
                     color: primaryColor,
-                    borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Center(
-                      child: Text(
-                    "Login",
-                    style: TextStyle(
-                      color: kwhite,
-                    ),
-                  )),
-                )
+                ),
+                const SizedBox(height: 30),
+                InkWell(
+                  onTap: () {
+                    UtilFunction.navigateTo(context, RegisterScreenOne());
+                  },
+                  child: const CustomText(
+                    text: "Signup Now",
+                    color: darkColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 30),
               ],
             ),
           ),
