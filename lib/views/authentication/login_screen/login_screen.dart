@@ -16,8 +16,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  late TextEditingController _userName = TextEditingController();
-  late TextEditingController _passwor = TextEditingController();
+  final TextEditingController _userName = TextEditingController();
+  final TextEditingController _passwor = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -53,7 +53,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(height: 30),
                 InkWell(
                   onTap: () {
-                    UtilFunction.navigateTo(context, FrogotPassword());
+                    UtilFunction.navigateTo(context, const FrogotPassword());
                   },
                   child: const CustomText(
                     text: "Forget Password?",
@@ -63,7 +63,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(height: 30),
                 InkWell(
                   onTap: () {
-                    UtilFunction.navigateTo(context, RegisterScreenOne());
+                    UtilFunction.navigateTo(context, const RegisterScreenOne());
                   },
                   child: const CustomText(
                     text: "Signup Now",
