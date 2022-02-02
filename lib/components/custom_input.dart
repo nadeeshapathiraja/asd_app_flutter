@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/utils/app_colors.dart';
 
+// ignore: must_be_immutable
 class CustomInput extends StatelessWidget {
   CustomInput({
     Key? key,
@@ -17,7 +18,7 @@ class CustomInput extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: lableText,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           color: darkColor,
           fontSize: 18,
         ),

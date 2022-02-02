@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -28,7 +27,7 @@ class CustomButton extends StatelessWidget {
         child: Center(
             child: Text(
           textValue,
-          style: TextStyle(
+          style: const TextStyle(
             color: kwhite,
             fontSize: 18,
             fontWeight: FontWeight.w500,

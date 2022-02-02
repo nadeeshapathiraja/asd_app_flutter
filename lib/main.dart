@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game_app/utils/app_colors.dart';
-import 'package:game_app/utils/constants.dart';
 import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 
 void main() {
