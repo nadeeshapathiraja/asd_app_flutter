@@ -22,21 +22,21 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-          width: size.width,
-          height: size.height,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                Constants.imageAssets("bg.jpg"),
+      body: SingleChildScrollView(
+        child: Container(
+            width: size.width,
+            height: size.height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  Constants.imageAssets("bg.jpg"),
+                ),
+                fit: BoxFit.fill,
               ),
-              fit: BoxFit.fill,
             ),
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -80,8 +80,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ],
                 ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

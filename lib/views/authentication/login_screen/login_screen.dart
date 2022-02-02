@@ -17,12 +17,14 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _userName = TextEditingController();
-  final TextEditingController _passwor = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
+        width: size.width,
+        height: size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Constants.imageAssets("bg.jpg")),
@@ -41,7 +43,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 const SizedBox(height: 20),
                 CustomInput(
-                  controller: _passwor,
+                  controller: _password,
                   lableText: "Passord",
                 ),
                 const SizedBox(height: 50),
