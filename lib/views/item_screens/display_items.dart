@@ -6,16 +6,15 @@ import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
-import 'package:game_app/views/item_screens/display_items.dart';
 
-class DisplayCatergory extends StatefulWidget {
-  const DisplayCatergory({Key? key}) : super(key: key);
+class DisplayItemsScreen extends StatefulWidget {
+  const DisplayItemsScreen({Key? key}) : super(key: key);
 
   @override
-  _DisplayCatergoryState createState() => _DisplayCatergoryState();
+  _DisplayItemsScreenState createState() => _DisplayItemsScreenState();
 }
 
-class _DisplayCatergoryState extends State<DisplayCatergory> {
+class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
   bool status = false;
   @override
   Widget build(BuildContext context) {
@@ -65,7 +64,7 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                   ),
                   const SizedBox(height: 10),
                   CustomText(
-                    text: "Categories",
+                    text: "Fruits",
                     fontWeight: FontWeight.w700,
                     fontsize: 40,
                     color: darkColor,
@@ -88,21 +87,40 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                                 CustomCard(
                                   size: size,
                                   assetName: "apple.png",
-                                  title: "Fruits",
-                                  onTap: () {
-                                    UtilFunction.navigateTo(
-                                      context,
-                                      DisplayItemsScreen(),
-                                    );
-                                  },
+                                  title: "Apple",
+                                  onTap: () {},
                                 ),
                                 SizedBox(
                                   width: 10,
                                 ),
                                 CustomCard(
                                   size: size,
-                                  assetName: "vegi.png",
-                                  title: "Vegitables",
+                                  assetName: "banana.png",
+                                  title: "Banana",
+                                  onTap: () {},
+                                ),
+                                SizedBox(
+                                  height: 200,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //Custom Card for display catergories
+                                CustomCard(
+                                  size: size,
+                                  assetName: "mango.png",
+                                  title: "Mango",
+                                  onTap: () {},
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                CustomCard(
+                                  size: size,
+                                  assetName: "orange.png",
+                                  title: "Orange",
                                   onTap: () {},
                                 ),
                                 SizedBox(
