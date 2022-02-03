@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/category_screens/display_catergory.dart';
 import 'package:game_app/views/home_screen/widgets/activity_card.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
@@ -44,9 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       CustomText(text: "PARENT MODE"),
                       SizedBox(width: 10),
                       FlutterSwitch(
-                        width: 60.0,
-                        height: 30.0,
-                        toggleSize: 40.0,
+                        width: 50.0,
+                        height: 25.0,
+                        toggleSize: 18.0,
                         value: status,
                         borderRadius: 30.0,
                         padding: 5.0,
@@ -76,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       ActivityCard(
                         size: size,
-                        onTap: () {},
+                        onTap: () {
+                          UtilFunction.navigateTo(context, DisplayCatergory());
+                        },
                         title: "Vocabulary",
                       ),
                       SizedBox(height: 30),
