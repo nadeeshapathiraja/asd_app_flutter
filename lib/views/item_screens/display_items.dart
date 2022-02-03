@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_card.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -64,11 +65,11 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                   ),
                   const SizedBox(height: 10),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset(
-                        Constants.imageAssets("backbtn.png"),
-                        width: 100,
+                      //Custom Back button
+                      CustomBackButton(),
+                      SizedBox(
+                        width: size.width * 0.2,
                       ),
                       CustomText(
                         text: "Fruits",
@@ -78,6 +79,7 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 10),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Container(

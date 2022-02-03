@@ -45,7 +45,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(height: 20),
                 CustomInput(
                   controller: _password,
-                  lableText: "Passord",
+                  lableText: "Password",
                 ),
                 const SizedBox(height: 50),
                 CustomButton(
