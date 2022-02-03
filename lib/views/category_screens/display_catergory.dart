@@ -69,21 +69,41 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                     fontsize: 40,
                     color: darkColor,
                   ),
-                  Container(
-                    width: size.width,
-                    // height: size.height * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: kwhite,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomCard(size: size),
-                        SizedBox(
-                          height: 200,
-                        )
-                      ],
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: size.width,
+                        // height: size.height * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: kwhite,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //Custom Card for display catergories
+                                CustomCard(
+                                  size: size,
+                                  assetName: "apple.png",
+                                  title: "Fruits",
+                                  onTap: () {},
+                                ),
+                                CustomCard(
+                                  size: size,
+                                  assetName: "vegi.png",
+                                  title: "Vegitables",
+                                  onTap: () {},
+                                ),
+                                SizedBox(
+                                  height: 200,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   )
                 ],

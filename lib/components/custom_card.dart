@@ -7,9 +7,15 @@ class CustomCard extends StatelessWidget {
   const CustomCard({
     Key? key,
     required this.size,
+    this.onTap,
+    required this.assetName,
+    required this.title,
   }) : super(key: key);
 
   final Size size;
+  final Function()? onTap;
+  final String title;
+  final String assetName;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class CustomCard extends StatelessWidget {
       elevation: 3,
       child: InkWell(
         splashColor: Colors.green[200],
-        onTap: () {},
+        onTap: onTap,
         child: Column(
           children: [
             Container(
@@ -29,7 +35,7 @@ class CustomCard extends StatelessWidget {
               ),
               child: Center(
                 child: CustomText(
-                  text: "Fruits",
+                  text: title,
                   fontsize: 20,
                   fontWeight: FontWeight.w900,
                 ),
@@ -41,7 +47,7 @@ class CustomCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image.asset(
-                  Constants.imageAssets("apple.png"),
+                  Constants.imageAssets(assetName),
                 ),
               ),
             ),
