@@ -11,6 +11,7 @@ class CustomOutlineButton extends StatelessWidget {
     this.fontWeight = FontWeight.w600,
     required this.height,
     required this.width,
+    required this.onTap,
   }) : super(key: key);
 
   final Size size;
@@ -19,19 +20,20 @@ class CustomOutlineButton extends StatelessWidget {
   final FontWeight fontWeight;
   final double width;
   final double height;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       child: CustomText(
-        text: 'Add New Category',
-        fontWeight: FontWeight.w600,
-        fontsize: 20,
+        text: text,
+        fontWeight: fontWeight,
+        fontsize: fontSize,
         color: primaryColor,
       ),
       style: OutlinedButton.styleFrom(
         primary: primaryColor,
-        minimumSize: Size(size.width, 60),
+        minimumSize: Size(width, height),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(10),

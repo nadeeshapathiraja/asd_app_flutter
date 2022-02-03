@@ -5,6 +5,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/category_screens/widgets/category_tile.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 
 class CatergoryList extends StatefulWidget {
@@ -48,7 +49,7 @@ class _CatergoryListState extends State<CatergoryList> {
                           UtilFunction.goBack(context);
                         },
                         child: Image.asset(
-                          Constants.imageAssets("back.png"),
+                          Constants.iconAssets("back.png"),
                           width: 35,
                           height: 35,
                         ),
@@ -82,7 +83,20 @@ class _CatergoryListState extends State<CatergoryList> {
                     text: 'Add New Category',
                     height: 60,
                     width: size.width,
-                  )
+                    onTap: () {},
+                  ),
+                  SizedBox(height: 30),
+                  CategoryTile(
+                    text: "Fruits",
+                    onDeleteTap: () {},
+                    onEditTap: () {},
+                  ),
+                  SizedBox(height: 10),
+                  CategoryTile(
+                    text: "Desserts",
+                    onDeleteTap: () {},
+                    onEditTap: () {},
+                  ),
                 ],
               ),
             ),

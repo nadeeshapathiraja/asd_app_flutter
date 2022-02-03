@@ -16,7 +16,7 @@ class CustomNavbar extends StatelessWidget {
             UtilFunction.goBack(context);
           },
           child: Image.asset(
-            Constants.imageAssets("back.png"),
+            Constants.iconAssets("back.png"),
             width: 35,
             height: 35,
           ),
