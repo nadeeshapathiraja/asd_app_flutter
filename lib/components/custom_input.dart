@@ -7,10 +7,12 @@ class CustomInput extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.lableText,
+    this.icon,
   }) : super(key: key);
 
   TextEditingController controller = TextEditingController();
   final String lableText;
+  final Icon? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class CustomInput extends StatelessWidget {
           color: darkColor,
           fontSize: 18,
         ),
+        suffixIcon: icon,
       ),
     );
   }

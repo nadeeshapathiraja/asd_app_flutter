@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:game_app/components/custom_button.dart';
+import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
@@ -14,6 +16,7 @@ class AddCategory extends StatefulWidget {
 }
 
 class _AddCategoryState extends State<AddCategory> {
+  final TextEditingController _email = TextEditingController();
   bool status = true;
   @override
   Widget build(BuildContext context) {
@@ -30,52 +33,87 @@ class _AddCategoryState extends State<AddCategory> {
             ),
           ),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-                top: 10.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          UtilFunction.goBack(context);
-                        },
-                        child: Image.asset(
-                          Constants.iconAssets("back.png"),
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const CustomText(text: "PARENT MODE"),
-                          SizedBox(width: 10),
-                          FlutterSwitch(
-                            width: 50.0,
-                            height: 25.0,
-                            toggleSize: 18.0,
-                            value: status,
-                            borderRadius: 30.0,
-                            padding: 5.0,
-                            activeColor: activeColor,
-                            onToggle: (val) {
-                              setState(() {
-                                status = val;
-                              });
-                              UtilFunction.navigateTo(context, HomeScreen());
-                            },
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  top: 10.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            UtilFunction.goBack(context);
+                          },
+                          child: Image.asset(
+                            Constants.iconAssets("back.png"),
+                            width: 35,
+                            height: 35,
                           ),
-                        ],
+                        ),
+                        Row(
+                          children: [
+                            const CustomText(text: "PARENT MODE"),
+                            SizedBox(width: 10),
+                            FlutterSwitch(
+                              width: 50.0,
+                              height: 25.0,
+                              toggleSize: 18.0,
+                              value: status,
+                              borderRadius: 30.0,
+                              padding: 5.0,
+                              activeColor: activeColor,
+                              onToggle: (val) {
+                                setState(() {
+                                  status = val;
+                                });
+                                UtilFunction.navigateTo(context, HomeScreen());
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    const CustomText(
+                      text: "Add New Category",
+                      fontsize: 40,
+                      color: darkColor,
+                    ),
+                    const SizedBox(height: 50),
+                    CustomInput(
+                      controller: _email,
+                      lableText: "Email",
+                    ),
+                    const SizedBox(height: 30),
+                    CustomInput(
+                      controller: _email,
+                      lableText: "Upload Image",
+                      icon: Icon(
+                        Icons.cloud_upload,
+                        size: 30,
+                        color: primaryColor,
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 30),
+                    CustomInput(
+                      controller: _email,
+                      lableText: "How is it pronounced?",
+                      icon: Icon(
+                        Icons.mic,
+                        size: 30,
+                        color: primaryColor,
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    CustomButton(size: size, onTap: () {}, textValue: "Done"),
+                  ],
+                ),
               ),
             ),
           ),
