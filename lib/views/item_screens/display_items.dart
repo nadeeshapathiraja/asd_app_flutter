@@ -63,11 +63,20 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  CustomText(
-                    text: "Fruits",
-                    fontWeight: FontWeight.w700,
-                    fontsize: 40,
-                    color: darkColor,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Image.asset(
+                        Constants.imageAssets("backbtn.png"),
+                        width: 100,
+                      ),
+                      CustomText(
+                        text: "Fruits",
+                        fontWeight: FontWeight.w700,
+                        fontsize: 40,
+                        color: darkColor,
+                      ),
+                    ],
                   ),
                   Expanded(
                     child: SingleChildScrollView(
