@@ -44,7 +44,7 @@ class CustomOutlineButton extends StatelessWidget {
           width: 1,
         ),
       ),
-      onPressed: () {},
+      onPressed: onTap,
     );
   }
 }

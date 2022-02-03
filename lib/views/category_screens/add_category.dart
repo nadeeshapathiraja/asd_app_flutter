@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:game_app/components/custom_outline_button.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/category_screens/add_category.dart';
-import 'package:game_app/views/category_screens/widgets/category_tile.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 
-class CatergoryList extends StatefulWidget {
-  const CatergoryList({Key? key}) : super(key: key);
+class AddCategory extends StatefulWidget {
+  const AddCategory({Key? key}) : super(key: key);
 
   @override
-  _CatergoryListState createState() => _CatergoryListState();
+  _AddCategoryState createState() => _AddCategoryState();
 }
 
-class _CatergoryListState extends State<CatergoryList> {
+class _AddCategoryState extends State<AddCategory> {
   bool status = true;
   @override
   Widget build(BuildContext context) {
@@ -77,28 +74,6 @@ class _CatergoryListState extends State<CatergoryList> {
                         ],
                       ),
                     ],
-                  ),
-                  SizedBox(height: 50),
-                  CustomOutlineButton(
-                    size: size,
-                    text: 'Add New Category',
-                    height: 60,
-                    width: size.width,
-                    onTap: () {
-                      UtilFunction.navigateTo(context, AddCategory());
-                    },
-                  ),
-                  SizedBox(height: 30),
-                  CategoryTile(
-                    text: "Fruits",
-                    onDeleteTap: () {},
-                    onEditTap: () {},
-                  ),
-                  SizedBox(height: 10),
-                  CategoryTile(
-                    text: "Desserts",
-                    onDeleteTap: () {},
-                    onEditTap: () {},
                   ),
                 ],
               ),
