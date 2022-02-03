@@ -6,9 +6,19 @@ class CustomOutlineButton extends StatelessWidget {
   const CustomOutlineButton({
     Key? key,
     required this.size,
+    required this.text,
+    this.fontSize = 20,
+    this.fontWeight = FontWeight.w600,
+    required this.height,
+    required this.width,
   }) : super(key: key);
 
   final Size size;
+  final String text;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {

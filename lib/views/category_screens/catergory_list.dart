@@ -77,7 +77,12 @@ class _CatergoryListState extends State<CatergoryList> {
                     ],
                   ),
                   SizedBox(height: 20),
-                  CustomOutlineButton(size: size)
+                  CustomOutlineButton(
+                    size: size,
+                    text: 'Add New Category',
+                    height: 60,
+                    width: size.width,
+                  )
                 ],
               ),
             ),
