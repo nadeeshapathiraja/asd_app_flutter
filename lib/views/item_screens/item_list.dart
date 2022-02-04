@@ -40,71 +40,87 @@ class _ItemListState extends State<ItemList> {
                 right: 20.0,
                 top: 10.0,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          UtilFunction.goBack(context);
-                        },
-                        child: Image.asset(
-                          Constants.iconAssets("back.png"),
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const CustomText(text: "PARENT MODE"),
-                          SizedBox(width: 10),
-                          FlutterSwitch(
-                            width: 50.0,
-                            height: 25.0,
-                            toggleSize: 18.0,
-                            value: status,
-                            borderRadius: 30.0,
-                            padding: 5.0,
-                            activeColor: activeColor,
-                            onToggle: (val) {
-                              setState(() {
-                                status = val;
-                              });
-                              UtilFunction.navigateTo(context, HomeScreen());
-                            },
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            UtilFunction.goBack(context);
+                          },
+                          child: Image.asset(
+                            Constants.iconAssets("back.png"),
+                            width: 35,
+                            height: 35,
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-                  const CustomText(
-                    text: "Fruits",
-                    fontsize: 40,
-                    color: darkColor,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomOutlineButton(
-                    size: size,
-                    text: 'Add',
-                    height: 60,
-                    width: size.width,
-                    onTap: () {
-                      UtilFunction.navigateTo(context, AddItem());
-                    },
-                  ),
-                  const SizedBox(height: 30),
-                  ItemTile(
-                    size: size,
-                    text: "Apple",
-                    onEditTap: () {
-                      UtilFunction.navigateTo(context, EditItem());
-                    },
-                    onVoiceTap: () {},
-                  ),
-                ],
+                        ),
+                        Row(
+                          children: [
+                            const CustomText(text: "PARENT MODE"),
+                            SizedBox(width: 10),
+                            FlutterSwitch(
+                              width: 50.0,
+                              height: 25.0,
+                              toggleSize: 18.0,
+                              value: status,
+                              borderRadius: 30.0,
+                              padding: 5.0,
+                              activeColor: activeColor,
+                              onToggle: (val) {
+                                setState(() {
+                                  status = val;
+                                });
+                                UtilFunction.navigateTo(context, HomeScreen());
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    const CustomText(
+                      text: "Fruits",
+                      fontsize: 40,
+                      color: darkColor,
+                    ),
+                    const SizedBox(height: 30),
+                    CustomOutlineButton(
+                      size: size,
+                      text: 'Add',
+                      height: 60,
+                      width: size.width,
+                      onTap: () {
+                        UtilFunction.navigateTo(context, AddItem());
+                      },
+                    ),
+                    const SizedBox(height: 30),
+                    Row(
+                      children: [
+                        ItemTile(
+                          size: size,
+                          text: "Apple",
+                          imgName: "apple.png",
+                          onEditTap: () {
+                            UtilFunction.navigateTo(context, EditItem());
+                          },
+                          onVoiceTap: () {},
+                        ),
+                        ItemTile(
+                          size: size,
+                          text: "Pineapple",
+                          imgName: 'banana.png',
+                          onEditTap: () {
+                            UtilFunction.navigateTo(context, EditItem());
+                          },
+                          onVoiceTap: () {},
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

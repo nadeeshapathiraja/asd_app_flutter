@@ -10,12 +10,14 @@ class ItemTile extends StatelessWidget {
     required this.onEditTap,
     required this.onVoiceTap,
     required this.text,
+    required this.imgName,
   }) : super(key: key);
 
   final Size size;
   final String text;
   final Function() onVoiceTap;
   final Function() onEditTap;
+  final String imgName;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class ItemTile extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: size.width * 0.40,
+            width: size.width * 0.42,
             height: 35,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -37,7 +39,7 @@ class ItemTile extends StatelessWidget {
                 children: [
                   CustomText(
                     text: text,
-                    fontsize: 20,
+                    fontsize: 18,
                     fontWeight: FontWeight.w900,
                   ),
                   Row(
@@ -64,12 +66,12 @@ class ItemTile extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: size.width * 0.40,
+            width: size.width * 0.42,
             height: 100,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Image.asset(
-                Constants.imageAssets("apple.png"),
+                Constants.imageAssets(imgName),
               ),
             ),
           ),
