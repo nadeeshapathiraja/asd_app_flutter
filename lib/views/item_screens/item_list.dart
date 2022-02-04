@@ -7,6 +7,8 @@ import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:game_app/views/item_screens/add_item.dart';
+import 'package:game_app/views/item_screens/edit_items.dart';
+import 'package:game_app/views/item_screens/widgets/item_tile.dart';
 
 class ItemList extends StatefulWidget {
   const ItemList({Key? key}) : super(key: key);
@@ -79,7 +81,7 @@ class _ItemListState extends State<ItemList> {
                   ),
                   const SizedBox(height: 30),
                   const CustomText(
-                    text: "Add New Category",
+                    text: "Fruits",
                     fontsize: 40,
                     color: darkColor,
                   ),
@@ -87,11 +89,20 @@ class _ItemListState extends State<ItemList> {
                   CustomOutlineButton(
                     size: size,
                     text: 'Add',
-                    height: 100,
-                    width: size.width / 2,
+                    height: 60,
+                    width: size.width,
                     onTap: () {
                       UtilFunction.navigateTo(context, AddItem());
                     },
+                  ),
+                  const SizedBox(height: 30),
+                  ItemTile(
+                    size: size,
+                    text: "Apple",
+                    onEditTap: () {
+                      UtilFunction.navigateTo(context, EditItem());
+                    },
+                    onVoiceTap: () {},
                   ),
                 ],
               ),
