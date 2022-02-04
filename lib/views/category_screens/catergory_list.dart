@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:game_app/components/custom_dialogbox.dart';
 import 'package:game_app/components/custom_outline_button.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/add_category.dart';
+import 'package:game_app/views/category_screens/edit_category.dart';
 import 'package:game_app/views/category_screens/widgets/category_tile.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 
@@ -91,14 +93,32 @@ class _CatergoryListState extends State<CatergoryList> {
                   SizedBox(height: 30),
                   CategoryTile(
                     text: "Fruits",
-                    onDeleteTap: () {},
-                    onEditTap: () {},
+                    onDeleteTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return CustomDialogbox(size: size);
+                        },
+                      );
+                    },
+                    onEditTap: () {
+                      UtilFunction.navigateTo(context, EditCategory());
+                    },
                   ),
                   SizedBox(height: 10),
                   CategoryTile(
                     text: "Desserts",
-                    onDeleteTap: () {},
-                    onEditTap: () {},
+                    onDeleteTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return CustomDialogbox(size: size);
+                        },
+                      );
+                    },
+                    onEditTap: () {
+                      UtilFunction.navigateTo(context, EditCategory());
+                    },
                   ),
                 ],
               ),

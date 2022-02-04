@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:game_app/utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
+  CustomButton({
     Key? key,
     required this.size,
     required this.onTap,
     required this.textValue,
+    this.width = 200,
   }) : super(key: key);
 
   final Size size;
   final Function() onTap;
   final String textValue;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: size.width * 0.5,
+        width: width,
         height: 40,
         decoration: BoxDecoration(
           color: primaryColor,

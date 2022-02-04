@@ -9,14 +9,14 @@ import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 
-class AddCategory extends StatefulWidget {
-  const AddCategory({Key? key}) : super(key: key);
+class EditCategory extends StatefulWidget {
+  const EditCategory({Key? key}) : super(key: key);
 
   @override
-  _AddCategoryState createState() => _AddCategoryState();
+  _EditCategoryState createState() => _EditCategoryState();
 }
 
-class _AddCategoryState extends State<AddCategory> {
+class _EditCategoryState extends State<EditCategory> {
   final TextEditingController _email = TextEditingController();
   bool status = true;
   @override
@@ -82,7 +82,7 @@ class _AddCategoryState extends State<AddCategory> {
                     ),
                     const SizedBox(height: 30),
                     const CustomText(
-                      text: "Add New Category",
+                      text: "Edit Category",
                       fontsize: 40,
                       color: darkColor,
                     ),

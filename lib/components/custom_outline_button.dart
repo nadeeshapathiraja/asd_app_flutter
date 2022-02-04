@@ -36,7 +36,7 @@ class CustomOutlineButton extends StatelessWidget {
         minimumSize: Size(width, height),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(20),
           ),
         ),
         side: BorderSide(
