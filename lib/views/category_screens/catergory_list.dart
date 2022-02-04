@@ -97,7 +97,11 @@ class _CatergoryListState extends State<CatergoryList> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return CustomDialogbox(size: size);
+                          return CustomDialogbox(
+                            size: size,
+                            text: "Are you sure to delete the category?",
+                            onTap: () {},
+                          );
                         },
                       );
                     },
@@ -112,7 +116,11 @@ class _CatergoryListState extends State<CatergoryList> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return CustomDialogbox(size: size);
+                          return CustomDialogbox(
+                            size: size,
+                            text: "Are you sure to delete the category?",
+                            onTap: () {},
+                          );
                         },
                       );
                     },

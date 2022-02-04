@@ -8,9 +8,13 @@ class CustomDialogbox extends StatelessWidget {
   const CustomDialogbox({
     Key? key,
     required this.size,
+    required this.onTap,
+    required this.text,
   }) : super(key: key);
 
   final Size size;
+  final String text;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class CustomDialogbox extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Are you sure to delete the category?",
+                text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
@@ -52,7 +56,7 @@ class CustomDialogbox extends StatelessWidget {
                   SizedBox(width: 20),
                   CustomButton(
                     size: size,
-                    onTap: () {},
+                    onTap: onTap,
                     textValue: "Yes",
                     width: 100,
                   ),
