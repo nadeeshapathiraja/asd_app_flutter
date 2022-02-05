@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "661760875300",
+    "project_id": "asdproject-ffae5",
+    "storage_bucket": "asdproject-ffae5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661760875300:android:483173ee6e21b2c95f31b1",
+        "android_client_info": {
+          "package_name": "com.example.game_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661760875300-t84d21qrmep3umhhkvqnt31aelmfh3ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXxl2waWtx9V5TKm6NXKOypGlJtyyuUcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661760875300-t84d21qrmep3umhhkvqnt31aelmfh3ri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
