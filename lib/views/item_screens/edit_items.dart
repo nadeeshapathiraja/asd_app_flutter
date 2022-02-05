@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_button.dart';
+import 'package:game_app/components/custom_dialogbox.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -82,7 +83,7 @@ class _EditItemState extends State<EditItem> {
                     ),
                     const SizedBox(height: 30),
                     const CustomText(
-                      text: "Edit Item",
+                      text: "Edit Item     ",
                       fontsize: 40,
                       color: darkColor,
                     ),
@@ -121,7 +122,18 @@ class _EditItemState extends State<EditItem> {
                     ),
                     SizedBox(height: 50),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CustomDialogbox(
+                              size: size,
+                              text: "Are you sure to delete the Item?",
+                              onTap: () {},
+                            );
+                          },
+                        );
+                      },
                       child: CustomText(
                         text: "[Delete item]",
                         color: darkColor,

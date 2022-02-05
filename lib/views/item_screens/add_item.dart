@@ -82,14 +82,14 @@ class _AddItemState extends State<AddItem> {
                     ),
                     const SizedBox(height: 30),
                     const CustomText(
-                      text: "Edit Category",
+                      text: "Add New Fruit",
                       fontsize: 40,
                       color: darkColor,
                     ),
                     const SizedBox(height: 50),
                     CustomInput(
                       controller: _email,
-                      lableText: "Category Name",
+                      lableText: "Name",
                     ),
                     const SizedBox(height: 30),
                     CustomInput(
