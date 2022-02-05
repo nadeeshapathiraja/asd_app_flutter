@@ -1,3 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/web/audioplayers_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_backbutton.dart';
@@ -17,6 +19,7 @@ class DisplayItemsScreen extends StatefulWidget {
 
 class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
   bool status = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
