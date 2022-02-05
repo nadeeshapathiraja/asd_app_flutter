@@ -32,9 +32,7 @@ dependencies:
 
   rename: ^2.0.1
   flutter_switch: ^0.3.2
-
-  #Play audio
-  audioplayers: ^0.20.1
+  awesome_dialog: ^2.1.2
 
 dev_dependencies:
   flutter_test:
