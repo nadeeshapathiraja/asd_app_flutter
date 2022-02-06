@@ -9,6 +9,8 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 
 class RegisterScreenOne extends StatefulWidget {
   const RegisterScreenOne({Key? key}) : super(key: key);
@@ -115,6 +117,17 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                                   email: _email.text,
                                   password: _password.text,
                                 );
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.SUCCES,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title: 'Your registration Success',
+                                  desc: 'Please Login Now',
+                                  btnOkOnPress: () {
+                                    UtilFunction.navigateTo(
+                                        context, LogInScreen());
+                                  },
+                                )..show();
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'weak-password') {
                                   AwesomeDialog(
