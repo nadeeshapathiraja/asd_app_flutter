@@ -16,6 +16,7 @@ class RegisterScreenOne extends StatefulWidget {
 }
 
 class _RegisterScreenOneState extends State<RegisterScreenOne> {
+  var _isObsecure = true;
   final TextEditingController _email = TextEditingController();
   final TextEditingController _mobileNumber = TextEditingController();
   final TextEditingController _password = TextEditingController();
@@ -60,6 +61,18 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                   CustomInput(
                     controller: _password,
                     lableText: "Password",
+                    isObsecure: _isObsecure,
+                    iconBtn: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isObsecure = !_isObsecure;
+                        });
+                        print(_isObsecure);
+                      },
+                      icon: Icon(_isObsecure
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                    ),
                   ),
                   const SizedBox(height: 50),
                   Row(
