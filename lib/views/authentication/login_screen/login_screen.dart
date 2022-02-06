@@ -8,7 +8,6 @@ import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/authentication/register_screens/screen_one.dart';
 import 'package:game_app/views/authentication/reset_pasword_screen/frogot_passord_screen.dart';
-import 'package:game_app/views/home_screen/home_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);

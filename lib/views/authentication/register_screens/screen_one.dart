@@ -7,8 +7,6 @@ import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/authentication/register_screens/screen_two.dart';
 
 class RegisterScreenOne extends StatefulWidget {
   const RegisterScreenOne({Key? key}) : super(key: key);
