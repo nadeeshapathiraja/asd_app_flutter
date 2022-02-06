@@ -33,6 +33,7 @@ dependencies:
   rename: ^2.0.1
   flutter_switch: ^0.3.2
   awesome_dialog: ^2.1.2
+  animate_do: ^2.1.0
   email_validator: ^2.0.1
 
   #Firebase Connect

@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -17,84 +18,111 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  final TextEditingController _userName = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   var _isObsecure = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Container(
-        width: size.width,
-        height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Constants.imageAssets("bg.jpg")),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Constants.imageAssets("bg.jpg")),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(40.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CustomInput(
-                  controller: _userName,
-                  lableText: "User Name",
-                ),
-                const SizedBox(height: 20),
-                CustomInput(
-                  controller: _password,
-                  lableText: "Password",
-                  isObsecure: _isObsecure,
-                  iconBtn: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _isObsecure = !_isObsecure;
-                      });
-                      print(_isObsecure);
-                    },
-                    icon: Icon(
-                        _isObsecure ? Icons.visibility : Icons.visibility_off),
-                  ),
-                ),
-                const SizedBox(height: 50),
-                CustomButton(
-                  size: size,
-                  textValue: "Login",
-                  onTap: () {
-                    UtilFunction.navigateTo(context, HomeScreen());
-                  },
-                ),
-                const SizedBox(height: 30),
-                InkWell(
-                  onTap: () {
-                    UtilFunction.navigateTo(context, const FrogotPassword());
-                  },
-                  child: const CustomText(
-                    text: "Forget Password?",
-                    color: primaryColor,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                InkWell(
-                  onTap: () {
-                    UtilFunction.navigateTo(context, const RegisterScreenOne());
-                  },
-                  child: const CustomText(
-                    text: "Signup Now",
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const SizedBox(height: 20),
+                  const CustomText(
+                    text: "LogIn",
+                    fontsize: 40,
                     color: darkColor,
-                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                const SizedBox(height: 30),
-              ],
+                  const SizedBox(height: 30),
+                  CustomInput(
+                    controller: _email,
+                    lableText: "User Name",
+                  ),
+                  const SizedBox(height: 20),
+                  CustomInput(
+                    controller: _password,
+                    lableText: "Password",
+                    isObsecure: _isObsecure,
+                    iconBtn: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isObsecure = !_isObsecure;
+                        });
+                      },
+                      icon: Icon(_isObsecure
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  CustomButton(
+                    size: size,
+                    textValue: "Login",
+                    onTap: () {
+                      if (inputValidation()) {
+                        print("Success");
+                      } else {
+                        print("unsuccess");
+                      }
+                      //UtilFunction.navigateTo(context, HomeScreen());
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  InkWell(
+                    onTap: () {
+                      UtilFunction.navigateTo(context, const FrogotPassword());
+                    },
+                    child: const CustomText(
+                      text: "Forget Password?",
+                      color: primaryColor,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  InkWell(
+                    onTap: () {
+                      UtilFunction.navigateTo(
+                          context, const RegisterScreenOne());
+                    },
+                    child: const CustomText(
+                      text: "Signup Now",
+                      color: darkColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  bool inputValidation() {
+    var isValid = false;
+    if (_email.text.isEmpty || _password.text.isEmpty) {
+      isValid = false;
+    } else if (!EmailValidator.validate(_email.text)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
   }
 }
