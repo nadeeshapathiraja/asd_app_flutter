@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_button.dart';
@@ -7,6 +8,7 @@ import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreenOne extends StatefulWidget {
   const RegisterScreenOne({Key? key}) : super(key: key);
@@ -22,6 +24,10 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
   final _mobileNumber = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
+
+  //Create FlutterFire instance
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -100,11 +106,47 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                         CustomButton(
                           size: size,
                           textValue: "Sign Up ",
-                          onTap: () {
+                          onTap: () async {
                             if (inputValidation()) {
-                              print("Validated Data");
+                              try {
+                                UserCredential userCredential =
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                  email: _email.text,
+                                  password: _password.text,
+                                );
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'weak-password') {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.ERROR,
+                                    animType: AnimType.BOTTOMSLIDE,
+                                    title: 'Weak Password',
+                                    desc: 'Please Use Strong Password',
+                                    btnOkOnPress: () {},
+                                  )..show();
+                                } else if (e.code == 'email-already-in-use') {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.ERROR,
+                                    animType: AnimType.BOTTOMSLIDE,
+                                    title: 'The account already exists',
+                                    desc: 'Please Use another Email',
+                                    btnOkOnPress: () {},
+                                  )..show();
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
                             } else {
-                              print("Invalidated Data");
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.ERROR,
+                                animType: AnimType.BOTTOMSLIDE,
+                                title: 'Invalidated Data',
+                                desc: 'Please Enter Correct Information',
+                                btnOkOnPress: () {},
+                              )..show();
                             }
                             // UtilFunction.navigateTo(
                             //     context, const RegisterScreenTwo());
