@@ -22,6 +22,7 @@ class _LogInScreenState extends State<LogInScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    var _isObsecure = true;
     return Scaffold(
       body: Container(
         width: size.width,
@@ -46,6 +47,16 @@ class _LogInScreenState extends State<LogInScreen> {
                 CustomInput(
                   controller: _password,
                   lableText: "Password",
+                  isObsecure: _isObsecure,
+                  iconBtn: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isObsecure = !_isObsecure;
+                      });
+                    },
+                    icon: Icon(
+                        _isObsecure ? Icons.visibility : Icons.visibility_off),
+                  ),
                 ),
                 const SizedBox(height: 50),
                 CustomButton(

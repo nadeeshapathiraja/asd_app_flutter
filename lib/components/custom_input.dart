@@ -7,24 +7,27 @@ class CustomInput extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.lableText,
-    this.icon,
+    this.iconBtn,
+    this.isObsecure = false,
   }) : super(key: key);
 
   TextEditingController controller = TextEditingController();
   final String lableText;
-  final Icon? icon;
+  final IconButton? iconBtn;
+  final bool isObsecure;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      obscureText: isObsecure,
       decoration: InputDecoration(
         labelText: lableText,
         labelStyle: const TextStyle(
           color: darkColor,
           fontSize: 18,
         ),
-        suffixIcon: icon,
+        suffixIcon: iconBtn,
       ),
     );
   }

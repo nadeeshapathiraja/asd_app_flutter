@@ -96,20 +96,26 @@ class _EditItemState extends State<EditItem> {
                     CustomInput(
                       controller: _email,
                       lableText: "Upload Image",
-                      icon: Icon(
-                        Icons.cloud_upload,
-                        size: 30,
-                        color: primaryColor,
+                      iconBtn: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.cloud_upload,
+                          size: 30,
+                          color: primaryColor,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 30),
                     CustomInput(
                       controller: _email,
                       lableText: "How is it pronounced?",
-                      icon: Icon(
-                        Icons.mic,
-                        size: 30,
-                        color: primaryColor,
+                      iconBtn: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.mic,
+                          size: 30,
+                          color: primaryColor,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 50),
