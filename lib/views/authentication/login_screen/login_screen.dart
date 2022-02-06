@@ -19,10 +19,11 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _userName = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  var _isObsecure = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    var _isObsecure = true;
+
     return Scaffold(
       body: Container(
         width: size.width,
@@ -53,6 +54,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       setState(() {
                         _isObsecure = !_isObsecure;
                       });
+                      print(_isObsecure);
                     },
                     icon: Icon(
                         _isObsecure ? Icons.visibility : Icons.visibility_off),
