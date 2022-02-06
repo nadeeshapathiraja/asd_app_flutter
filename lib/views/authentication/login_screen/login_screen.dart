@@ -50,7 +50,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   const SizedBox(height: 30),
                   CustomInput(
                     controller: _email,
-                    lableText: "User Name",
+                    lableText: "Email",
                   ),
                   const SizedBox(height: 20),
                   CustomInput(
