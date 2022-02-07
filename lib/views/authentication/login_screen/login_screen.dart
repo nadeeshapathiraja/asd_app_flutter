@@ -1,8 +1,11 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/controllers/auth_controller.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
@@ -74,11 +77,20 @@ class _LogInScreenState extends State<LogInScreen> {
                     textValue: "Login",
                     onTap: () {
                       if (inputValidation()) {
-                        print("Success");
+                        AuthController().loginUser(
+                          _email.text,
+                          _password.text,
+                          context,
+                        );
                       } else {
-                        print("unsuccess");
+                        DialogBox().dialogbox(
+                          context,
+                          DialogType.ERROR,
+                          'Invalidated Data',
+                          'Please Enter Correct Information',
+                          () {},
+                        );
                       }
-                      //UtilFunction.navigateTo(context, HomeScreen());
                     },
                   ),
                   const SizedBox(height: 30),

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -7,8 +8,6 @@ import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 
 class FrogotPassword extends StatefulWidget {
   const FrogotPassword({Key? key}) : super(key: key);
@@ -74,9 +73,11 @@ class _FrogotPasswordState extends State<FrogotPassword> {
                                 animType: AnimType.BOTTOMSLIDE,
                                 title: 'Email Sent Success',
                                 desc: 'Check your Email and Reset Password',
-                                btnOkOnPress: () {
-                                  UtilFunction.navigateTo(
-                                      context, const LogInScreen());
+                                btnOkOnPress: () async {
+                                  await LaunchApp.openApp(
+                                    androidPackageName: 'com.google.android.gm',
+                                    openStore: true,
+                                  );
                                 },
                               )..show();
                             },

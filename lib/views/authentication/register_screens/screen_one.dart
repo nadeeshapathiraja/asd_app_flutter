@@ -11,8 +11,6 @@ import 'package:game_app/controllers/auth_controller.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 
 class RegisterScreenOne extends StatefulWidget {
   const RegisterScreenOne({Key? key}) : super(key: key);
@@ -116,7 +114,7 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                           textValue: "Sign Up ",
                           onTap: () async {
                             if (inputValidation()) {
-                              await AuthController().RegisterUser(
+                              await AuthController().registerUser(
                                 context,
                                 _email.text,
                                 _password.text,
