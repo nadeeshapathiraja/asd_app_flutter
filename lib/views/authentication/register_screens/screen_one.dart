@@ -81,9 +81,11 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                           });
                           print(_isObsecure1);
                         },
-                        icon: Icon(_isObsecure1
-                            ? Icons.visibility
-                            : Icons.visibility_off),
+                        icon: Icon(
+                          _isObsecure1
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 30),
@@ -97,9 +99,11 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                             _isObsecure2 = !_isObsecure2;
                           });
                         },
-                        icon: Icon(_isObsecure2
-                            ? Icons.visibility
-                            : Icons.visibility_off),
+                        icon: Icon(
+                          _isObsecure2
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 50),
@@ -119,48 +123,45 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                                   password: _password.text,
                                 );
                                 DialogBox().dialogbox(
-                                    context,
-                                    DialogType.SUCCES,
-                                    'Your registration Success',
-                                    'Please Login Now', () {
-                                  UtilFunction.navigateTo(
-                                      context, LogInScreen());
-                                });
+                                  context,
+                                  DialogType.SUCCES,
+                                  'Your registration Success',
+                                  'Please Login Now',
+                                  () {
+                                    UtilFunction.navigateTo(
+                                        context, LogInScreen());
+                                  },
+                                );
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'weak-password') {
-                                  AwesomeDialog(
-                                    context: context,
-                                    dialogType: DialogType.ERROR,
-                                    animType: AnimType.BOTTOMSLIDE,
-                                    title: 'Weak Password',
-                                    desc: 'Please Use Strong Password',
-                                    btnOkOnPress: () {},
-                                  )..show();
+                                  DialogBox().dialogbox(
+                                    context,
+                                    DialogType.ERROR,
+                                    'Weak Password',
+                                    'Please Use Strong Password',
+                                    () {},
+                                  );
                                 } else if (e.code == 'email-already-in-use') {
-                                  AwesomeDialog(
-                                    context: context,
-                                    dialogType: DialogType.ERROR,
-                                    animType: AnimType.BOTTOMSLIDE,
-                                    title: 'The account already exists',
-                                    desc: 'Please Use another Email',
-                                    btnOkOnPress: () {},
-                                  )..show();
+                                  DialogBox().dialogbox(
+                                    context,
+                                    DialogType.ERROR,
+                                    'The account already exists',
+                                    'Please Use another Email',
+                                    () {},
+                                  );
                                 }
                               } catch (e) {
                                 print(e);
                               }
                             } else {
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.ERROR,
-                                animType: AnimType.BOTTOMSLIDE,
-                                title: 'Invalidated Data',
-                                desc: 'Please Enter Correct Information',
-                                btnOkOnPress: () {},
-                              )..show();
+                              DialogBox().dialogbox(
+                                context,
+                                DialogType.ERROR,
+                                'Invalidated Data',
+                                'Please Enter Correct Information',
+                                () {},
+                              );
                             }
-                            // UtilFunction.navigateTo(
-                            //     context, const RegisterScreenTwo());
                           },
                         ),
                       ],
