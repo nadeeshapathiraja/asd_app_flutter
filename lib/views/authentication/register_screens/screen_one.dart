@@ -7,6 +7,7 @@ import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/controllers/auth_controller.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -115,44 +116,11 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                           textValue: "Sign Up ",
                           onTap: () async {
                             if (inputValidation()) {
-                              try {
-                                UserCredential userCredential =
-                                    await FirebaseAuth.instance
-                                        .createUserWithEmailAndPassword(
-                                  email: _email.text,
-                                  password: _password.text,
-                                );
-                                DialogBox().dialogbox(
-                                  context,
-                                  DialogType.SUCCES,
-                                  'Your registration Success',
-                                  'Please Login Now',
-                                  () {
-                                    UtilFunction.navigateTo(
-                                        context, LogInScreen());
-                                  },
-                                );
-                              } on FirebaseAuthException catch (e) {
-                                if (e.code == 'weak-password') {
-                                  DialogBox().dialogbox(
-                                    context,
-                                    DialogType.ERROR,
-                                    'Weak Password',
-                                    'Please Use Strong Password',
-                                    () {},
-                                  );
-                                } else if (e.code == 'email-already-in-use') {
-                                  DialogBox().dialogbox(
-                                    context,
-                                    DialogType.ERROR,
-                                    'The account already exists',
-                                    'Please Use another Email',
-                                    () {},
-                                  );
-                                }
-                              } catch (e) {
-                                print(e);
-                              }
+                              await AuthController().RegisterUser(
+                                context,
+                                _email.text,
+                                _password.text,
+                              );
                             } else {
                               DialogBox().dialogbox(
                                 context,
