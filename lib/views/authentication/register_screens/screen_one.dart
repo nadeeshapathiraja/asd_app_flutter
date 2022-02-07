@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_navbar.dart';
@@ -117,17 +118,14 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                                   email: _email.text,
                                   password: _password.text,
                                 );
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.SUCCES,
-                                  animType: AnimType.BOTTOMSLIDE,
-                                  title: 'Your registration Success',
-                                  desc: 'Please Login Now',
-                                  btnOkOnPress: () {
-                                    UtilFunction.navigateTo(
-                                        context, LogInScreen());
-                                  },
-                                )..show();
+                                DialogBox().dialogbox(
+                                    context,
+                                    DialogType.SUCCES,
+                                    'Your registration Success',
+                                    'Please Login Now', () {
+                                  UtilFunction.navigateTo(
+                                      context, LogInScreen());
+                                });
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'weak-password') {
                                   AwesomeDialog(
