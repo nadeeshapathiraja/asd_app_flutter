@@ -54,11 +54,14 @@ class AuthController {
   Future<void> loginUser(
       String email, String password, BuildContext context) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      UtilFunction.navigateTo(context, HomeScreen());
+      if (userCredential.user != null) {
+        UtilFunction.navigateTo(context, HomeScreen());
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         DialogBox().dialogbox(
