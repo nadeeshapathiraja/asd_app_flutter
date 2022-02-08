@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
+import 'package:game_app/controllers/db_controller.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
@@ -12,12 +13,23 @@ class AuthController {
 
   //User registration Function
   Future<void> registerUser(
-      BuildContext context, String email, String password) async {
+    BuildContext context,
+    String email,
+    String password,
+    String phone,
+  ) async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
         email: email,
         password: password,
-      );
+      )
+          .whenComplete(() async {
+        await DatabaseController().saveUserData(
+          email,
+          phone,
+        );
+      });
       DialogBox().dialogbox(
         context,
         DialogType.SUCCES,
@@ -54,14 +66,11 @@ class AuthController {
   Future<void> loginUser(
       String email, String password, BuildContext context) async {
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      if (userCredential.user != null) {
-        UtilFunction.navigateTo(context, HomeScreen());
-      }
+      UtilFunction.navigateTo(context, HomeScreen());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         DialogBox().dialogbox(

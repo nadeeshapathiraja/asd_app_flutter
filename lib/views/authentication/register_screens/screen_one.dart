@@ -118,6 +118,7 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                                 context,
                                 _email.text,
                                 _password.text,
+                                _mobileNumber.text,
                               );
                             } else {
                               DialogBox().dialogbox(
