@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -23,6 +24,8 @@ class _LogInScreenState extends State<LogInScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   var _isObsecure = true;
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -72,27 +75,38 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                   ),
                   const SizedBox(height: 50),
-                  CustomButton(
-                    size: size,
-                    textValue: "Login",
-                    onTap: () {
-                      if (inputValidation()) {
-                        AuthController().loginUser(
-                          _email.text,
-                          _password.text,
-                          context,
-                        );
-                      } else {
-                        DialogBox().dialogbox(
-                          context,
-                          DialogType.ERROR,
-                          'Invalidated Data',
-                          'Please Enter Correct Information',
-                          () {},
-                        );
-                      }
-                    },
-                  ),
+                  isLoading
+                      ? SpinKitFadingFour(
+                          color: primaryColor,
+                          size: 50.0,
+                        )
+                      : CustomButton(
+                          size: size,
+                          textValue: "Login",
+                          onTap: () {
+                            if (inputValidation()) {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              AuthController().loginUser(
+                                _email.text,
+                                _password.text,
+                                context,
+                              );
+                              setState(() {
+                                isLoading = false;
+                              });
+                            } else {
+                              DialogBox().dialogbox(
+                                context,
+                                DialogType.ERROR,
+                                'Invalidated Data',
+                                'Please Enter Correct Information',
+                                () {},
+                              );
+                            }
+                          },
+                        ),
                   const SizedBox(height: 30),
                   InkWell(
                     onTap: () {

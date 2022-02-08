@@ -26,6 +26,7 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
   final _mobileNumber = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
+  bool isLoading = false;
 
   //Create FlutterFire instance
   FirebaseAuth auth = FirebaseAuth.instance;
