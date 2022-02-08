@@ -2,9 +2,11 @@ import 'package:animate_do/animate_do.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/auth_controller.dart';
@@ -110,28 +112,36 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CustomButton(
-                          size: size,
-                          textValue: "Sign Up ",
-                          onTap: () async {
-                            if (inputValidation()) {
-                              await AuthController().registerUser(
-                                context,
-                                _email.text,
-                                _password.text,
-                                _mobileNumber.text,
-                              );
-                            } else {
-                              DialogBox().dialogbox(
-                                context,
-                                DialogType.ERROR,
-                                'Invalidated Data',
-                                'Please Enter Correct Information',
-                                () {},
-                              );
-                            }
-                          },
-                        ),
+                        isLoading
+                            ? CustomLoader()
+                            : CustomButton(
+                                size: size,
+                                textValue: "Sign Up ",
+                                onTap: () async {
+                                  if (inputValidation()) {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    await AuthController().registerUser(
+                                      context,
+                                      _email.text,
+                                      _password.text,
+                                      _mobileNumber.text,
+                                    );
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  } else {
+                                    DialogBox().dialogbox(
+                                      context,
+                                      DialogType.ERROR,
+                                      'Invalidated Data',
+                                      'Please Enter Correct Information',
+                                      () {},
+                                    );
+                                  }
+                                },
+                              ),
                       ],
                     ),
                     const SizedBox(height: 30),
