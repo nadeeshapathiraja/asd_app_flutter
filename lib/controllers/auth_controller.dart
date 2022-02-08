@@ -19,17 +19,20 @@ class AuthController {
     String phone,
   ) async {
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      //Create User in Autendication
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      )
-          .whenComplete(() async {
-        await DatabaseController().saveUserData(
-          email,
-          phone,
-        );
-      });
+      );
+
+      //Save user data in firestore database
+      await DatabaseController().saveUserData(
+        userCredential.user!.uid,
+        email,
+        phone,
+      );
+
       DialogBox().dialogbox(
         context,
         DialogType.SUCCES,
