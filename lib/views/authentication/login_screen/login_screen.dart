@@ -1,10 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/auth_controller.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -76,10 +76,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                   const SizedBox(height: 50),
                   isLoading
-                      ? SpinKitFadingFour(
-                          color: primaryColor,
-                          size: 50.0,
-                        )
+                      ? const CustomLoader()
                       : CustomButton(
                           size: size,
                           textValue: "Login",

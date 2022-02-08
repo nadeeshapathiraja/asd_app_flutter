@@ -1,11 +1,14 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:external_app_launcher/external_app_launcher.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/controllers/auth_controller.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 
@@ -17,7 +20,8 @@ class FrogotPassword extends StatefulWidget {
 }
 
 class _FrogotPasswordState extends State<FrogotPassword> {
-  final TextEditingController _mobileNumber = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -59,29 +63,38 @@ class _FrogotPasswordState extends State<FrogotPassword> {
                       Column(
                         children: [
                           CustomInput(
-                            controller: _mobileNumber,
+                            controller: _email,
                             lableText: "Email",
                           ),
                           const SizedBox(height: 60),
-                          CustomButton(
-                            size: size,
-                            textValue: "Send",
-                            onTap: () {
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.SUCCES,
-                                animType: AnimType.BOTTOMSLIDE,
-                                title: 'Email Sent Success',
-                                desc: 'Check your Email and Reset Password',
-                                btnOkOnPress: () async {
-                                  await LaunchApp.openApp(
-                                    androidPackageName: 'com.google.android.gm',
-                                    openStore: true,
-                                  );
-                                },
-                              )..show();
-                            },
-                          ),
+                          isLoading
+                              ? const CustomLoader()
+                              : CustomButton(
+                                  size: size,
+                                  textValue: "Send",
+                                  onTap: () {
+                                    if (inputValidation()) {
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                      AuthController().resetPasswordUser(
+                                        context,
+                                        _email.text,
+                                      );
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                    } else {
+                                      DialogBox().dialogbox(
+                                        context,
+                                        DialogType.ERROR,
+                                        'Invalidated Data',
+                                        'Please Enter Correct Information',
+                                        () {},
+                                      );
+                                    }
+                                  },
+                                ),
                         ],
                       ),
                     ],
@@ -91,5 +104,17 @@ class _FrogotPasswordState extends State<FrogotPassword> {
         ),
       ),
     );
+  }
+
+  bool inputValidation() {
+    var isValid = false;
+    if (_email.text.isEmpty) {
+      isValid = false;
+    } else if (!EmailValidator.validate(_email.text)) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
   }
 }

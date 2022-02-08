@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -113,7 +112,7 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         isLoading
-                            ? CustomLoader()
+                            ? const CustomLoader()
                             : CustomButton(
                                 size: size,
                                 textValue: "Sign Up ",

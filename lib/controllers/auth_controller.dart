@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
@@ -93,5 +94,36 @@ class AuthController {
         );
       }
     }
+  }
+
+  Future<void> resetPasswordUser(BuildContext context, String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      DialogBox().dialogbox(context, DialogType.SUCCES,
+          'Your Email sent Success', 'Please check your Email', () async {
+        await LaunchApp.openApp(
+          androidPackageName: 'com.google.android.gm',
+          openStore: true,
+        );
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-email") {
+        DialogBox().dialogbox(
+          context,
+          DialogType.ERROR,
+          'Invalid Email',
+          'Please enter valid Email',
+          () {},
+        );
+      } else {
+        DialogBox().dialogbox(
+          context,
+          DialogType.ERROR,
+          'Error',
+          "Check Your Email",
+          () {},
+        );
+      }
+    } catch (e) {}
   }
 }
