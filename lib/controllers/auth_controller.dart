@@ -96,6 +96,7 @@ class AuthController {
     }
   }
 
+//Reset Passord Function
   Future<void> resetPasswordUser(BuildContext context, String email) async {
     try {
       await auth.sendPasswordResetEmail(email: email);
