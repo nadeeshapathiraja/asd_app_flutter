@@ -27,12 +27,14 @@ class AuthController {
         password: password,
       );
 
-      //Save user data in firestore database
-      await DatabaseController().saveUserData(
-        userCredential.user!.uid,
-        email,
-        phone,
-      );
+      if (userCredential.user!.uid.isEmpty) {
+        //Save user data in firestore database
+        await DatabaseController().saveUserData(
+          userCredential.user!.uid,
+          email,
+          phone,
+        );
+      }
 
       DialogBox().dialogbox(
         context,

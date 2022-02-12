@@ -3,6 +3,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/category_screens/display_catergory.dart';
 import 'package:game_app/views/home_screen/widgets/activity_card.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -15,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool status = false;
+  bool mode = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -49,13 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 50.0,
                         height: 25.0,
                         toggleSize: 18.0,
-                        value: status,
+                        value: mode,
                         borderRadius: 30.0,
                         padding: 5.0,
                         activeColor: activeColor,
                         onToggle: (val) {
                           setState(() {
-                            status = val;
+                            mode = val;
                           });
                         },
                       ),
@@ -79,7 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ActivityCard(
                         size: size,
                         onTap: () {
-                          UtilFunction.navigateTo(context, DisplayCatergory());
+                          if (mode == true) {
+                            UtilFunction.navigateTo(context, CatergoryList());
+                          } else {
+                            UtilFunction.navigateTo(
+                                context, DisplayCatergory());
+                          }
                         },
                         title: "Vocabulary",
                       ),
