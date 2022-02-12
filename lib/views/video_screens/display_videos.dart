@@ -10,6 +10,6 @@ class DisplayVideos extends StatefulWidget {
 class _DisplayVideosState extends State<DisplayVideos> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(body: Container());
   }
 }

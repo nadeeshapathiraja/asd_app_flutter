@@ -5,8 +5,10 @@ import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/category_screens/display_catergory.dart';
+import 'package:game_app/views/game_screens/display_games.dart';
 import 'package:game_app/views/home_screen/widgets/activity_card.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:game_app/views/video_screens/display_videos.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -92,13 +94,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: 30),
                       ActivityCard(
                         size: size,
-                        onTap: () {},
+                        onTap: () {
+                          UtilFunction.navigateTo(context, DisplayVideos());
+                        },
                         title: "Video Activity",
                       ),
                       SizedBox(height: 30),
                       ActivityCard(
                         size: size,
-                        onTap: () {},
+                        onTap: () {
+                          UtilFunction.navigateTo(context, DisplayGame());
+                        },
                         title: "Play time",
                       ),
                     ],

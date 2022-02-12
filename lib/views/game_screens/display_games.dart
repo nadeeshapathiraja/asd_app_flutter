@@ -10,6 +10,6 @@ class DisplayGame extends StatefulWidget {
 class _DisplayGameState extends State<DisplayGame> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(body: Container());
   }
 }
