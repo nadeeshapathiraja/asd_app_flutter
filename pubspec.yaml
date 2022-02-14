@@ -43,6 +43,9 @@ dependencies:
   # Add responsiveness
   responsive_framework: ^0.1.7
 
+  # Add Provider
+  provider: ^6.0.2
+
   #Firebase Connect
   firebase_core: ^1.12.0
   firebase_auth: ^3.3.6
