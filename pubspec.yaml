@@ -37,6 +37,11 @@ dependencies:
   email_validator: ^2.0.1
   external_app_launcher: ^2.0.2
   flutter_spinkit: ^5.1.0
+  skeletons: ^0.0.3
+  logger: ^1.1.0
+
+  # Add responsiveness
+  responsive_framework: ^0.1.7
 
   #Firebase Connect
   firebase_core: ^1.12.0
