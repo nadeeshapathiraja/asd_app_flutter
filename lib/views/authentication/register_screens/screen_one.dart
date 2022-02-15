@@ -1,17 +1,13 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
-import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/controllers/auth_controller.dart';
+import 'package:game_app/providers/register_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreenOne extends StatefulWidget {
   const RegisterScreenOne({Key? key}) : super(key: key);
@@ -21,17 +17,6 @@ class RegisterScreenOne extends StatefulWidget {
 }
 
 class _RegisterScreenOneState extends State<RegisterScreenOne> {
-  var _isObsecure1 = true;
-  var _isObsecure2 = true;
-  final _email = TextEditingController();
-  final _mobileNumber = TextEditingController();
-  final _password = TextEditingController();
-  final _confirmPassword = TextEditingController();
-  bool isLoading = false;
-
-  //Create FlutterFire instance
-  FirebaseAuth auth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,128 +33,86 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
               ),
             ),
             child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomNavbar(),
-                    const SizedBox(height: 20),
-                    const CustomText(
-                      text: "Let's Create\na Account",
-                      fontsize: 40,
-                      color: darkColor,
-                    ),
-                    const SizedBox(height: 30),
-                    CustomInput(
-                      controller: _email,
-                      lableText: "Email",
-                    ),
-                    const SizedBox(height: 20),
-                    CustomInput(
-                      controller: _mobileNumber,
-                      lableText: "Mobile Number",
-                    ),
-                    const SizedBox(height: 20),
-                    CustomInput(
-                      controller: _password,
-                      lableText: "Password",
-                      isObsecure: _isObsecure1,
-                      iconBtn: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isObsecure1 = !_isObsecure1;
-                          });
-                          print(_isObsecure1);
-                        },
-                        icon: Icon(
-                          _isObsecure1
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    CustomInput(
-                      controller: _confirmPassword,
-                      lableText: "Confirm Password",
-                      isObsecure: _isObsecure2,
-                      iconBtn: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isObsecure2 = !_isObsecure2;
-                          });
-                        },
-                        icon: Icon(
-                          _isObsecure2
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 50),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              child: Consumer<RegisterProvider>(
+                builder: (context, value, child) {
+                  return Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        isLoading
-                            ? const CustomLoader()
-                            : CustomButton(
-                                size: size,
-                                textValue: "Sign Up ",
-                                onTap: () async {
-                                  if (inputValidation()) {
-                                    setState(() {
-                                      isLoading = true;
-                                    });
-                                    await AuthController().registerUser(
-                                      context,
-                                      _email.text,
-                                      _password.text,
-                                      _mobileNumber.text,
-                                    );
-                                    setState(() {
-                                      isLoading = false;
-                                    });
-                                  } else {
-                                    DialogBox().dialogbox(
-                                      context,
-                                      DialogType.ERROR,
-                                      'Invalidated Data',
-                                      'Please Enter Correct Information',
-                                      () {},
-                                    );
-                                  }
-                                },
-                              ),
+                        const CustomNavbar(),
+                        const SizedBox(height: 20),
+                        const CustomText(
+                          text: "Let's Create\na Account",
+                          fontsize: 40,
+                          color: darkColor,
+                        ),
+                        const SizedBox(height: 30),
+                        CustomInput(
+                          controller: value.getEmail,
+                          lableText: "Email",
+                        ),
+                        const SizedBox(height: 20),
+                        CustomInput(
+                          controller: value.getMobile,
+                          lableText: "Mobile Number",
+                        ),
+                        const SizedBox(height: 20),
+                        CustomInput(
+                          controller: value.getPassword,
+                          lableText: "Password",
+                          isObsecure: value.isObsecure1,
+                          iconBtn: IconButton(
+                            onPressed: () {
+                              value.changeObscure1();
+                            },
+                            icon: Icon(
+                              value.isObsecure1
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        CustomInput(
+                          controller: value.getConfirmPassword,
+                          lableText: "Confirm Password",
+                          isObsecure: value.isObsecure2,
+                          iconBtn: IconButton(
+                            onPressed: () {
+                              value.changeObscure2();
+                            },
+                            icon: Icon(
+                              value.isObsecure2
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 50),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomButton(
+                              isLoading: value.isLoading,
+                              size: size,
+                              textValue: "Sign Up ",
+                              onTap: () {
+                                value.RegisterState(context);
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 30),
                       ],
                     ),
-                    const SizedBox(height: 30),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ),
         ),
       ),
     );
-  }
-
-  bool inputValidation() {
-    var isValid = false;
-    if (_email.text.isEmpty ||
-        _mobileNumber.text.isEmpty ||
-        _password.text.isEmpty ||
-        _confirmPassword.text.isEmpty) {
-      isValid = false;
-    } else if (!EmailValidator.validate(_email.text)) {
-      isValid = false;
-    } else if (_mobileNumber.text.length != 10) {
-      isValid = false;
-    } else if (_password.text != _confirmPassword.text) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-    return isValid;
   }
 }
