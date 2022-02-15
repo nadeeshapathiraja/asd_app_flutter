@@ -10,8 +10,8 @@ class CustomLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SpinKitFadingFour(
-      color: primaryColor,
-      size: 50.0,
+      color: kwhite,
+      size: 40.0,
     );
   }
 }

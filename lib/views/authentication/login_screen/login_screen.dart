@@ -68,15 +68,14 @@ class _LogInScreenState extends State<LogInScreen> {
                         ),
                       ),
                       const SizedBox(height: 50),
-                      value.isLoading
-                          ? const CustomLoader()
-                          : CustomButton(
-                              size: size,
-                              textValue: "Login",
-                              onTap: () {
-                                value.LoginState(context);
-                              },
-                            ),
+                      CustomButton(
+                        size: size,
+                        isLoading: value.isLoading,
+                        textValue: "Login",
+                        onTap: () {
+                          value.LoginState(context);
+                        },
+                      ),
                       const SizedBox(height: 30),
                       InkWell(
                         onTap: () {

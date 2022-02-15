@@ -25,27 +25,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: size.width,
-          height: size.height,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(Constants.imageAssets("bg.jpg")),
-              fit: BoxFit.cover,
-            ),
+      body: Container(
+        width: size.width,
+        height: size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Constants.imageAssets("bg.jpg")),
+            fit: BoxFit.cover,
           ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 40.0,
-                right: 40.0,
-                top: 10.0,
-              ),
-              //Add consumer for mode change
-              child: Consumer<ModeProvider>(
-                builder: (context, value, child) {
-                  return Column(
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 40.0,
+              right: 40.0,
+              top: 10.0,
+            ),
+            //Add consumer for mode change
+            child: Consumer<ModeProvider>(
+              builder: (context, value, child) {
+                return SingleChildScrollView(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
@@ -117,9 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       )
                     ],
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
         ),
