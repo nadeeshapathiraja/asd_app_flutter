@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:game_app/providers/login_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
-import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -13,6 +13,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ModeProvider()),
+        ChangeNotifierProvider(create: (context) => LoginProvider()),
       ],
       child: const MyApp(),
     ),

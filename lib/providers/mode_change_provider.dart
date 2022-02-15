@@ -10,6 +10,5 @@ class ModeProvider extends ChangeNotifier {
 
   void changeMode(mode) {
     _mode = mode;
-    Logger().i(_mode);
   }
 }
