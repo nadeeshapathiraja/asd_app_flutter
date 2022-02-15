@@ -14,7 +14,7 @@ class CustomBackButton extends StatelessWidget {
         UtilFunction.goBack(context);
       },
       child: Image.asset(
-        Constants.imageAssets("backbtn.png"),
+        Constants.iconAssets("backbtn.png"),
         width: 60,
       ),
     );

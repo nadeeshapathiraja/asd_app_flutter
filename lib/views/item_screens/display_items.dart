@@ -70,7 +70,7 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                       //Custom Back button
                       CustomBackButton(),
                       SizedBox(
-                        width: size.width * 0.2,
+                        width: size.width * 0.25,
                       ),
                       CustomText(
                         text: "Fruits",
