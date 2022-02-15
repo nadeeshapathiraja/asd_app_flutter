@@ -1,12 +1,8 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/controllers/auth_controller.dart';
 import 'package:game_app/providers/login_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
@@ -78,27 +74,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               size: size,
                               textValue: "Login",
                               onTap: () {
-                                // if (inputValidation()) {
-                                //   setState(() {
-                                //     isLoading = true;
-                                //   });
-                                //   AuthController().loginUser(
-                                //    value.getEmail.text,
-                                //     value.getPassword.text,
-                                //     context,
-                                //   );
-                                //   setState(() {
-                                //     isLoading = false;
-                                //   });
-                                // } else {
-                                //   DialogBox().dialogbox(
-                                //     context,
-                                //     DialogType.ERROR,
-                                //     'Invalidated Data',
-                                //     'Please Enter Correct Information',
-                                //     () {},
-                                //   );
-                                // }
+                                value.LoginState(context);
                               },
                             ),
                       const SizedBox(height: 30),
@@ -134,17 +110,5 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       ),
     );
-  }
-
-  bool inputValidation() {
-    var isValid = false;
-    if (_email.text.isEmpty || _password.text.isEmpty) {
-      isValid = false;
-    } else if (!EmailValidator.validate(_email.text)) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-    return isValid;
   }
 }

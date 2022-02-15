@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/providers/login_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
-import 'package:game_app/views/home_screen/home_screen.dart';
+import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: const HomeScreen(),
+      home: const LogInScreen(),
       //Responsive design
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget,

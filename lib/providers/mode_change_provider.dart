@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 
 class ModeProvider extends ChangeNotifier {
   //if mode = false -> child mode
