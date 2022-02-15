@@ -4,7 +4,7 @@ import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/providers/register_provider.dart';
+import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:provider/provider.dart';

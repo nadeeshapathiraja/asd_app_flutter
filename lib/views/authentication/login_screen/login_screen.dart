@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
-import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/providers/login_provider.dart';
+import 'package:game_app/providers/auth/login_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
