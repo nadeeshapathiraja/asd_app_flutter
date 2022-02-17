@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/auth_controller.dart';
@@ -13,9 +12,6 @@ class RegisterProvider extends ChangeNotifier {
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
   bool _isLoading = false;
-
-  //Create FlutterFire instance
-  FirebaseAuth auth = FirebaseAuth.instance;
 
   //Get all Values in login screen
   TextEditingController get getEmail => _email;

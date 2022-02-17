@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/db_controller.dart';
 import 'package:game_app/utils/util_functions.dart';
@@ -90,7 +90,7 @@ class AuthController {
         DialogBox().dialogbox(
           context,
           DialogType.ERROR,
-          'Wrong Passord',
+          'Wrong Password',
           'Wrong password provided for that user.',
           () {},
         );
@@ -98,7 +98,7 @@ class AuthController {
     }
   }
 
-//Reset Passord Function
+//Reset Password Function
   Future<void> resetPasswordUser(BuildContext context, String email) async {
     try {
       await auth.sendPasswordResetEmail(email: email);
@@ -128,5 +128,10 @@ class AuthController {
         );
       }
     } catch (e) {}
+  }
+
+  //Logout function
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
