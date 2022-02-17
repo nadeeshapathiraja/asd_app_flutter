@@ -13,10 +13,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1), () {
-      Provider.of<UserProvider>(context, listen: false)
-          .initializedUser(context);
-    });
+    Future.delayed(
+      Duration(seconds: 1),
+      () {
+        Provider.of<UserProvider>(context, listen: false)
+            .initializedUser(context);
+      },
+    );
   }
 
   @override

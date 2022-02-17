@@ -4,7 +4,6 @@ import 'package:game_app/providers/auth/login_provider.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
-import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:game_app/views/splash_screen/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';

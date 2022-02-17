@@ -21,7 +21,7 @@ class UserProvider extends ChangeNotifier {
         Logger().w('User is currently signed out!');
         UtilFunction.navigateTo(context, const LogInScreen());
       } else {
-        Logger().d({'User is signed in!': user});
+        Logger().d('User is signed in!');
         _user = user;
         notifyListeners();
         UtilFunction.navigateTo(context, const HomeScreen());
@@ -30,9 +30,10 @@ class UserProvider extends ChangeNotifier {
   }
 
   //Google logout function
-  Future<void> logout() async {
+  Future<void> logout(BuildContext context) async {
     try {
       await _userController.logOut();
+      UtilFunction.navigateTo(context, LogInScreen());
     } catch (e) {
       Logger().e(e);
     }

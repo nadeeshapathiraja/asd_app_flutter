@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
+import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
@@ -114,6 +116,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             title: "Play time",
                           ),
+                          SizedBox(height: 30),
+                          value.getMode
+                              ? CustomButton(
+                                  size: size,
+                                  textValue: "SignOut",
+                                  onTap: () {
+                                    Provider.of<UserProvider>(context,
+                                            listen: false)
+                                        .logout(context);
+                                  },
+                                )
+                              : CustomText(text: ""),
                         ],
                       )
                     ],
