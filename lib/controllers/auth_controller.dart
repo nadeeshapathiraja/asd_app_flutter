@@ -7,6 +7,7 @@ import 'package:game_app/controllers/db_controller.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
+import 'package:logger/logger.dart';
 
 class AuthController {
   //Create Firebade auth instance
@@ -26,8 +27,8 @@ class AuthController {
         email: email,
         password: password,
       );
-
-      if (userCredential.user!.uid.isEmpty) {
+      Logger().d(userCredential);
+      if (userCredential.user!.uid.isNotEmpty) {
         //Save user data in firestore database
         await DatabaseController().saveUserData(
           userCredential.user!.uid,

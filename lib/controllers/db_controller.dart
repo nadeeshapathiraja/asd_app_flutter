@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:logger/logger.dart';
 
 class DatabaseController {
   //Firestore inctanec create
@@ -16,9 +17,9 @@ class DatabaseController {
           'email': email,
           'phone': phone,
         })
-        .then((value) => print("User Added"))
+        .then((value) => Logger().d("User Added"))
         .catchError(
-          (error) => print("Failed to add user: $error"),
+          (error) => Logger().e("Failed to add user: $error"),
         );
   }
 }
