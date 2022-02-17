@@ -130,9 +130,4 @@ class AuthController {
       }
     } catch (e) {}
   }
-
-  //Logout function
-  Future<void> logOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
 }

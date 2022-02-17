@@ -1,0 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:game_app/controllers/user_controller.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/authentication/login_screen/login_screen.dart';
+import 'package:game_app/views/home_screen/home_screen.dart';
+import 'package:logger/logger.dart';
+
+class UserProvider extends ChangeNotifier {
+  final UserController _userController = UserController();
+  //For get user data
+  late User _user;
+
+  //Returning firebase user  objects
+  User get user => _user;
+
+  //Initialize user function
+  Future<void> initializedUser(BuildContext context) async {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        Logger().w('User is currently signed out!');
+        UtilFunction.navigateTo(context, const LogInScreen());
+      } else {
+        Logger().d({'User is signed in!': user});
+        _user = user;
+        notifyListeners();
+        UtilFunction.navigateTo(context, const HomeScreen());
+      }
+    });
+  }
+
+  //Google logout function
+  Future<void> logout() async {
+    try {
+      await _userController.logOut();
+    } catch (e) {
+      Logger().e(e);
+    }
+  }
+}

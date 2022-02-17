@@ -10,14 +10,6 @@ import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:logger/logger.dart';
 
 class LoginProvider extends ChangeNotifier {
-  final AuthController _authController = AuthController();
-
-  //For get user data
-  late User _user;
-
-//Returning firebase user  objects
-  User get user => _user;
-
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _isObsecure = true;
@@ -77,30 +69,6 @@ class LoginProvider extends ChangeNotifier {
       }
     } catch (e) {
       setLoading();
-      Logger().e(e);
-    }
-  }
-
-  //Initialize user function
-  Future<void> initializedUser(BuildContext context) async {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Logger().w('User is currently signed out!');
-        UtilFunction.navigateTo(context, const LogInScreen());
-      } else {
-        Logger().d({'User is signed in!': user});
-        _user = user;
-        notifyListeners();
-        UtilFunction.navigateTo(context, const HomeScreen());
-      }
-    });
-  }
-
-  //Google logout function
-  Future<void> logout() async {
-    try {
-      await _authController.logOut();
-    } catch (e) {
       Logger().e(e);
     }
   }
