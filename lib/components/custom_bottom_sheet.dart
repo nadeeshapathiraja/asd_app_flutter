@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
+import 'package:game_app/utils/util_functions.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({
@@ -38,7 +39,9 @@ class CustomBottomSheet extends StatelessWidget {
             TileSection(
               title: "Close",
               icon: Icons.clear,
-              onTap: () {},
+              onTap: () {
+                UtilFunction.goBack(context);
+              },
             ),
           ],
         ),

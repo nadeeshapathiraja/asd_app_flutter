@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_text.dart';
@@ -92,15 +93,24 @@ class _AddItemState extends State<AddItem> {
                       lableText: "Name",
                     ),
                     const SizedBox(height: 30),
-                    CustomInput(
-                      controller: _email,
-                      lableText: "Upload Image",
-                      iconBtn: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.cloud_upload,
-                          size: 30,
-                          color: primaryColor,
+                    InkWell(
+                      onTap: () {},
+                      child: CustomInput(
+                        controller: _email,
+                        lableText: "Upload Image",
+                        iconBtn: IconButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (builder) =>
+                                  CustomBottomSheet(context: context),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.cloud_upload,
+                            size: 30,
+                            color: primaryColor,
+                          ),
                         ),
                       ),
                     ),
