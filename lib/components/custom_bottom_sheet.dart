@@ -20,10 +20,26 @@ class CustomBottomSheet extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            TileSection(),
-            TileSection(),
-            TileSection(),
-            TileSection(),
+            TileSection(
+              title: "Browse Web",
+              icon: Icons.travel_explore,
+              onTap: () {},
+            ),
+            TileSection(
+              title: "Capture Photo",
+              icon: Icons.camera_alt,
+              onTap: () {},
+            ),
+            TileSection(
+              title: "Attach Photo",
+              icon: Icons.photo_library,
+              onTap: () {},
+            ),
+            TileSection(
+              title: "Close",
+              icon: Icons.clear,
+              onTap: () {},
+            ),
           ],
         ),
       ),
@@ -34,7 +50,13 @@ class CustomBottomSheet extends StatelessWidget {
 class TileSection extends StatelessWidget {
   const TileSection({
     Key? key,
+    required this.title,
+    required this.icon,
+    required this.onTap,
   }) : super(key: key);
+  final String title;
+  final IconData icon;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -42,22 +64,43 @@ class TileSection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Container(
-            height: 100,
-            child: Row(
-              children: [
-                Icon(
-                  Icons.travel_explore,
-                  color: primaryColor,
-                  size: 30,
-                ),
-                SizedBox(width: 30),
-                CustomText(
-                  text: "Browse Web",
-                  color: darkColor,
-                  fontsize: 25,
-                )
-              ],
+          child: InkWell(
+            onTap: onTap,
+            child: Container(
+              height: 100,
+              child: Row(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: kGrey.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 2,
+                        left: 2,
+                        right: 2,
+                        top: 2,
+                        child: Icon(
+                          icon,
+                          color: darkColor,
+                          size: 30,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 30),
+                  CustomText(
+                    text: title,
+                    color: darkColor,
+                    fontsize: 25,
+                  )
+                ],
+              ),
             ),
           ),
         ),
