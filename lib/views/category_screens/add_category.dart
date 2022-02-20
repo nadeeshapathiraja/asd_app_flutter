@@ -93,26 +93,36 @@ class _AddCategoryState extends State<AddCategory> {
                       lableText: "Category Name",
                     ),
                     const SizedBox(height: 30),
-                    InkWell(
-                      onTap: () {},
-                      child: CustomInput(
-                        controller: _email,
-                        lableText: "Upload Image",
-                        iconBtn: IconButton(
-                          onPressed: () {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () {
                             showModalBottomSheet(
                               context: context,
                               builder: (builder) =>
                                   CustomBottomSheet(context: context),
                             );
                           },
-                          icon: Icon(
-                            Icons.cloud_upload,
-                            size: 30,
-                            color: primaryColor,
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                Constants.imageAssets("logo.png"),
+                                width: 150,
+                                height: 150,
+                              ),
+                              Positioned(
+                                bottom: 20,
+                                right: 20,
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(height: 30),
                     CustomInput(
