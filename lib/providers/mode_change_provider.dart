@@ -10,4 +10,8 @@ class ModeProvider extends ChangeNotifier {
   void changeMode(mode) {
     _mode = mode;
   }
+
+  // void changeMode(mode) {
+  //   _mode = !_mode;
+  // }
 }
