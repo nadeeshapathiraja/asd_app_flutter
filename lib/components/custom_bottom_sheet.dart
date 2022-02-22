@@ -27,33 +27,35 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
       width: double.infinity,
       color: kwhite,
       child: SingleChildScrollView(
-        child: Consumer<CategoryProvider>(builder: (context, value, child) {
-          return Column(
-            children: [
-              TileSection(
-                title: "Capture Photo",
-                icon: Icons.camera_alt,
-                onTap: () {
-                  value.takePhoto(ImageSource.camera);
-                },
-              ),
-              TileSection(
-                title: "Attach Photo",
-                icon: Icons.photo_library,
-                onTap: () {
-                  value.takePhoto(ImageSource.gallery);
-                },
-              ),
-              TileSection(
-                title: "Close",
-                icon: Icons.clear,
-                onTap: () {
-                  UtilFunction.goBack(context);
-                },
-              ),
-            ],
-          );
-        }),
+        child: Consumer<CategoryProvider>(
+          builder: (context, value, child) {
+            return Column(
+              children: [
+                TileSection(
+                  title: "Capture Photo",
+                  icon: Icons.camera_alt,
+                  onTap: () {
+                    value.takePhoto(ImageSource.camera);
+                  },
+                ),
+                TileSection(
+                  title: "Attach Photo",
+                  icon: Icons.photo_library,
+                  onTap: () {
+                    value.takePhoto(ImageSource.gallery);
+                  },
+                ),
+                TileSection(
+                  title: "Close",
+                  icon: Icons.clear,
+                  onTap: () {
+                    UtilFunction.goBack(context);
+                  },
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

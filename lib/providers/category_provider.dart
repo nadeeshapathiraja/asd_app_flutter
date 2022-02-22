@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 
 class CategoryProvider extends ChangeNotifier {
   late PickedFile _imageFile;
@@ -10,5 +11,9 @@ class CategoryProvider extends ChangeNotifier {
     );
 
     _imageFile = pickedFile!;
+
+    Logger().i(_imageFile.path);
   }
+
+  PickedFile get imageFile => _imageFile;
 }

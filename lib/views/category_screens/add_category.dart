@@ -4,11 +4,13 @@ import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
+import 'package:provider/provider.dart';
 
 class AddCategory extends StatefulWidget {
   const AddCategory({Key? key}) : super(key: key);
@@ -107,10 +109,16 @@ class _AddCategoryState extends State<AddCategory> {
                           },
                           child: Stack(
                             children: [
-                              Image.asset(
-                                Constants.imageAssets("logo.png"),
-                                width: 150,
-                                height: 150,
+                              Consumer<CategoryProvider>(
+                                builder: (context, value, child) {
+                                  return Image.asset(
+                                    Constants.imageAssets("logo.png"),
+                                    width: 150,
+                                    height: 150,
+                                  );
+                                },
+                                // value.imageFile == null ?
+                                // FileImage(File(value.imageFile.path)
                               ),
                               Positioned(
                                 bottom: 20,
