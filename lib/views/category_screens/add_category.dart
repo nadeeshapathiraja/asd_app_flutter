@@ -104,7 +104,6 @@ class _AddCategoryState extends State<AddCategory> {
                                   CustomBottomSheet(context: context),
                             );
                           },
-                          //Display image
                           child: Stack(
                             children: [
                               Image.asset(
