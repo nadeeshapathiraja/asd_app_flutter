@@ -4,11 +4,13 @@ import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:game_app/views/item_screens/item_list.dart';
+import 'package:provider/provider.dart';
 
 class AddItem extends StatefulWidget {
   const AddItem({Key? key}) : super(key: key);
@@ -93,26 +95,42 @@ class _AddItemState extends State<AddItem> {
                       lableText: "Name",
                     ),
                     const SizedBox(height: 30),
-                    InkWell(
-                      onTap: () {},
-                      child: CustomInput(
-                        controller: _email,
-                        lableText: "Upload Image",
-                        iconBtn: IconButton(
-                          onPressed: () {
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () {
                             showModalBottomSheet(
                               context: context,
                               builder: (builder) =>
                                   CustomBottomSheet(context: context),
                             );
                           },
-                          icon: Icon(
-                            Icons.cloud_upload,
-                            size: 30,
-                            color: primaryColor,
+                          child: Stack(
+                            children: [
+                              Consumer<CategoryProvider>(
+                                builder: (context, value, child) {
+                                  return Image.asset(
+                                    Constants.imageAssets("logo.png"),
+                                    width: 150,
+                                    height: 150,
+                                  );
+                                },
+                                // value.imageFile == null ?
+                                // FileImage(File(value.imageFile.path)
+                              ),
+                              Positioned(
+                                bottom: 20,
+                                right: 20,
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(height: 30),
                     CustomInput(
