@@ -1,12 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/auth_controller.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/authentication/login_screen/login_screen.dart';
-import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:logger/logger.dart';
 
 class LoginProvider extends ChangeNotifier {
