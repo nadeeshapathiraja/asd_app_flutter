@@ -19,7 +19,8 @@ class AddCategory extends StatefulWidget {
 
 class _AddCategoryState extends State<AddCategory> {
   final TextEditingController _email = TextEditingController();
-  bool status = true;
+  bool mode = true;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -66,13 +67,13 @@ class _AddCategoryState extends State<AddCategory> {
                               width: 50.0,
                               height: 25.0,
                               toggleSize: 18.0,
-                              value: status,
+                              value: mode,
                               borderRadius: 30.0,
                               padding: 5.0,
                               activeColor: activeColor,
                               onToggle: (val) {
                                 setState(() {
-                                  status = val;
+                                  mode = val;
                                 });
                                 UtilFunction.navigateTo(context, HomeScreen());
                               },

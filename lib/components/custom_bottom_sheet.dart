@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/util_functions.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
-class CustomBottomSheet extends StatelessWidget {
+class CustomBottomSheet extends StatefulWidget {
   const CustomBottomSheet({
     Key? key,
     required this.context,
@@ -12,39 +15,45 @@ class CustomBottomSheet extends StatelessWidget {
   final BuildContext context;
 
   @override
+  State<CustomBottomSheet> createState() => _CustomBottomSheetState();
+}
+
+class _CustomBottomSheetState extends State<CustomBottomSheet> {
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: 440,
+      height: 320,
       width: double.infinity,
       color: kwhite,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            TileSection(
-              title: "Browse Web",
-              icon: Icons.travel_explore,
-              onTap: () {},
-            ),
-            TileSection(
-              title: "Capture Photo",
-              icon: Icons.camera_alt,
-              onTap: () {},
-            ),
-            TileSection(
-              title: "Attach Photo",
-              icon: Icons.photo_library,
-              onTap: () {},
-            ),
-            TileSection(
-              title: "Close",
-              icon: Icons.clear,
-              onTap: () {
-                UtilFunction.goBack(context);
-              },
-            ),
-          ],
-        ),
+        child: Consumer<CategoryProvider>(builder: (context, value, child) {
+          return Column(
+            children: [
+              TileSection(
+                title: "Capture Photo",
+                icon: Icons.camera_alt,
+                onTap: () {
+                  value.takePhoto(ImageSource.camera);
+                },
+              ),
+              TileSection(
+                title: "Attach Photo",
+                icon: Icons.photo_library,
+                onTap: () {
+                  value.takePhoto(ImageSource.gallery);
+                },
+              ),
+              TileSection(
+                title: "Close",
+                icon: Icons.clear,
+                onTap: () {
+                  UtilFunction.goBack(context);
+                },
+              ),
+            ],
+          );
+        }),
       ),
     );
   }

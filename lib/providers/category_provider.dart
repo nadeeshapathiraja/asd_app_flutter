@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class CategoryProvider extends ChangeNotifier {
+  late PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(
+      source: source,
+    );
+
+    _imageFile = pickedFile!;
+  }
+}
