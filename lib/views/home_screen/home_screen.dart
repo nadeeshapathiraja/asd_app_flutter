@@ -64,10 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: 5.0,
                             activeColor: activeColor,
                             onToggle: (val) {
-                              setState(() {
-                                mode = val;
-                                value.changeMode(val);
-                              });
+                              value.changeMode(val);
+                              // setState(() {
+                              //   mode = val;
+                              //   value.changeMode(val);
+                              // });
                             },
                           ),
                         ],
