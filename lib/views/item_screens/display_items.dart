@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_card.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/home_screen/home_screen.dart';
 
 class DisplayItemsScreen extends StatefulWidget {
   const DisplayItemsScreen({Key? key}) : super(key: key);

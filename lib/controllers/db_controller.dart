@@ -8,6 +8,7 @@ class DatabaseController {
   // Create a CollectionReference called users that references the firestore collection
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+//Store user data
   Future<void> saveUserData(String uid, String email, String phone) {
     // Call the user's CollectionReference to add a new user
     return users
@@ -21,5 +22,15 @@ class DatabaseController {
         .catchError(
           (error) => Logger().e("Failed to add user: $error"),
         );
+  }
+
+  //Get User data
+  Future<void> getUserData(String id) async {
+    try {
+      DocumentSnapshot snapshotData = await users.doc(id).get();
+      Logger().i(snapshotData.data());
+    } catch (e) {
+      Logger().e(e);
+    }
   }
 }

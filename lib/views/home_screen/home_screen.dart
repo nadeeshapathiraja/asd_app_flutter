@@ -11,7 +11,6 @@ import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/category_screens/display_catergory.dart';
 import 'package:game_app/views/game_screens/display_games.dart';
 import 'package:game_app/views/home_screen/widgets/activity_card.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/views/video_screens/display_videos.dart';
 import 'package:provider/provider.dart';
 

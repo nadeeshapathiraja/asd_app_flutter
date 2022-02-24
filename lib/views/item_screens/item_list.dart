@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_outline_button.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:game_app/views/item_screens/add_item.dart';
 import 'package:game_app/views/item_screens/edit_items.dart';
 import 'package:game_app/views/item_screens/widgets/item_tile.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -10,7 +9,6 @@ import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
-import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class AddCategory extends StatefulWidget {
