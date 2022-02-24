@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_card.dart';
+import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
@@ -16,8 +17,6 @@ class DisplayItemsScreen extends StatefulWidget {
 }
 
 class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
-  bool status = false;
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,28 +41,7 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const CustomText(text: "PARENT MODE"),
-                      SizedBox(width: 10),
-                      FlutterSwitch(
-                        width: 50.0,
-                        height: 25.0,
-                        toggleSize: 18.0,
-                        value: status,
-                        borderRadius: 30.0,
-                        padding: 5.0,
-                        activeColor: activeColor,
-                        onToggle: (val) {
-                          setState(() {
-                            status = val;
-                          });
-                          UtilFunction.navigateTo(context, HomeScreen());
-                        },
-                      ),
-                    ],
-                  ),
+                  CustomSwitchBtn(),
                   const SizedBox(height: 10),
                   Row(
                     children: [

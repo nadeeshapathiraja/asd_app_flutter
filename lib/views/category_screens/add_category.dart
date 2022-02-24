@@ -3,6 +3,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -61,27 +62,7 @@ class _AddCategoryState extends State<AddCategory> {
                             height: 35,
                           ),
                         ),
-                        Row(
-                          children: [
-                            const CustomText(text: "PARENT MODE"),
-                            SizedBox(width: 10),
-                            FlutterSwitch(
-                              width: 50.0,
-                              height: 25.0,
-                              toggleSize: 18.0,
-                              value: mode,
-                              borderRadius: 30.0,
-                              padding: 5.0,
-                              activeColor: activeColor,
-                              onToggle: (val) {
-                                setState(() {
-                                  mode = val;
-                                });
-                                UtilFunction.navigateTo(context, HomeScreen());
-                              },
-                            ),
-                          ],
-                        ),
+                        CustomSwitchBtn(),
                       ],
                     ),
                     const SizedBox(height: 30),
