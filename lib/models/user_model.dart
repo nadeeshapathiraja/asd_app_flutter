@@ -1,3 +1,6 @@
+part of 'objects.dart';
+
+@JsonSerializable()
 class UserModel {
   late String uid;
   late String email;
@@ -9,9 +12,14 @@ class UserModel {
     required this.phone,
   });
 
-  UserModel.fromMap(Map map) {
-    uid = map['uid'];
-    email = map['email'];
-    phone = map['phone'];
-  }
+  // UserModel.fromMap(Map map) {
+  //   uid = map['uid'];
+  //   email = map['email'];
+  //   phone = map['phone'];
+  // }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

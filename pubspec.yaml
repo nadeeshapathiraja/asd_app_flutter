@@ -41,6 +41,9 @@ dependencies:
   logger: ^1.1.0
   image_picker: ^0.8.4+9
 
+  #Auto model genarate
+  json_annotation: ^4.0.1
+
   # Add responsiveness
   responsive_framework: ^0.1.7
 
@@ -55,6 +58,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.1.4
+  build_runner: ^2.0.4
   #Launch app
   flutter_launcher_icons: ^0.9.2
 

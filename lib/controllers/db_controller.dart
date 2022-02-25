@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:game_app/models/user_model.dart';
+import 'package:game_app/models/objects.dart';
 import 'package:logger/logger.dart';
 
 class DatabaseController {
@@ -33,7 +33,7 @@ class DatabaseController {
 
       //Map data
       UserModel userModel =
-          UserModel.fromMap(snapshotData.data() as Map<String, dynamic>);
+          UserModel.fromJson(snapshotData.data() as Map<String, dynamic>);
       Logger().i(userModel.email);
       return userModel;
     } catch (e) {

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/controllers/db_controller.dart';
 import 'package:game_app/controllers/user_controller.dart';
-import 'package:game_app/models/user_model.dart';
+import 'package:game_app/models/objects.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
