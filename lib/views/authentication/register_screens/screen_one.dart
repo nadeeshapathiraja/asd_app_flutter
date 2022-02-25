@@ -56,6 +56,7 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                         CustomInput(
                           controller: value.getMobile,
                           lableText: "Mobile Number",
+                          inputType: TextInputType.number,
                         ),
                         const SizedBox(height: 20),
                         CustomInput(

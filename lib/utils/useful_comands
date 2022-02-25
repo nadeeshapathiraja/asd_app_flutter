@@ -1,1 +1,6 @@
+//////Genarate model auto///////////
 flutter packages pub run build_runner build
+
+
+/////////Get App build//////////////////
+flutter build apk
