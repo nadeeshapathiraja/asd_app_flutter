@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:game_app/models/user_model.dart';
 import 'package:logger/logger.dart';
 
 class DatabaseController {
@@ -25,10 +26,16 @@ class DatabaseController {
   }
 
   //Get User data
-  Future<void> getUserData(String id) async {
+  Future<UserModel?> getUserData(String id) async {
     try {
       DocumentSnapshot snapshotData = await users.doc(id).get();
-      Logger().i(snapshotData.data());
+      // Logger().i(snapshotData.data());
+
+      //Map data
+      UserModel userModel =
+          UserModel.fromMap(snapshotData.data() as Map<String, dynamic>);
+      Logger().i(userModel.email);
+      return userModel;
     } catch (e) {
       Logger().e(e);
     }
