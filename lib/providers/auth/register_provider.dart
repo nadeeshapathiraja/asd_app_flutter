@@ -13,7 +13,7 @@ class RegisterProvider extends ChangeNotifier {
   final _confirmPassword = TextEditingController();
   bool _isLoading = false;
 
-  //Get all Values in login screen
+  //Get all Values in Register screen
   TextEditingController get getEmail => _email;
   TextEditingController get getMobile => _mobileNumber;
   TextEditingController get getPassword => _password;

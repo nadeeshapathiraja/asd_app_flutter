@@ -18,6 +18,9 @@ class DatabaseController {
           'uid': uid,
           'email': email,
           'phone': phone,
+          'username': null,
+          'age': null,
+          'asd_level': null
         })
         .then((value) => Logger().d("User Added"))
         .catchError(

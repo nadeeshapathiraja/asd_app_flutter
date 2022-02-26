@@ -56,6 +56,7 @@ class _RegisterScreenTwoState extends State<RegisterScreenTwo> {
                     CustomInput(
                       controller: _age,
                       lableText: "Age(Years)",
+                      inputType: TextInputType.number,
                     ),
                     const SizedBox(height: 50),
                     Row(
