@@ -7,6 +7,8 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/authentication/register_screens/screen_two.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreenOne extends StatefulWidget {
@@ -99,7 +101,9 @@ class _RegisterScreenOneState extends State<RegisterScreenOne> {
                               size: size,
                               textValue: "Sign Up ",
                               onTap: () {
-                                value.RegisterState(context);
+                                UtilFunction.navigateTo(
+                                    context, const RegisterScreenTwo());
+                                // value.RegisterState(context);
                               },
                             ),
                           ],

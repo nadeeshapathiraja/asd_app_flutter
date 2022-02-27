@@ -14,9 +14,9 @@ class DatabaseController {
     String uid,
     String email,
     String phone,
-    // String username,
-    // int age,
-    // String asd_level,
+    String username,
+    String age,
+    String asd_level,
   ) {
     // Call the user's CollectionReference to add a new user
     return users
@@ -25,9 +25,9 @@ class DatabaseController {
           'uid': uid,
           'email': email,
           'phone': phone,
-          'username': null,
-          'age': null,
-          'asd_level': null
+          'username': username,
+          'age': age,
+          'asd_level': asd_level
         })
         .then((value) => Logger().d("User Added"))
         .catchError(

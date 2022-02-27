@@ -12,6 +12,9 @@ class RegisterProvider extends ChangeNotifier {
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
   bool _isLoading = false;
+  final _username = TextEditingController();
+  final _age = TextEditingController();
+  final _asd_level = TextEditingController();
 
   //Get all Values in Register screen
   TextEditingController get getEmail => _email;
@@ -21,6 +24,9 @@ class RegisterProvider extends ChangeNotifier {
   bool get isObsecure1 => _isObsecure1;
   bool get isObsecure2 => _isObsecure2;
   bool get isLoading => _isLoading;
+  TextEditingController get getUserName => _username;
+  TextEditingController get getAge => _age;
+  TextEditingController get getAsdLevel => _asd_level;
 
   //Change obsecre text in password
   void changeObscure1() {
@@ -60,6 +66,7 @@ class RegisterProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //Register user
   Future<void> RegisterState(BuildContext context) async {
     try {
       if (inputValidation()) {
@@ -69,6 +76,9 @@ class RegisterProvider extends ChangeNotifier {
           _email.text,
           _password.text,
           _mobileNumber.text,
+          _username.text,
+          _age.text,
+          _asd_level.text,
         );
         setLoading();
       } else {

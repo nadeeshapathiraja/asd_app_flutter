@@ -6,7 +6,6 @@ import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/db_controller.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/authentication/login_screen/login_screen.dart';
-import 'package:game_app/views/authentication/register_screens/screen_two.dart';
 import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:logger/logger.dart';
 
@@ -20,6 +19,9 @@ class AuthController {
     String email,
     String password,
     String phone,
+    String username,
+    String age,
+    String asd_level,
   ) async {
     try {
       //Create User in Autendication
@@ -35,6 +37,9 @@ class AuthController {
           userCredential.user!.uid,
           email,
           phone,
+          username,
+          age,
+          asd_level,
         );
       }
 
@@ -44,7 +49,7 @@ class AuthController {
         'Your registration Success',
         'Please Login Now',
         () {
-          UtilFunction.navigateTo(context, RegisterScreenTwo());
+          UtilFunction.navigateTo(context, LogInScreen());
         },
       );
     } on FirebaseAuthException catch (e) {
