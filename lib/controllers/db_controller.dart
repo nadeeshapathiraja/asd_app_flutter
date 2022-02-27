@@ -10,7 +10,14 @@ class DatabaseController {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
 //Store user data
-  Future<void> saveUserData(String uid, String email, String phone) {
+  Future<void> saveUserData(
+    String uid,
+    String email,
+    String phone,
+    // String username,
+    // int age,
+    // String asd_level,
+  ) {
     // Call the user's CollectionReference to add a new user
     return users
         .doc(uid)

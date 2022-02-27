@@ -59,9 +59,11 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                           ),
                           leading: Radio<level>(
                             fillColor: MaterialStateColor.resolveWith(
-                                (states) => darkColor),
+                              (states) => darkColor,
+                            ),
                             focusColor: MaterialStateColor.resolveWith(
-                                (states) => primaryColor),
+                              (states) => primaryColor,
+                            ),
                             value: level.low,
                             groupValue: _character,
                             onChanged: (level? value) {
