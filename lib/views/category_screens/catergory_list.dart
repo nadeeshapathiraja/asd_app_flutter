@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_dialogbox.dart';
+import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_outline_button.dart';
-import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/add_category.dart';
@@ -40,22 +40,8 @@ class _CatergoryListState extends State<CatergoryList> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          UtilFunction.goBack(context);
-                        },
-                        child: Image.asset(
-                          Constants.iconAssets("back.png"),
-                          width: 35,
-                          height: 35,
-                        ),
-                      ),
-                      CustomSwitchBtn(),
-                    ],
-                  ),
+                  //main Navbar
+                  CustomMainNavBar(),
                   SizedBox(height: 50),
                   CustomOutlineButton(
                     size: size,

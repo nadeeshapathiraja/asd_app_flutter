@@ -3,7 +3,6 @@ import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_main_navbar.dart';
-import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -47,7 +46,9 @@ class _EditCategoryState extends State<EditCategory> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    //main Navbar
                     CustomMainNavBar(),
+
                     const SizedBox(height: 30),
                     const CustomText(
                       text: "Edit Category",

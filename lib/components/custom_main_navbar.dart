@@ -19,8 +19,8 @@ class CustomMainNavBar extends StatelessWidget {
           },
           child: Image.asset(
             Constants.iconAssets("back.png"),
-            width: 35,
-            height: 35,
+            width: 50,
+            height: 50,
           ),
         ),
         CustomSwitchBtn(),
