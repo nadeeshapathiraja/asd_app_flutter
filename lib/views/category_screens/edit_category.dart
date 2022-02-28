@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/category_provider.dart';
@@ -46,22 +47,7 @@ class _EditCategoryState extends State<EditCategory> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            UtilFunction.goBack(context);
-                          },
-                          child: Image.asset(
-                            Constants.iconAssets("back.png"),
-                            width: 35,
-                            height: 35,
-                          ),
-                        ),
-                        CustomSwitchBtn(),
-                      ],
-                    ),
+                    CustomMainNavBar(),
                     const SizedBox(height: 30),
                     const CustomText(
                       text: "Edit Category",
