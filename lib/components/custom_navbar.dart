@@ -17,8 +17,8 @@ class CustomNavbar extends StatelessWidget {
           },
           child: Image.asset(
             Constants.iconAssets("back.png"),
-            width: 35,
-            height: 35,
+            width: 45,
+            height: 45,
           ),
         )
       ],
