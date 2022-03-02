@@ -10,6 +10,12 @@ class DisplayVideos extends StatefulWidget {
 class _DisplayVideosState extends State<DisplayVideos> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container());
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [],
+        ),
+      ),
+    );
   }
 }
