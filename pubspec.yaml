@@ -55,7 +55,7 @@ dependencies:
   firebase_auth: ^3.3.6
   cloud_firestore: ^3.1.7
 
-  #for player
+  #for video player
   firebase_database: any
   better_player: any
 
