@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:video_player/video_player.dart';
 
 class DisplayVideos extends StatefulWidget {
   const DisplayVideos({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class DisplayVideos extends StatefulWidget {
 }
 
 class _DisplayVideosState extends State<DisplayVideos> {
+  late VideoPlayerController _controller;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
