@@ -10,6 +10,7 @@ class CustomInput extends StatelessWidget {
     this.iconBtn,
     this.isObsecure = false,
     this.inputType = TextInputType.text,
+    this.hintText,
   }) : super(key: key);
 
   TextEditingController controller = TextEditingController();
@@ -17,6 +18,7 @@ class CustomInput extends StatelessWidget {
   final IconButton? iconBtn;
   final bool isObsecure;
   final TextInputType inputType;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class CustomInput extends StatelessWidget {
       keyboardType: inputType,
       decoration: InputDecoration(
         labelText: lableText,
+        hintText: hintText,
         labelStyle: const TextStyle(
           color: darkColor,
           fontSize: 18,
