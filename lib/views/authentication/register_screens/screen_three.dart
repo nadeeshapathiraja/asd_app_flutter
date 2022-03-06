@@ -15,10 +15,7 @@ class RegisterScreenThree extends StatefulWidget {
   _RegisterScreenThreeState createState() => _RegisterScreenThreeState();
 }
 
-enum level { low, mild, high }
-
 class _RegisterScreenThreeState extends State<RegisterScreenThree> {
-  level? _character = level.low;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -59,19 +56,17 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                 color: primaryColor,
                                 fontsize: 18,
                               ),
-                              leading: Radio<level>(
+                              leading: Radio(
                                 fillColor: MaterialStateColor.resolveWith(
                                   (states) => darkColor,
                                 ),
                                 focusColor: MaterialStateColor.resolveWith(
                                   (states) => primaryColor,
                                 ),
-                                value: level.low,
-                                groupValue: _character,
-                                onChanged: (level? value) {
-                                  setState(() {
-                                    _character = value;
-                                  });
+                                value: 'Low',
+                                groupValue: value.getCharacter,
+                                onChanged: (value) {
+                                  // value. = value.toString();
                                 },
                               ),
                             ),
@@ -81,16 +76,16 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                 color: primaryColor,
                                 fontsize: 18,
                               ),
-                              leading: Radio<level>(
+                              leading: Radio(
                                 fillColor: MaterialStateColor.resolveWith(
                                     (states) => darkColor),
                                 focusColor: MaterialStateColor.resolveWith(
                                     (states) => primaryColor),
-                                value: level.mild,
-                                groupValue: _character,
-                                onChanged: (level? value) {
+                                value: 'Mild',
+                                groupValue: value.getCharacter,
+                                onChanged: (value) {
                                   setState(() {
-                                    _character = value;
+                                    // _character = value.toString();
                                   });
                                 },
                               ),
@@ -101,16 +96,16 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                 color: primaryColor,
                                 fontsize: 18,
                               ),
-                              leading: Radio<level>(
+                              leading: Radio(
                                 fillColor: MaterialStateColor.resolveWith(
                                     (states) => darkColor),
                                 focusColor: MaterialStateColor.resolveWith(
                                     (states) => primaryColor),
-                                value: level.high,
-                                groupValue: _character,
-                                onChanged: (level? value) {
+                                value: 'High',
+                                groupValue: value.getCharacter,
+                                onChanged: (value) {
                                   setState(() {
-                                    _character = value;
+                                    //_character = value.toString();
                                   });
                                 },
                               ),

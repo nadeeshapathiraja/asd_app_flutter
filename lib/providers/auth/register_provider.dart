@@ -15,6 +15,7 @@ class RegisterProvider extends ChangeNotifier {
   final _username = TextEditingController();
   final _age = TextEditingController();
   final _asd_level = TextEditingController();
+  final _character = 'Low';
 
   //Get all Values in Register screen
   TextEditingController get getEmail => _email;
@@ -27,6 +28,7 @@ class RegisterProvider extends ChangeNotifier {
   TextEditingController get getUserName => _username;
   TextEditingController get getAge => _age;
   TextEditingController get getAsdLevel => _asd_level;
+  String get getCharacter => _character;
 
   //Change obsecre text in password
   void changeObscure1() {

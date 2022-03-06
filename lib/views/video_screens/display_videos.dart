@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
+import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
+import 'package:videos_player/model/video.model.dart';
+import 'package:videos_player/videos_player.dart';
 
 class DisplayVideos extends StatefulWidget {
   const DisplayVideos({Key? key}) : super(key: key);
@@ -64,6 +68,25 @@ class _DisplayVideosState extends State<DisplayVideos> {
                   ],
                 ),
                 const SizedBox(height: 10),
+                Consumer<VideoScreenProvider>(
+                  builder: (context, value, child) {
+                    return ListView.builder(
+                        itemCount: value.getVideoList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return VideosPlayer(
+                            networkVideos: [
+                              NetworkVideo(
+                                id: value.getVideoList[index]['id'],
+                                name: value.getVideoList[index]['name'],
+                                videoUrl: value.getVideoList[index]['videoUrl'],
+                                thumbnailUrl: value.getVideoList[index]
+                                    ['thumbnailUrl'],
+                              )
+                            ],
+                          );
+                        });
+                  },
+                )
               ],
             ),
           ),
