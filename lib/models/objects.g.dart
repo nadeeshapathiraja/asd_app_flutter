@@ -23,3 +23,18 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'age': instance.age,
       'asd_level': instance.asd_level,
     };
+
+VideoModel _$VideoModelFromJson(Map<String, dynamic> json) => VideoModel(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      thumbnailUrl: json['thumbnailUrl'] as String,
+      videoUrl: json['videoUrl'] as String,
+    );
+
+Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'thumbnailUrl': instance.thumbnailUrl,
+      'videoUrl': instance.videoUrl,
+    };
