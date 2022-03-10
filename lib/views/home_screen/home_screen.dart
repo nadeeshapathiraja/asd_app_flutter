@@ -10,6 +10,7 @@ import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/category_screens/display_catergory.dart';
 import 'package:game_app/views/game_screens/display_games.dart';
+import 'package:game_app/views/game_screens/game_catergory_screen.dart';
 import 'package:game_app/views/home_screen/widgets/activity_card.dart';
 import 'package:game_app/views/video_screens/video_catergory.dart';
 import 'package:provider/provider.dart';
@@ -93,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ActivityCard(
                               size: size,
                               onTap: () {
-                                UtilFunction.navigateTo(context, DisplayGame());
+                                UtilFunction.navigateTo(
+                                    context, GameCatergoryScreen());
                               },
                               title: "Play time",
                             ),
