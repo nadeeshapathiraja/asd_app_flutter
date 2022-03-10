@@ -66,7 +66,7 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                 value: 'Low',
                                 groupValue: value.getCharacter,
                                 onChanged: (value) {
-                                  // value. = value.toString();
+                                  // _character = value.toString();
                                 },
                               ),
                             ),
