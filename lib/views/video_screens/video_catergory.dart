@@ -5,16 +5,16 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/item_screens/display_items.dart';
+import 'package:game_app/views/video_screens/video_screen_list.dart';
 
-class DisplayCatergory extends StatefulWidget {
-  const DisplayCatergory({Key? key}) : super(key: key);
+class VideoCatergory extends StatefulWidget {
+  const VideoCatergory({Key? key}) : super(key: key);
 
   @override
-  _DisplayCatergoryState createState() => _DisplayCatergoryState();
+  State<VideoCatergory> createState() => _VideoCatergoryState();
 }
 
-class _DisplayCatergoryState extends State<DisplayCatergory> {
+class _VideoCatergoryState extends State<VideoCatergory> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -68,9 +68,7 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                                   title: "Fruits",
                                   onTap: () {
                                     UtilFunction.navigateTo(
-                                      context,
-                                      DisplayItemsScreen(),
-                                    );
+                                        context, VideoListScreen());
                                   },
                                 ),
                                 SizedBox(
