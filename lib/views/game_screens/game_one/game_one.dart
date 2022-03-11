@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
+import 'package:game_app/components/custom_lable_box.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -64,6 +65,27 @@ class _GameOneState extends State<GameOne> {
                           width: size.width * 0.99,
                           height: size.height * 0.65,
                         ),
+                        CloudImage(
+                          bottom: 10,
+                          left: 100,
+                        ),
+                        CloudImage(
+                          top: 30,
+                          left: 50,
+                        ),
+                        CloudImage(
+                          top: 130,
+                          left: 220,
+                        ),
+                        CloudImage(
+                          top: 10,
+                          left: 400,
+                        ),
+                        CloudImage(
+                          bottom: 10,
+                          left: 400,
+                        ),
+                        CustomLableBox(),
                         Positioned(
                           bottom: 20,
                           left: 20,
@@ -71,7 +93,7 @@ class _GameOneState extends State<GameOne> {
                             Constants.gameAssets('bird.png'),
                             width: 200,
                           ),
-                        )
+                        ),
                       ],
                     )
                   ],
@@ -80,5 +102,34 @@ class _GameOneState extends State<GameOne> {
         ),
       ),
     ));
+  }
+}
+
+class CloudImage extends StatelessWidget {
+  const CloudImage({
+    Key? key,
+    this.bottom,
+    this.left,
+    this.right,
+    this.top,
+  }) : super(key: key);
+
+  final double? bottom;
+  final double? left;
+  final double? right;
+  final double? top;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: bottom,
+      left: left,
+      right: right,
+      top: top,
+      child: Image.asset(
+        Constants.gameAssets('cloud.png'),
+        width: 80,
+      ),
+    );
   }
 }
