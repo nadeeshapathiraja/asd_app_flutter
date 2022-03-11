@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
+import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 class VideoListScreen extends StatefulWidget {
   const VideoListScreen({Key? key}) : super(key: key);
@@ -46,6 +48,20 @@ class _VideoListScreenState extends State<VideoListScreen> {
                   ],
                 ),
                 const SizedBox(height: 10),
+                Consumer<VideoScreenProvider>(
+                  builder: (context, value, child) {
+                    return Expanded(
+                      child: Container(
+                        child: ListView.builder(
+                            itemCount: value.getVideoList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Text(
+                                  value.getVideoList[index]['videoUrl']);
+                            }),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
