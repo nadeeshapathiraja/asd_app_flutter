@@ -85,7 +85,30 @@ class _GameOneState extends State<GameOne> {
                           bottom: 10,
                           left: 400,
                         ),
-                        CustomLableBox(),
+                        CustomLableBox(
+                          color: kwhite,
+                          top: 30,
+                          left: 250,
+                          letter: "b",
+                        ),
+                        CustomLableBox(
+                          color: kwhite,
+                          top: 30,
+                          left: 300,
+                          letter: "i",
+                        ),
+                        CustomLableBox(
+                          color: kwhite,
+                          top: 30,
+                          left: 350,
+                          letter: "r",
+                        ),
+                        CustomLableBox(
+                          color: kwhite,
+                          top: 30,
+                          left: 400,
+                          letter: "d",
+                        ),
                         Positioned(
                           bottom: 20,
                           left: 20,

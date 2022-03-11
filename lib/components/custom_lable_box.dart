@@ -5,20 +5,44 @@ import 'package:game_app/utils/app_colors.dart';
 class CustomLableBox extends StatelessWidget {
   const CustomLableBox({
     Key? key,
+    this.bottom,
+    this.left,
+    this.right,
+    this.top,
+    required this.color,
+    required this.letter,
   }) : super(key: key);
+
+  final double? bottom;
+  final double? left;
+  final double? right;
+  final double? top;
+  final Color color;
+  final String letter;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 230,
-      top: 40,
+      bottom: bottom,
+      left: left,
+      right: right,
+      top: top,
       child: Container(
         width: 50,
         height: 50,
-        color: kwhite,
+        decoration: BoxDecoration(
+          color: color,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 5.0,
+            ),
+          ],
+        ),
         child: Center(
           child: CustomText(
-            text: "b",
+            text: letter,
             fontsize: 40,
             fontWeight: FontWeight.w600,
           ),
