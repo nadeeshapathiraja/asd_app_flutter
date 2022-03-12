@@ -8,6 +8,7 @@ import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/test.dart';
 import 'package:game_app/views/authentication/register_screens/screen_one.dart';
+import 'package:game_app/views/authentication/register_screens/screen_three.dart';
 import 'package:game_app/views/game_screens/game_one/game_one.dart';
 import 'package:game_app/views/video_screens/video_screen_list.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: GameOne(),
+      home: RegisterScreenThree(),
       //Responsive design
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget,
