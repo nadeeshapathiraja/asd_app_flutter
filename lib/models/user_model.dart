@@ -18,12 +18,6 @@ class UserModel {
     this.asd_level,
   });
 
-  // UserModel.fromMap(Map map) {
-  //   uid = map['uid'];
-  //   email = map['email'];
-  //   phone = map['phone'];
-  // }
-
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 

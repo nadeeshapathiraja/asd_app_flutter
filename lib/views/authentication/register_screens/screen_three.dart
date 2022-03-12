@@ -36,98 +36,100 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                 builder: (context, value, child) {
                   return Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const CustomNavbar(),
-                        const SizedBox(height: 20),
-                        const CustomText(
-                          text: "Let us know the\nlevel of ASD",
-                          fontsize: 40,
-                          color: darkColor,
-                        ),
-                        const SizedBox(height: 30),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            ListTile(
-                              title: const CustomText(
-                                text: "Low",
-                                color: primaryColor,
-                                fontsize: 18,
-                              ),
-                              leading: Radio(
-                                fillColor: MaterialStateColor.resolveWith(
-                                  (states) => darkColor,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const CustomNavbar(),
+                          const SizedBox(height: 20),
+                          const CustomText(
+                            text: "Let us know the\nlevel of ASD",
+                            fontsize: 40,
+                            color: darkColor,
+                          ),
+                          const SizedBox(height: 30),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              ListTile(
+                                title: const CustomText(
+                                  text: "Low",
+                                  color: primaryColor,
+                                  fontsize: 18,
                                 ),
-                                focusColor: MaterialStateColor.resolveWith(
-                                  (states) => primaryColor,
-                                ),
-                                value: 'Low',
-                                groupValue: value.getCharacter,
-                                onChanged: (value) {
-                                  // _character = value.toString();
-                                },
-                              ),
-                            ),
-                            ListTile(
-                              title: const CustomText(
-                                text: "Mild",
-                                color: primaryColor,
-                                fontsize: 18,
-                              ),
-                              leading: Radio(
-                                fillColor: MaterialStateColor.resolveWith(
-                                    (states) => darkColor),
-                                focusColor: MaterialStateColor.resolveWith(
-                                    (states) => primaryColor),
-                                value: 'Mild',
-                                groupValue: value.getCharacter,
-                                onChanged: (value) {
-                                  setState(() {
+                                leading: Radio(
+                                  fillColor: MaterialStateColor.resolveWith(
+                                    (states) => darkColor,
+                                  ),
+                                  focusColor: MaterialStateColor.resolveWith(
+                                    (states) => primaryColor,
+                                  ),
+                                  value: 'Low',
+                                  groupValue: value.getCharacter,
+                                  onChanged: (value) {
                                     // _character = value.toString();
-                                  });
+                                  },
+                                ),
+                              ),
+                              ListTile(
+                                title: const CustomText(
+                                  text: "Mild",
+                                  color: primaryColor,
+                                  fontsize: 18,
+                                ),
+                                leading: Radio(
+                                  fillColor: MaterialStateColor.resolveWith(
+                                      (states) => darkColor),
+                                  focusColor: MaterialStateColor.resolveWith(
+                                      (states) => primaryColor),
+                                  value: 'Mild',
+                                  groupValue: value.getCharacter,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      // _character = value.toString();
+                                    });
+                                  },
+                                ),
+                              ),
+                              ListTile(
+                                title: const CustomText(
+                                  text: "High",
+                                  color: primaryColor,
+                                  fontsize: 18,
+                                ),
+                                leading: Radio(
+                                  fillColor: MaterialStateColor.resolveWith(
+                                      (states) => darkColor),
+                                  focusColor: MaterialStateColor.resolveWith(
+                                      (states) => primaryColor),
+                                  value: 'High',
+                                  groupValue: value.getCharacter,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      //_character = value.toString();
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 50),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomButton(
+                                isLoading: value.isLoading,
+                                size: size,
+                                textValue: "Create Now",
+                                onTap: () {
+                                  value.RegisterState(context);
                                 },
                               ),
-                            ),
-                            ListTile(
-                              title: const CustomText(
-                                text: "High",
-                                color: primaryColor,
-                                fontsize: 18,
-                              ),
-                              leading: Radio(
-                                fillColor: MaterialStateColor.resolveWith(
-                                    (states) => darkColor),
-                                focusColor: MaterialStateColor.resolveWith(
-                                    (states) => primaryColor),
-                                value: 'High',
-                                groupValue: value.getCharacter,
-                                onChanged: (value) {
-                                  setState(() {
-                                    //_character = value.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 50),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CustomButton(
-                              isLoading: value.isLoading,
-                              size: size,
-                              textValue: "Create Now",
-                              onTap: () {
-                                value.RegisterState(context);
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                      ],
+                            ],
+                          ),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
                     ),
                   );
                 },
