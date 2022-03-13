@@ -14,8 +14,7 @@ class RegisterProvider extends ChangeNotifier {
   bool _isLoading = false;
   final _username = TextEditingController();
   final _age = TextEditingController();
-  final _asd_level = TextEditingController();
-  final _character = 'Low';
+  String _character = 'Low';
 
   //Get all Values in Register screen
   TextEditingController get getEmail => _email;
@@ -27,8 +26,13 @@ class RegisterProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
   TextEditingController get getUserName => _username;
   TextEditingController get getAge => _age;
-  TextEditingController get getAsdLevel => _asd_level;
   String get getCharacter => _character;
+
+  //set charactor
+  void setCharactor(String val) {
+    _character = val;
+    notifyListeners();
+  }
 
   //Change obsecre text in password
   void changeObscure1() {
@@ -80,7 +84,7 @@ class RegisterProvider extends ChangeNotifier {
           _mobileNumber.text,
           _username.text,
           _age.text,
-          _asd_level.text,
+          _character,
         );
         setLoading();
       } else {

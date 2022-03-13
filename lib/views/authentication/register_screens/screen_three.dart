@@ -6,6 +6,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreenThree extends StatefulWidget {
@@ -66,8 +67,10 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                   ),
                                   value: 'Low',
                                   groupValue: value.getCharacter,
-                                  onChanged: (value) {
-                                    // _character = value.toString();
+                                  onChanged: (val) {
+                                    Logger().w(val.toString());
+                                    value.setCharactor(val.toString());
+                                    // run krala balanna
                                   },
                                 ),
                               ),
@@ -84,10 +87,8 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                       (states) => primaryColor),
                                   value: 'Mild',
                                   groupValue: value.getCharacter,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      // _character = value.toString();
-                                    });
+                                  onChanged: (val) {
+                                    value.setCharactor(val.toString());
                                   },
                                 ),
                               ),
@@ -104,10 +105,8 @@ class _RegisterScreenThreeState extends State<RegisterScreenThree> {
                                       (states) => primaryColor),
                                   value: 'High',
                                   groupValue: value.getCharacter,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      //_character = value.toString();
-                                    });
+                                  onChanged: (val) {
+                                    value.setCharactor(val.toString());
                                   },
                                 ),
                               ),

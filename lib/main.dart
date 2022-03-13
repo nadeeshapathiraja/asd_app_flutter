@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: RegisterScreenThree(),
+      home: RegisterScreenOne(),
       //Responsive design
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget,
