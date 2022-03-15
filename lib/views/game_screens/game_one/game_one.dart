@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
+import 'package:game_app/components/custom_game_navigation_row.dart';
 import 'package:game_app/components/custom_lable_box.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
@@ -143,6 +144,7 @@ class _GameOneState extends State<GameOne> {
                             width: 200,
                           ),
                         ),
+                        CustomGameNavigationRow()
                       ],
                     )
                   ],
