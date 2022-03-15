@@ -41,7 +41,6 @@ class _GameOneState extends State<GameOne> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CustomSwitchBtn(),
-                    const SizedBox(height: 10),
                     Row(
                       children: [
                         //Custom Back button
