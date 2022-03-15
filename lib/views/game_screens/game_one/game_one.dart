@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_lable_box.dart';

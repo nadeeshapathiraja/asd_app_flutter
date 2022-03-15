@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:game_app/providers/auth/login_provider.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/providers/category_provider.dart';
+import 'package:game_app/providers/game/game_one_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/providers/video_screen_provider.dart';
-import 'package:game_app/test.dart';
-import 'package:game_app/views/authentication/register_screens/screen_one.dart';
-import 'package:game_app/views/authentication/register_screens/screen_three.dart';
 import 'package:game_app/views/game_screens/game_one/game_one.dart';
-import 'package:game_app/views/video_screens/video_screen_list.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -26,6 +23,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
         ChangeNotifierProvider(create: (context) => VideoScreenProvider()),
+        ChangeNotifierProvider(create: (context) => GameOneProvider()),
       ],
       child: const MyApp(),
     ),

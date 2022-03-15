@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/utils/app_colors.dart';
 
 class CustomLableBox extends StatelessWidget {
   const CustomLableBox({
