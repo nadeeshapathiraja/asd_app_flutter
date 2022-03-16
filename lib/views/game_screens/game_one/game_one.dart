@@ -4,8 +4,12 @@ import 'package:game_app/components/custom_game_navigation_row.dart';
 import 'package:game_app/components/custom_lable_box.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/providers/game/game_one_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/game_screens/game_two/game_two.dart';
+import 'package:provider/provider.dart';
 
 class GameOne extends StatefulWidget {
   const GameOne({Key? key}) : super(key: key);
@@ -57,96 +61,104 @@ class _GameOneState extends State<GameOne> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Stack(
-                      children: [
-                        Image.asset(
-                          Constants.gameAssets('gamebg.png'),
-                          width: size.width * 0.99,
-                          height: size.height * 0.65,
-                        ),
-                        CloudImage(
-                          bottom: 10,
-                          left: 100,
-                        ),
-                        CloudImage(
-                          top: 30,
-                          left: 50,
-                        ),
-                        CloudImage(
-                          top: 130,
-                          left: 220,
-                        ),
-                        CloudImage(
-                          top: 10,
-                          left: 400,
-                        ),
-                        CloudImage(
-                          bottom: 10,
-                          left: 400,
-                        ),
-                        CustomLableBox(
-                          color: kwhite,
-                          top: 30,
-                          left: 250,
-                          letter: "b",
-                        ),
-                        CustomLableBox(
-                          color: kwhite,
-                          top: 30,
-                          left: 300,
-                          letter: "i",
-                        ),
-                        CustomLableBox(
-                          color: kwhite,
-                          top: 30,
-                          left: 350,
-                          letter: "r",
-                        ),
-                        CustomLableBox(
-                          color: kwhite,
-                          top: 30,
-                          left: 400,
-                          letter: "d",
-                        ),
-                        CustomLableBox(
-                          color: gameBtn,
-                          top: 150,
-                          left: 500,
-                          letter: "d",
-                          ontap: () {},
-                        ),
-                        CustomLableBox(
-                          color: gameBtn,
-                          top: 70,
-                          left: 500,
-                          letter: "r",
-                          ontap: () {},
-                        ),
-                        CustomLableBox(
-                          color: gameBtn,
-                          top: 180,
-                          left: 400,
-                          letter: "b",
-                          ontap: () {},
-                        ),
-                        CustomLableBox(
-                          color: gameBtn,
-                          top: 150,
-                          left: 300,
-                          letter: "i",
-                          ontap: () {},
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          left: 20,
-                          child: Image.asset(
-                            Constants.gameAssets('bird.png'),
-                            width: 200,
-                          ),
-                        ),
-                        CustomGameNavigationRow()
-                      ],
-                    )
+                    Consumer<GameOneProvider>(
+                      builder: (context, value, child) {
+                        return Stack(
+                          children: [
+                            Image.asset(
+                              Constants.gameAssets('gamebg.png'),
+                              width: size.width * 0.99,
+                              height: size.height * 0.65,
+                            ),
+                            CloudImage(
+                              bottom: 10,
+                              left: 100,
+                            ),
+                            CloudImage(
+                              top: 30,
+                              left: 50,
+                            ),
+                            CloudImage(
+                              top: 130,
+                              left: 220,
+                            ),
+                            CloudImage(
+                              top: 10,
+                              left: 400,
+                            ),
+                            CloudImage(
+                              bottom: 10,
+                              left: 400,
+                            ),
+                            CustomLableBox(
+                              color: kwhite,
+                              top: 30,
+                              left: 250,
+                              letter: "b",
+                            ),
+                            CustomLableBox(
+                              color: kwhite,
+                              top: 30,
+                              left: 300,
+                              letter: "i",
+                            ),
+                            CustomLableBox(
+                              color: kwhite,
+                              top: 30,
+                              left: 350,
+                              letter: "r",
+                            ),
+                            CustomLableBox(
+                              color: kwhite,
+                              top: 30,
+                              left: 400,
+                              letter: "d",
+                            ),
+                            CustomLableBox(
+                              color: gameBtn,
+                              top: 150,
+                              left: 500,
+                              letter: "d",
+                              ontap: () {},
+                            ),
+                            CustomLableBox(
+                              color: gameBtn,
+                              top: 70,
+                              left: 500,
+                              letter: "r",
+                              ontap: () {},
+                            ),
+                            CustomLableBox(
+                              color: gameBtn,
+                              top: 180,
+                              left: 400,
+                              letter: "b",
+                              ontap: () {},
+                            ),
+                            CustomLableBox(
+                              color: gameBtn,
+                              top: 150,
+                              left: 300,
+                              letter: "i",
+                              ontap: () {},
+                            ),
+                            Positioned(
+                              bottom: 20,
+                              left: 20,
+                              child: Image.asset(
+                                Constants.gameAssets('bird.png'),
+                                width: 200,
+                              ),
+                            ),
+                            CustomGameNavigationRow(
+                              onNextPress: () {
+                                UtilFunction.navigateTo(context, GameTwo());
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ],
                 ),
               )),

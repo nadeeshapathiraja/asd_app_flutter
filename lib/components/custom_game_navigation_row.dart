@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
 
 class CustomGameNavigationRow extends StatelessWidget {
   const CustomGameNavigationRow({
     Key? key,
+    required this.onNextPress,
   }) : super(key: key);
+
+  final Function() onNextPress;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,9 @@ class CustomGameNavigationRow extends StatelessWidget {
           RotationTransition(
             turns: new AlwaysStoppedAnimation(180 / 360),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                UtilFunction.goBack(context);
+              },
               child: Image.asset(
                 Constants.iconAssets('arrow.png'),
                 width: 50,
@@ -25,7 +31,7 @@ class CustomGameNavigationRow extends StatelessWidget {
           ),
           SizedBox(width: 10),
           InkWell(
-            onTap: () {},
+            onTap: onNextPress,
             child: Image.asset(
               Constants.iconAssets('arrow.png'),
               width: 50,
