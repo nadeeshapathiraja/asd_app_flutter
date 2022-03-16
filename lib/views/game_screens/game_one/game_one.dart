@@ -102,31 +102,19 @@ class _GameOneState extends State<GameOne> {
                               letter: "b",
                             ),
                             CustomLableBox(
-                              color:
-                                  (value.bPress == true && value.iPress == true)
-                                      ? gameBtn
-                                      : kwhite,
+                              color: (value.iPress == true) ? gameBtn : kwhite,
                               top: 30,
                               left: 300,
                               letter: "i",
                             ),
                             CustomLableBox(
-                              color: (value.bPress == true &&
-                                      value.iPress == true &&
-                                      value.rPress == true)
-                                  ? gameBtn
-                                  : kwhite,
+                              color: (value.rPress == true) ? gameBtn : kwhite,
                               top: 30,
                               left: 350,
                               letter: "r",
                             ),
                             CustomLableBox(
-                              color: (value.bPress == true &&
-                                      value.iPress == true &&
-                                      value.rPress == true &&
-                                      value.dPress == true)
-                                  ? gameBtn
-                                  : kwhite,
+                              color: (value.dPress == true) ? gameBtn : kwhite,
                               top: 30,
                               left: 400,
                               letter: "d",
@@ -135,31 +123,40 @@ class _GameOneState extends State<GameOne> {
                             //Letter Boxes
                             CustomLableBox(
                               color: gameBtn,
-                              top: 150,
-                              left: 500,
-                              letter: "d",
-                              ontap: () {},
-                            ),
-                            CustomLableBox(
-                              color: gameBtn,
-                              top: 70,
-                              left: 500,
-                              letter: "r",
-                              ontap: () {},
-                            ),
-                            CustomLableBox(
-                              color: gameBtn,
                               top: 180,
                               left: 400,
                               letter: "b",
-                              ontap: () {},
+                              ontap: () {
+                                value.changeB();
+                                print("b press");
+                              },
                             ),
                             CustomLableBox(
                               color: gameBtn,
                               top: 150,
                               left: 300,
                               letter: "i",
-                              ontap: () {},
+                              ontap: () {
+                                value.changeI();
+                              },
+                            ),
+                            CustomLableBox(
+                              color: gameBtn,
+                              top: 70,
+                              left: 500,
+                              letter: "r",
+                              ontap: () {
+                                value.changeR();
+                              },
+                            ),
+                            CustomLableBox(
+                              color: gameBtn,
+                              top: 150,
+                              left: 500,
+                              letter: "d",
+                              ontap: () {
+                                value.changeD();
+                              },
                             ),
 
                             //Bird png
