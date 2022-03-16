@@ -6,6 +6,7 @@ import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/game_screens/game_one/game_one.dart';
+import 'package:game_app/views/game_screens/game_two/game_two.dart';
 import 'package:game_app/views/item_screens/display_items.dart';
 
 class GameCatergoryScreen extends StatefulWidget {
@@ -81,7 +82,10 @@ class _GameCatergoryScreenState extends State<GameCatergoryScreen> {
                                       size: size,
                                       assetName: "vehicle.png",
                                       title: "Vehicle",
-                                      onTap: () {},
+                                      onTap: () {
+                                        UtilFunction.navigateTo(
+                                            context, GameTwo());
+                                      },
                                     ),
                                     SizedBox(
                                       height: 200,

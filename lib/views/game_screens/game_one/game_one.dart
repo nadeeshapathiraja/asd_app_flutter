@@ -177,11 +177,7 @@ class _GameOneState extends State<GameOne> {
                               ),
                             ),
                             CustomGameNavigationRow(
-                              onNextPress: () {
-                                if (value.dPress == true) {
-                                  UtilFunction.navigateTo(context, GameTwo());
-                                }
-                              },
+                              onNextPress: () {},
                             ),
                           ],
                         );
