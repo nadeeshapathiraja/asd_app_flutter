@@ -36,70 +36,72 @@ class _LogInScreenState extends State<LogInScreen> {
           child: SafeArea(
             child: Consumer<LoginProvider>(
               builder: (context, value, child) {
-                return Padding(
-                  padding: const EdgeInsets.all(40.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(height: 20),
-                      const CustomText(
-                        text: "LogIn",
-                        fontsize: 40,
-                        color: darkColor,
-                      ),
-                      const SizedBox(height: 30),
-                      CustomInput(
-                        controller: value.getEmail,
-                        lableText: "Email",
-                      ),
-                      const SizedBox(height: 20),
-                      CustomInput(
-                        controller: value.getPassword,
-                        lableText: "Password",
-                        isObsecure: value.isObsecure,
-                        iconBtn: IconButton(
-                          onPressed: () {
-                            value.changeObscure();
-                          },
-                          icon: Icon(value.isObsecure
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                        ),
-                      ),
-                      const SizedBox(height: 50),
-                      CustomButton(
-                        size: size,
-                        isLoading: value.isLoading,
-                        textValue: "Login",
-                        onTap: () {
-                          value.LoginState(context);
-                        },
-                      ),
-                      const SizedBox(height: 30),
-                      InkWell(
-                        onTap: () {
-                          UtilFunction.navigateTo(
-                              context, const FrogotPassword());
-                        },
-                        child: const CustomText(
-                          text: "Forget Password?",
-                          color: primaryColor,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      InkWell(
-                        onTap: () {
-                          UtilFunction.navigateTo(
-                              context, const RegisterScreenOne());
-                        },
-                        child: const CustomText(
-                          text: "Signup Now",
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(40.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        const SizedBox(height: 20),
+                        const CustomText(
+                          text: "LogIn",
+                          fontsize: 40,
                           color: darkColor,
-                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      const SizedBox(height: 30),
-                    ],
+                        const SizedBox(height: 30),
+                        CustomInput(
+                          controller: value.getEmail,
+                          lableText: "Email",
+                        ),
+                        const SizedBox(height: 20),
+                        CustomInput(
+                          controller: value.getPassword,
+                          lableText: "Password",
+                          isObsecure: value.isObsecure,
+                          iconBtn: IconButton(
+                            onPressed: () {
+                              value.changeObscure();
+                            },
+                            icon: Icon(value.isObsecure
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                          ),
+                        ),
+                        const SizedBox(height: 50),
+                        CustomButton(
+                          size: size,
+                          isLoading: value.isLoading,
+                          textValue: "Login",
+                          onTap: () {
+                            value.LoginState(context);
+                          },
+                        ),
+                        const SizedBox(height: 30),
+                        InkWell(
+                          onTap: () {
+                            UtilFunction.navigateTo(
+                                context, const FrogotPassword());
+                          },
+                          child: const CustomText(
+                            text: "Forget Password?",
+                            color: primaryColor,
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        InkWell(
+                          onTap: () {
+                            UtilFunction.navigateTo(
+                                context, const RegisterScreenOne());
+                          },
+                          child: const CustomText(
+                            text: "Signup Now",
+                            color: darkColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                      ],
+                    ),
                   ),
                 );
               },

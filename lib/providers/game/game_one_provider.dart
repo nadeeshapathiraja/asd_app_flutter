@@ -25,24 +25,19 @@ class GameOneProvider extends ChangeNotifier {
   }
 
   void changeR() {
-    if (bPress == true) {
-      if (iPress = true) {
-        rPress = true;
-        print("r press");
-      }
+    if (iPress == true) {
+      rPress = true;
+      print("r press");
     }
     notifyListeners();
   }
 
   void changeD() {
-    if (bPress == true) {
-      if (iPress = true) {
-        if (rPress = true) {
-          dPress = true;
-          print("d press");
-        }
-      }
+    if (rPress == true) {
+      dPress = true;
+      print("d press");
     }
+
     notifyListeners();
   }
 }

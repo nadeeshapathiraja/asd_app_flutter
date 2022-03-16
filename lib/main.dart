@@ -8,6 +8,7 @@ import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/views/game_screens/game_one/game_one.dart';
+import 'package:game_app/views/splash_screen/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
