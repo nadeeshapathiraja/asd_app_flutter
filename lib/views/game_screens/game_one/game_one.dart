@@ -65,11 +65,14 @@ class _GameOneState extends State<GameOne> {
                       builder: (context, value, child) {
                         return Stack(
                           children: [
+                            //Background
                             Image.asset(
                               Constants.gameAssets('gamebg.png'),
                               width: size.width * 0.99,
                               height: size.height * 0.65,
                             ),
+
+                            //Cloud png
                             CloudImage(
                               bottom: 10,
                               left: 100,
@@ -90,30 +93,46 @@ class _GameOneState extends State<GameOne> {
                               bottom: 10,
                               left: 400,
                             ),
+
+                            //Main Boxes
                             CustomLableBox(
-                              color: kwhite,
+                              color: (value.bPress == true) ? gameBtn : kwhite,
                               top: 30,
                               left: 250,
                               letter: "b",
                             ),
                             CustomLableBox(
-                              color: kwhite,
+                              color:
+                                  (value.bPress == true && value.iPress == true)
+                                      ? gameBtn
+                                      : kwhite,
                               top: 30,
                               left: 300,
                               letter: "i",
                             ),
                             CustomLableBox(
-                              color: kwhite,
+                              color: (value.bPress == true &&
+                                      value.iPress == true &&
+                                      value.rPress == true)
+                                  ? gameBtn
+                                  : kwhite,
                               top: 30,
                               left: 350,
                               letter: "r",
                             ),
                             CustomLableBox(
-                              color: kwhite,
+                              color: (value.bPress == true &&
+                                      value.iPress == true &&
+                                      value.rPress == true &&
+                                      value.dPress == true)
+                                  ? gameBtn
+                                  : kwhite,
                               top: 30,
                               left: 400,
                               letter: "d",
                             ),
+
+                            //Letter Boxes
                             CustomLableBox(
                               color: gameBtn,
                               top: 150,
@@ -142,6 +161,8 @@ class _GameOneState extends State<GameOne> {
                               letter: "i",
                               ontap: () {},
                             ),
+
+                            //Bird png
                             Positioned(
                               bottom: 20,
                               left: 20,
