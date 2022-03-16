@@ -31,66 +31,68 @@ class _CatergoryListState extends State<CatergoryList> {
             ),
           ),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-                top: 10.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  //main Navbar
-                  CustomMainNavBar(),
-                  SizedBox(height: 50),
-                  CustomOutlineButton(
-                    size: size,
-                    text: 'Add New Category',
-                    height: 60,
-                    width: size.width,
-                    onTap: () {
-                      UtilFunction.navigateTo(context, AddCategory());
-                    },
-                  ),
-                  SizedBox(height: 30),
-                  CategoryTile(
-                    text: "Fruits",
-                    onDeleteTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return CustomDialogbox(
-                            size: size,
-                            text: "Are you sure to delete the category?",
-                            onTap: () {},
-                          );
-                        },
-                      );
-                    },
-                    onEditTap: () {
-                      UtilFunction.navigateTo(context, EditCategory());
-                    },
-                  ),
-                  SizedBox(height: 10),
-                  CategoryTile(
-                    text: "Desserts",
-                    onDeleteTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return CustomDialogbox(
-                            size: size,
-                            text: "Are you sure to delete the category?",
-                            onTap: () {},
-                          );
-                        },
-                      );
-                    },
-                    onEditTap: () {
-                      UtilFunction.navigateTo(context, EditCategory());
-                    },
-                  ),
-                ],
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  top: 10.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    //main Navbar
+                    CustomMainNavBar(),
+                    SizedBox(height: 50),
+                    CustomOutlineButton(
+                      size: size,
+                      text: 'Add New Category',
+                      height: 60,
+                      width: size.width,
+                      onTap: () {
+                        UtilFunction.navigateTo(context, AddCategory());
+                      },
+                    ),
+                    SizedBox(height: 30),
+                    CategoryTile(
+                      text: "Fruits",
+                      onDeleteTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CustomDialogbox(
+                              size: size,
+                              text: "Are you sure to delete the category?",
+                              onTap: () {},
+                            );
+                          },
+                        );
+                      },
+                      onEditTap: () {
+                        UtilFunction.navigateTo(context, EditCategory());
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    CategoryTile(
+                      text: "Desserts",
+                      onDeleteTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return CustomDialogbox(
+                              size: size,
+                              text: "Are you sure to delete the category?",
+                              onTap: () {},
+                            );
+                          },
+                        );
+                      },
+                      onEditTap: () {
+                        UtilFunction.navigateTo(context, EditCategory());
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -36,87 +36,89 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 40.0,
-              right: 40.0,
-              top: 10.0,
-            ),
-            //Add consumer for mode change
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //Parent mode changer
-                CustomSwitchBtn(),
-                const SizedBox(height: 20),
-                const CustomText(
-                  text: "Welcome",
-                  fontsize: 40,
-                  color: darkColor,
-                ),
-                const SizedBox(height: 30),
-                const CustomText(
-                  text: "What would you like\nto do today",
-                  fontsize: 18,
-                  color: darkColor,
-                ),
-                const SizedBox(height: 30),
-                Column(
-                  children: [
-                    Consumer<ModeProvider>(
-                      builder: (context, value, child) {
-                        return Column(
-                          children: [
-                            ActivityCard(
-                              size: size,
-                              onTap: () {
-                                if (value.getMode == true) {
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 40.0,
+                right: 40.0,
+                top: 10.0,
+              ),
+              //Add consumer for mode change
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //Parent mode changer
+                  CustomSwitchBtn(),
+                  const SizedBox(height: 20),
+                  const CustomText(
+                    text: "Welcome",
+                    fontsize: 40,
+                    color: darkColor,
+                  ),
+                  const SizedBox(height: 30),
+                  const CustomText(
+                    text: "What would you like\nto do today",
+                    fontsize: 18,
+                    color: darkColor,
+                  ),
+                  const SizedBox(height: 30),
+                  Column(
+                    children: [
+                      Consumer<ModeProvider>(
+                        builder: (context, value, child) {
+                          return Column(
+                            children: [
+                              ActivityCard(
+                                size: size,
+                                onTap: () {
+                                  if (value.getMode == true) {
+                                    UtilFunction.navigateTo(
+                                        context, CatergoryList());
+                                  } else {
+                                    UtilFunction.navigateTo(
+                                        context, DisplayCatergory());
+                                  }
+                                },
+                                title: "Vocabulary",
+                              ),
+                              SizedBox(height: 30),
+                              ActivityCard(
+                                size: size,
+                                onTap: () {
                                   UtilFunction.navigateTo(
-                                      context, CatergoryList());
-                                } else {
+                                      context, VideoCatergory());
+                                },
+                                title: "Video Activity",
+                              ),
+                              SizedBox(height: 30),
+                              ActivityCard(
+                                size: size,
+                                onTap: () {
                                   UtilFunction.navigateTo(
-                                      context, DisplayCatergory());
-                                }
-                              },
-                              title: "Vocabulary",
-                            ),
-                            SizedBox(height: 30),
-                            ActivityCard(
-                              size: size,
-                              onTap: () {
-                                UtilFunction.navigateTo(
-                                    context, VideoCatergory());
-                              },
-                              title: "Video Activity",
-                            ),
-                            SizedBox(height: 30),
-                            ActivityCard(
-                              size: size,
-                              onTap: () {
-                                UtilFunction.navigateTo(
-                                    context, GameCatergoryScreen());
-                              },
-                              title: "Play time",
-                            ),
-                            SizedBox(height: 30),
-                            value.getMode
-                                ? CustomButton(
-                                    size: size,
-                                    textValue: "SignOut",
-                                    onTap: () {
-                                      Provider.of<UserProvider>(context,
-                                              listen: false)
-                                          .logout(context);
-                                    },
-                                  )
-                                : CustomText(text: ""),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
+                                      context, GameCatergoryScreen());
+                                },
+                                title: "Play time",
+                              ),
+                              SizedBox(height: 30),
+                              value.getMode
+                                  ? CustomButton(
+                                      size: size,
+                                      textValue: "SignOut",
+                                      onTap: () {
+                                        Provider.of<UserProvider>(context,
+                                                listen: false)
+                                            .logout(context);
+                                      },
+                                    )
+                                  : CustomText(text: ""),
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
