@@ -121,43 +121,51 @@ class _GameOneState extends State<GameOne> {
                             ),
 
                             //Letter Boxes
-                            CustomLableBox(
-                              color: gameBtn,
-                              top: 180,
-                              left: 400,
-                              letter: "b",
-                              ontap: () {
-                                value.changeB();
-                                print("b press");
-                              },
-                            ),
-                            CustomLableBox(
-                              color: gameBtn,
-                              top: 150,
-                              left: 300,
-                              letter: "i",
-                              ontap: () {
-                                value.changeI();
-                              },
-                            ),
-                            CustomLableBox(
-                              color: gameBtn,
-                              top: 70,
-                              left: 500,
-                              letter: "r",
-                              ontap: () {
-                                value.changeR();
-                              },
-                            ),
-                            CustomLableBox(
-                              color: gameBtn,
-                              top: 150,
-                              left: 500,
-                              letter: "d",
-                              ontap: () {
-                                value.changeD();
-                              },
-                            ),
+                            (value.bPress == true)
+                                ? Text(" ")
+                                : CustomLableBox(
+                                    color: gameBtn,
+                                    top: 180,
+                                    left: 400,
+                                    letter: "b",
+                                    ontap: () {
+                                      value.changeB();
+                                      print("b press");
+                                    },
+                                  ),
+                            (value.iPress == true)
+                                ? Text(" ")
+                                : CustomLableBox(
+                                    color: gameBtn,
+                                    top: 150,
+                                    left: 300,
+                                    letter: "i",
+                                    ontap: () {
+                                      value.changeI();
+                                    },
+                                  ),
+                            (value.rPress == true)
+                                ? Text(" ")
+                                : CustomLableBox(
+                                    color: gameBtn,
+                                    top: 70,
+                                    left: 500,
+                                    letter: "r",
+                                    ontap: () {
+                                      value.changeR();
+                                    },
+                                  ),
+                            (value.dPress == true)
+                                ? Text(" ")
+                                : CustomLableBox(
+                                    color: gameBtn,
+                                    top: 150,
+                                    left: 500,
+                                    letter: "d",
+                                    ontap: () {
+                                      value.changeD();
+                                    },
+                                  ),
 
                             //Bird png
                             Positioned(
