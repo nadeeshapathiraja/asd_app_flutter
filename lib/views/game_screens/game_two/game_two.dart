@@ -4,7 +4,6 @@ import 'package:game_app/components/custom_game_navigation_row.dart';
 import 'package:game_app/components/custom_lable_box.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/providers/game/game_one_provider.dart';
 import 'package:game_app/providers/game/game_two_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';

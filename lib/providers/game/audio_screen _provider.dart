@@ -4,10 +4,20 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 class AudioProvider extends ChangeNotifier {
   final AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
 
+  AssetsAudioPlayer get getAudioPlayer => audioPlayer;
+
   @override
   void dispose() {
     super.dispose();
     audioPlayer.dispose();
+  }
+
+  playMusic() async {
+    await audioPlayer.play();
+  }
+
+  pauseMusic() async {
+    await audioPlayer.pause();
   }
 
   void setupPlayList() async {
@@ -22,13 +32,5 @@ class AudioProvider extends ChangeNotifier {
       showNotification: true,
       autoStart: false,
     );
-  }
-
-  playMusic() async {
-    await audioPlayer.play();
-  }
-
-  pauseMusic() async {
-    await audioPlayer.pause();
   }
 }

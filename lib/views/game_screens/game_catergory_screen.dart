@@ -7,7 +7,6 @@ import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/game_screens/game_one/game_one.dart';
 import 'package:game_app/views/game_screens/game_two/game_two.dart';
-import 'package:game_app/views/item_screens/display_items.dart';
 
 class GameCatergoryScreen extends StatefulWidget {
   const GameCatergoryScreen({Key? key}) : super(key: key);
