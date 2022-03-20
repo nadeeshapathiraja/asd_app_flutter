@@ -38,3 +38,21 @@ Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
       'thumbnailUrl': instance.thumbnailUrl,
       'videoUrl': instance.videoUrl,
     };
+
+CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
+    CategoryModel(
+      id: json['id'] as String,
+      uid: json['uid'] as String,
+      name: json['name'] as String,
+      img: json['img'] as String,
+      voice: json['voice'] as String,
+    );
+
+Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'uid': instance.uid,
+      'name': instance.name,
+      'img': instance.img,
+      'voice': instance.voice,
+    };
