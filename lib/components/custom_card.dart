@@ -3,7 +3,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   const CustomCard({
     Key? key,
     required this.size,
@@ -18,16 +18,26 @@ class CustomCard extends StatelessWidget {
   final String assetName;
 
   @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
       child: InkWell(
         splashColor: Colors.green[200],
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Column(
           children: [
             Container(
-              width: size.width * 0.4,
+              width: widget.size.width * 0.4,
               height: 35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -35,19 +45,19 @@ class CustomCard extends StatelessWidget {
               ),
               child: Center(
                 child: CustomText(
-                  text: title,
+                  text: widget.title,
                   fontsize: 20,
                   fontWeight: FontWeight.w900,
                 ),
               ),
             ),
             SizedBox(
-              width: size.width * 0.4,
+              width: widget.size.width * 0.4,
               height: 100,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image.asset(
-                  Constants.imageAssets(assetName),
+                  Constants.imageAssets(widget.assetName),
                 ),
               ),
             ),
