@@ -58,6 +58,9 @@ dependencies:
   #video Player
   video_player: ^2.2.17
 
+  #audio Player
+  assets_audio_player: ^3.0.4+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
