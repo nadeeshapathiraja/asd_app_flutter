@@ -8,11 +8,10 @@ import 'package:game_app/providers/game/game_two_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/providers/video_screen_provider.dart';
-import 'package:game_app/views/item_screens/display_items.dart';
+import 'package:game_app/views/category_screens/add_category.dart';
+import 'package:game_app/views/splash_screen/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'providers/game/audio_screen _provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +27,6 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => VideoScreenProvider()),
         ChangeNotifierProvider(create: (context) => GameOneProvider()),
         ChangeNotifierProvider(create: (context) => GameTwoProvider()),
-        ChangeNotifierProvider(create: (context) => AudioProvider()),
       ],
       child: const MyApp(),
     ),
@@ -47,7 +45,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: DisplayItemsScreen(),
+      home: SplashScreen(),
       //Responsive design
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget,

@@ -34,6 +34,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   title: "Capture Photo",
                   icon: Icons.camera_alt,
                   onTap: () {
+                    // value.takePhoto(ImageSource.camera);
                     value.takePhoto(ImageSource.camera);
                   },
                 ),
@@ -41,7 +42,8 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   title: "Attach Photo",
                   icon: Icons.photo_library,
                   onTap: () {
-                    value.takePhoto(ImageSource.gallery);
+                    // value.takePhoto(ImageSource.gallery);
+                    value.takeImage(ImageSource.gallery);
                   },
                 ),
                 TileSection(

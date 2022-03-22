@@ -11,22 +11,22 @@ class RegisterProvider extends ChangeNotifier {
   final _mobileNumber = TextEditingController();
   final _password = TextEditingController();
   final _confirmPassword = TextEditingController();
-  bool _isLoading = false;
   final _username = TextEditingController();
   final _age = TextEditingController();
   String _character = 'Low';
+  bool _isLoading = false;
 
   //Get all Values in Register screen
   TextEditingController get getEmail => _email;
   TextEditingController get getMobile => _mobileNumber;
   TextEditingController get getPassword => _password;
   TextEditingController get getConfirmPassword => _confirmPassword;
-  bool get isObsecure1 => _isObsecure1;
-  bool get isObsecure2 => _isObsecure2;
-  bool get isLoading => _isLoading;
   TextEditingController get getUserName => _username;
   TextEditingController get getAge => _age;
   String get getCharacter => _character;
+  bool get isObsecure1 => _isObsecure1;
+  bool get isObsecure2 => _isObsecure2;
+  bool get isLoading => _isLoading;
 
   //set charactor
   void setCharactor(String val) {
