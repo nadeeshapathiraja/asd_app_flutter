@@ -1,6 +1,9 @@
 //////Genarate model auto///////////
 flutter packages pub run build_runner build
 
+/////////Cache repair/////////////////
+flutter pub cache repair
+
 ///////////Clean code//////////////
 flutter clear
 
