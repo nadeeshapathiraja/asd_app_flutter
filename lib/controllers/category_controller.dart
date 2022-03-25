@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:logger/logger.dart';
+
 import 'package:path/path.dart';
 
 class CategoryController {
@@ -19,7 +20,14 @@ class CategoryController {
     File img,
     String voice,
   ) async {
+    //Get the unique document
     String docId = category.doc().id;
+
+    // UploadTask? task = uploadImg(img);
+    // final snapshot = await task!.whenComplete(() {});
+    // final downloadUrl = await snapshot.ref.getDownloadURL();
+
+    // Logger().i(downloadUrl);
 
     await category.doc(docId).set({
       'id': docId,
@@ -28,12 +36,6 @@ class CategoryController {
       'img': "https://www.imgacademy.com/sites/default/files/home-bs.jpg",
       'voice': "https://www.imgacademy.com/sites/default/files/home-bs.jpg",
     });
-
-    // UploadTask? task = uploadImg(img);
-    // final snapshot = await task!.whenComplete(() {});
-    // final downloadUrd = await snapshot.ref.getDownloadURL();
-
-    // Logger().i(downloadUrd);
   }
 
   // //Upload file to db

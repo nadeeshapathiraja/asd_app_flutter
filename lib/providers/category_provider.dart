@@ -15,6 +15,7 @@ import 'package:logger/logger.dart';
 class CategoryProvider extends ChangeNotifier {
   final CategoryController _categoryController = CategoryController();
   final ImagePicker _picker = ImagePicker();
+  late String uid;
 
   final _name = TextEditingController();
   bool _isLoading = false;
