@@ -45,7 +45,6 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       name: json['name'] as String,
       img: json['img'] as String,
-      voice: json['voice'] as String,
     );
 
 Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
@@ -54,5 +53,4 @@ Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
       'uid': instance.uid,
       'name': instance.name,
       'img': instance.img,
-      'voice': instance.voice,
     };

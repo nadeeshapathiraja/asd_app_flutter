@@ -18,7 +18,6 @@ class CategoryController {
     String uid,
     String? name,
     File? img,
-    String? voice,
   ) async {
     //Get the unique document
     String docId = category.doc().id;
@@ -34,7 +33,6 @@ class CategoryController {
       'uid': uid,
       'name': name,
       'img': "https://www.imgacademy.com/sites/default/files/home-bs.jpg",
-      'voice': "https://www.imgacademy.com/sites/default/files/home-bs.jpg",
     });
   }
 

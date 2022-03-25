@@ -6,14 +6,12 @@ class CategoryModel {
   late String uid;
   late String name;
   late String img;
-  late String voice;
 
   CategoryModel({
     required this.id,
     required this.uid,
     required this.name,
     required this.img,
-    required this.voice,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

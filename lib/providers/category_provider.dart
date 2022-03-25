@@ -119,7 +119,6 @@ class CategoryProvider extends ChangeNotifier {
               user.uid,
               _name.text,
               _image,
-              _audio,
             );
           }
         });
