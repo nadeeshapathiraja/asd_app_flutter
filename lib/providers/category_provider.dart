@@ -108,7 +108,6 @@ class CategoryProvider extends ChangeNotifier {
         setLoading(true);
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
           if (user == null) {
-            Logger().w('User is currently signed out!');
             UtilFunction.navigateTo(context, const LogInScreen());
           } else {
             Logger().d('User is signed in!');
@@ -120,18 +119,18 @@ class CategoryProvider extends ChangeNotifier {
               _name.text,
               _image,
             );
+            DialogBox().dialogbox(
+              context,
+              DialogType.SUCCES,
+              'Added Data',
+              'Entered Information',
+              () {
+                UtilFunction.navigateTo(context, CatergoryList());
+              },
+            );
           }
         });
 
-        DialogBox().dialogbox(
-          context,
-          DialogType.SUCCES,
-          'Added Data',
-          'Entered Information',
-          () {
-            UtilFunction.navigateTo(context, CatergoryList());
-          },
-        );
         setLoading();
       } else {
         setLoading();
