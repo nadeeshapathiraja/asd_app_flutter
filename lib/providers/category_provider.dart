@@ -7,24 +7,31 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/category_controller.dart';
+import 'package:game_app/controllers/db_controller.dart';
+import 'package:game_app/models/objects.dart';
 import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/authentication/login_screen/login_screen.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 class CategoryProvider extends ChangeNotifier {
   final CategoryController _categoryController = CategoryController();
+  //Database controller object
+  final DatabaseController _databaseController = DatabaseController();
   final ImagePicker _picker = ImagePicker();
-  late String uid;
 
   final _name = TextEditingController();
   bool _isLoading = false;
 
   TextEditingController get catergoryName => _name;
 
+  //UserModel object
+  late UserModel _userModel;
+  //Get usermodel data for identify user
+  UserModel get userModel => _userModel;
   //For get user data
   late User _user;
-
   //Returning firebase user  objects
   User get user => _user;
 
@@ -99,13 +106,24 @@ class CategoryProvider extends ChangeNotifier {
     try {
       if (inputValidation()) {
         setLoading(true);
-        await CategoryController().saveCategory(
-          // user.uid,
-          "1",
-          _name.text,
-          _image,
-          _audio,
-        );
+        FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+          if (user == null) {
+            Logger().w('User is currently signed out!');
+            UtilFunction.navigateTo(context, const LogInScreen());
+          } else {
+            Logger().d('User is signed in!');
+            _user = user;
+            notifyListeners();
+            await fetchUserData(user.uid);
+            await CategoryController().saveCategory(
+              user.uid,
+              _name.text,
+              _image,
+              _audio,
+            );
+          }
+        });
+
         DialogBox().dialogbox(
           context,
           DialogType.SUCCES,
@@ -128,13 +146,13 @@ class CategoryProvider extends ChangeNotifier {
       }
     } catch (e) {
       setLoading();
-      DialogBox().dialogbox(
-        context,
-        DialogType.ERROR,
-        'Error',
-        e.toString(),
-        () {},
-      );
+      Logger().e(e);
     }
+  }
+
+  //Store user data in user model
+  Future<void> fetchUserData(String id) async {
+    _userModel = (await _databaseController.getUserData(id))!;
+    notifyListeners();
   }
 }

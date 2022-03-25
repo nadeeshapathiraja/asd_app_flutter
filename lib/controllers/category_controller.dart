@@ -16,9 +16,9 @@ class CategoryController {
 
   Future<void> saveCategory(
     String uid,
-    String name,
-    File img,
-    String voice,
+    String? name,
+    File? img,
+    String? voice,
   ) async {
     //Get the unique document
     String docId = category.doc().id;
