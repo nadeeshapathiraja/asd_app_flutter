@@ -98,19 +98,7 @@ class _AddCategoryState extends State<AddCategory> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30),
-                        CustomInput(
-                          controller: _email,
-                          lableText: "How is it pronounced?",
-                          iconBtn: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.mic,
-                              size: 30,
-                              color: primaryColor,
-                            ),
-                          ),
-                        ),
+
                         const SizedBox(height: 50),
                         CustomButton(
                           size: size,
