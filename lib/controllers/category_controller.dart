@@ -24,8 +24,6 @@ class CategoryController {
     final snapshot = await task!.whenComplete(() {});
     final downloadUrl = await snapshot.ref.getDownloadURL();
 
-    Logger().e(downloadUrl);
-
     //Get the unique document
     String docId = category.doc().id;
 
