@@ -7,6 +7,8 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/game/game_one_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/game_screens/game_three/game_three.dart';
 import 'package:provider/provider.dart';
 
 class GameOne extends StatefulWidget {
@@ -175,7 +177,22 @@ class _GameOneState extends State<GameOne> {
                               ),
                             ),
                             CustomGameNavigationRow(
-                              onNextPress: () {},
+                              onBackPress: () {
+                                value.bPress = false;
+                                value.iPress = false;
+                                value.rPress = false;
+                                value.dPress = false;
+                                UtilFunction.goBack(context);
+                              },
+                              onNextPress: () {
+                                if (value.dPress == true) {
+                                  value.bPress = false;
+                                  value.iPress = false;
+                                  value.rPress = false;
+                                  value.dPress = false;
+                                  UtilFunction.navigateTo(context, GameThree());
+                                }
+                              },
                             ),
                           ],
                         );

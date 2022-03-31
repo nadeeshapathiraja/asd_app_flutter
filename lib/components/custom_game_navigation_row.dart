@@ -6,9 +6,11 @@ class CustomGameNavigationRow extends StatelessWidget {
   const CustomGameNavigationRow({
     Key? key,
     required this.onNextPress,
+    this.onBackPress,
   }) : super(key: key);
 
   final Function() onNextPress;
+  final Function()? onBackPress;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,7 @@ class CustomGameNavigationRow extends StatelessWidget {
           RotationTransition(
             turns: new AlwaysStoppedAnimation(180 / 360),
             child: InkWell(
-              onTap: () {
-                UtilFunction.goBack(context);
-              },
+              onTap: onBackPress,
               child: Image.asset(
                 Constants.iconAssets('arrow.png'),
                 width: 50,

@@ -4,6 +4,7 @@ import 'package:game_app/providers/auth/login_provider.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/providers/game/game_one_provider.dart';
+import 'package:game_app/providers/game/game_three_provider.dart';
 import 'package:game_app/providers/game/game_two_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (context) => VideoScreenProvider()),
         ChangeNotifierProvider(create: (context) => GameOneProvider()),
         ChangeNotifierProvider(create: (context) => GameTwoProvider()),
+        ChangeNotifierProvider(create: (context) => GameThreeProvider()),
       ],
       child: const MyApp(),
     ),
