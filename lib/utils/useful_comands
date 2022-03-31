@@ -12,6 +12,3 @@ flutter pub get
 
 /////////Get App build//////////////////
 flutter build apk
-
-////////////get release//////////////
-flutter build apk

@@ -17,9 +17,6 @@ class AddCategory extends StatefulWidget {
 }
 
 class _AddCategoryState extends State<AddCategory> {
-  final TextEditingController _email = TextEditingController();
-  bool mode = true;
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
 
 class CustomGameNavigationRow extends StatelessWidget {
   const CustomGameNavigationRow({
