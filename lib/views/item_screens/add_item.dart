@@ -72,6 +72,8 @@ class _AddItemState extends State<AddItem> {
                           lableText: "Name",
                         ),
                         const SizedBox(height: 30),
+
+                        const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

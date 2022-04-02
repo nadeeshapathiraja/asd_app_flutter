@@ -4,12 +4,10 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
-import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/controllers/db_controller.dart';
 import 'package:game_app/controllers/item_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:game_app/views/item_screens/item_list.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
@@ -31,13 +29,13 @@ class ItemProvider extends ChangeNotifier {
   //Returning firebase user  objects
   User get user => _user;
 
-  final ImagePicker _picker = ImagePicker();
   final _name = TextEditingController();
   final _uid = TextEditingController();
   final _categoryId = TextEditingController();
   final _audioFile = TextEditingController();
   bool _isLoading = false;
   late PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
 
   //Get all Values in Category screen
   TextEditingController get getName => _name;

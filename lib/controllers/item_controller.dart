@@ -18,9 +18,9 @@ class ItemController {
     File img,
     String audio,
   ) async {
-    UploadTask? task = uploadImg(img);
-    final snapshot = await task!.whenComplete(() {});
-    final downloadUrl = await snapshot.ref.getDownloadURL();
+    UploadTask? task = uploadItemImg(img);
+    final snapshot = await task?.whenComplete(() {});
+    final downloadUrl = await snapshot?.ref.getDownloadURL();
 
     //Get the unique document
     String docId = item.doc().id;
@@ -36,7 +36,7 @@ class ItemController {
   }
 
   //Upload file to db
-  UploadTask? uploadImg(File file) {
+  UploadTask? uploadItemImg(File file) {
     try {
       final fileName = basename(file.path);
       final destination = 'itemImage/$fileName';
@@ -47,8 +47,4 @@ class ItemController {
       return null;
     }
   }
-
-  //Get all Category data
-  Stream<QuerySnapshot> getCategory(String uid) =>
-      item.where('uid', isEqualTo: uid).snapshots();
 }
