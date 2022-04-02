@@ -18,12 +18,6 @@ import 'package:logger/logger.dart';
 class CategoryProvider extends ChangeNotifier {
   //Database controller object
   final DatabaseController _databaseController = DatabaseController();
-  final ImagePicker _picker = ImagePicker();
-
-  final _name = TextEditingController();
-  bool _isLoading = false;
-
-  TextEditingController get categoryName => _name;
 
   //UserModel object
   late UserModel _userModel;
@@ -34,21 +28,21 @@ class CategoryProvider extends ChangeNotifier {
   //Returning firebase user  objects
   User get user => _user;
 
-  //Get all Values in Category screen
-  TextEditingController get getName => _name;
-  bool get isLoading => _isLoading;
-
+  //create variables
+  final _name = TextEditingController();
+  bool _isLoading = false;
   late PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
 
+  //get values
+  TextEditingController get categoryName => _name;
+  bool get isLoading => _isLoading;
   PickedFile get imageFile => _imageFile;
 
   //Image file
   File _image = File("");
   //Get image file
   File get getImg => _image;
-
-  //Audio File
-  String _audio = "Test";
 
   Future<void> takePhoto(ImageSource source) async {
     try {

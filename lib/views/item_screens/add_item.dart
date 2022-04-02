@@ -20,7 +20,6 @@ class AddItem extends StatefulWidget {
 }
 
 class _AddItemState extends State<AddItem> {
-  final TextEditingController _email = TextEditingController();
   bool status = true;
   @override
   Widget build(BuildContext context) {
@@ -59,17 +58,17 @@ class _AddItemState extends State<AddItem> {
                         ),
                         const SizedBox(height: 50),
                         CustomInput(
-                          controller: _email,
+                          controller: value.getUserId,
                           lableText: "userId",
                         ),
                         const SizedBox(height: 30),
                         CustomInput(
-                          controller: _email,
+                          controller: value.getCategoryId,
                           lableText: "categoryId",
                         ),
                         const SizedBox(height: 30),
                         CustomInput(
-                          controller: _email,
+                          controller: value.getName,
                           lableText: "Name",
                         ),
                         const SizedBox(height: 30),
@@ -112,7 +111,7 @@ class _AddItemState extends State<AddItem> {
                         ),
                         const SizedBox(height: 30),
                         CustomInput(
-                          controller: _email,
+                          controller: value.getAudioFile,
                           lableText: "How is it pronounced?",
                           iconBtn: IconButton(
                             onPressed: () {},
