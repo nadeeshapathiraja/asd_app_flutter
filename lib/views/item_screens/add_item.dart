@@ -59,7 +59,7 @@ class _AddItemState extends State<AddItem> {
                         const SizedBox(height: 50),
                         CustomInput(
                           controller: value.getUserId,
-                          lableText: "userId",
+                          lableText: "uid",
                         ),
                         const SizedBox(height: 30),
                         CustomInput(
