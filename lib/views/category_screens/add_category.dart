@@ -54,7 +54,7 @@ class _AddCategoryState extends State<AddCategory> {
                         ),
                         const SizedBox(height: 50),
                         CustomInput(
-                          controller: value.catergoryName,
+                          controller: value.categoryName,
                           lableText: "Category Name",
                         ),
                         const SizedBox(height: 30),

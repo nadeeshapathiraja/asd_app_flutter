@@ -6,7 +6,7 @@ import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/providers/game/game_one_provider.dart';
 import 'package:game_app/providers/game/game_three_provider.dart';
 import 'package:game_app/providers/game/game_two_provider.dart';
-import 'package:game_app/providers/itrm_provider.dart';
+import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/providers/video_screen_provider.dart';

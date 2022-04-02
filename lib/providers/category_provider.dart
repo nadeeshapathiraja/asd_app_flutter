@@ -16,7 +16,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  final CategoryController _categoryController = CategoryController();
   //Database controller object
   final DatabaseController _databaseController = DatabaseController();
   final ImagePicker _picker = ImagePicker();
@@ -24,7 +23,7 @@ class CategoryProvider extends ChangeNotifier {
   final _name = TextEditingController();
   bool _isLoading = false;
 
-  TextEditingController get catergoryName => _name;
+  TextEditingController get categoryName => _name;
 
   //UserModel object
   late UserModel _userModel;
