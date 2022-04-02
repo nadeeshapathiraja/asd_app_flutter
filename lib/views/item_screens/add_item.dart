@@ -85,17 +85,17 @@ class _AddItemState extends State<AddItem> {
                               },
                               child: Stack(
                                 children: [
-                                  Consumer<CategoryProvider>(
-                                    builder: (context, value, child) {
-                                      return Image.asset(
-                                        Constants.imageAssets("logo.png"),
-                                        width: 150,
-                                        height: 150,
-                                      );
-                                    },
-                                    // value.imageFile == null ?
-                                    // FileImage(File(value.imageFile.path)
-                                  ),
+                                  value.getImg.path != ''
+                                      ? Image.file(
+                                          value.getImg,
+                                          fit: BoxFit.fill,
+                                          width: size.width * 0.4,
+                                        )
+                                      : Image.asset(
+                                          Constants.imageAssets("logo.png"),
+                                          width: 150,
+                                          height: 150,
+                                        ),
                                   Positioned(
                                     bottom: 20,
                                     right: 20,
@@ -126,7 +126,7 @@ class _AddItemState extends State<AddItem> {
                         CustomButton(
                           size: size,
                           onTap: () {
-                            UtilFunction.navigateTo(context, ItemList());
+                            value.ItemState(context);
                           },
                           textValue: "Done",
                         ),

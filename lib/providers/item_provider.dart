@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/controllers/db_controller.dart';
+import 'package:game_app/controllers/item_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
+import 'package:game_app/views/item_screens/item_list.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
@@ -17,6 +19,8 @@ import '../views/authentication/login_screen/login_screen.dart';
 class ItemProvider extends ChangeNotifier {
   //Database controller object
   final DatabaseController _databaseController = DatabaseController();
+
+  final ItemController _itemController = ItemController();
 
   //UserModel object
   late UserModel _userModel;
@@ -28,7 +32,7 @@ class ItemProvider extends ChangeNotifier {
   User get user => _user;
 
   final ImagePicker _picker = ImagePicker();
-  final _itemName = TextEditingController();
+  final _name = TextEditingController();
   final _uid = TextEditingController();
   final _categoryId = TextEditingController();
   final _audioFile = TextEditingController();
@@ -36,7 +40,7 @@ class ItemProvider extends ChangeNotifier {
   late PickedFile _imageFile;
 
   //Get all Values in Category screen
-  TextEditingController get getName => _itemName;
+  TextEditingController get getName => _name;
   TextEditingController get getUserId => _uid;
   TextEditingController get getCategoryId => _categoryId;
   TextEditingController get getAudioFile => _audioFile;
@@ -90,7 +94,7 @@ class ItemProvider extends ChangeNotifier {
   //Input validation add
   bool inputValidation() {
     var isValid = false;
-    if (_itemName.text.isEmpty) {
+    if (_name.text.isEmpty) {
       isValid = false;
     } else {
       isValid = true;
@@ -99,7 +103,7 @@ class ItemProvider extends ChangeNotifier {
   }
 
   //add Category
-  Future<void> CategoryState(BuildContext context) async {
+  Future<void> ItemState(BuildContext context) async {
     try {
       if (inputValidation()) {
         setLoading(true);
@@ -107,14 +111,15 @@ class ItemProvider extends ChangeNotifier {
           if (user == null) {
             UtilFunction.navigateTo(context, const LogInScreen());
           } else {
-            Logger().d('User is signed in!');
             _user = user;
             notifyListeners();
             await fetchUserData(user.uid);
-            await CategoryController().saveCategory(
+            await _itemController.saveItem(
               user.uid,
-              _itemName.text,
+              _categoryId.text,
+              _name.text,
               _image,
+              _audioFile.text,
             );
             DialogBox().dialogbox(
               context,
@@ -122,7 +127,7 @@ class ItemProvider extends ChangeNotifier {
               'Added Data',
               'Entered Information',
               () {
-                UtilFunction.navigateTo(context, CatergoryList());
+                UtilFunction.navigateTo(context, ItemList());
               },
             );
           }

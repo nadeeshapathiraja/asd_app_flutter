@@ -39,7 +39,7 @@ class ItemController {
   UploadTask? uploadImg(File file) {
     try {
       final fileName = basename(file.path);
-      final destination = 'categoryImage/$fileName';
+      final destination = 'itemImage/$fileName';
       final ref = FirebaseStorage.instance.ref(destination);
       return ref.putFile(file);
     } catch (e) {

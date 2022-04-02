@@ -19,6 +19,8 @@ class CategoryProvider extends ChangeNotifier {
   //Database controller object
   final DatabaseController _databaseController = DatabaseController();
 
+  final CategoryController _categoryController = CategoryController();
+
   //UserModel object
   late UserModel _userModel;
   //Get usermodel data for identify user
@@ -103,11 +105,10 @@ class CategoryProvider extends ChangeNotifier {
           if (user == null) {
             UtilFunction.navigateTo(context, const LogInScreen());
           } else {
-            Logger().d('User is signed in!');
             _user = user;
             notifyListeners();
             await fetchUserData(user.uid);
-            await CategoryController().saveCategory(
+            await _categoryController.saveCategory(
               user.uid,
               _name.text,
               _image,
