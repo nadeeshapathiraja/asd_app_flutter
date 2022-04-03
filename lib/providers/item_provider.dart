@@ -34,7 +34,6 @@ class ItemProvider extends ChangeNotifier {
   final _categoryId = TextEditingController();
   final _audioFile = TextEditingController();
   bool _isLoading = false;
-  late PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
 
   //Get all Values in Category screen
@@ -43,12 +42,11 @@ class ItemProvider extends ChangeNotifier {
   TextEditingController get getCategoryId => _categoryId;
   TextEditingController get getAudioFile => _audioFile;
   bool get isLoading => _isLoading;
-  PickedFile get imageFile => _imageFile;
 
   //Image file
   File _image = File("");
   //Get image file
-  File get getImg => _image;
+  File get getItemImg => _image;
 
   Future<void> takePhoto(ImageSource source) async {
     try {
@@ -112,6 +110,7 @@ class ItemProvider extends ChangeNotifier {
             _user = user;
             notifyListeners();
             await fetchUserData(user.uid);
+
             await _itemController.saveItem(
               user.uid,
               _categoryId.text,

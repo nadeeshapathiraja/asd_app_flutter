@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
+import 'package:game_app/components/custom_item_capcher.dart';
 import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/item_screens/item_list.dart';
+import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class AddItem extends StatefulWidget {
@@ -20,7 +19,6 @@ class AddItem extends StatefulWidget {
 }
 
 class _AddItemState extends State<AddItem> {
-  bool status = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -56,11 +54,6 @@ class _AddItemState extends State<AddItem> {
                           fontsize: 40,
                           color: darkColor,
                         ),
-                        const SizedBox(height: 50),
-                        CustomInput(
-                          controller: value.getUserId,
-                          lableText: "uid",
-                        ),
                         const SizedBox(height: 30),
                         CustomInput(
                           controller: value.getCategoryId,
@@ -82,14 +75,14 @@ class _AddItemState extends State<AddItem> {
                                 showModalBottomSheet(
                                   context: context,
                                   builder: (builder) =>
-                                      CustomBottomSheet(context: context),
+                                      CustomItemCapcher(context: context),
                                 );
                               },
                               child: Stack(
                                 children: [
-                                  value.getImg.path != ''
+                                  value.getItemImg.path != ''
                                       ? Image.file(
-                                          value.getImg,
+                                          value.getItemImg,
                                           fit: BoxFit.fill,
                                           width: size.width * 0.4,
                                         )

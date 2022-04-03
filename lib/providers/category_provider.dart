@@ -33,13 +33,11 @@ class CategoryProvider extends ChangeNotifier {
   //create variables
   final _name = TextEditingController();
   bool _isLoading = false;
-  late PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
 
   //get values
   TextEditingController get categoryName => _name;
   bool get isLoading => _isLoading;
-  PickedFile get imageFile => _imageFile;
 
   //Image file
   File _image = File("");
@@ -70,6 +68,7 @@ class CategoryProvider extends ChangeNotifier {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
         Logger().i(pickedImage.path);
+
         notifyListeners();
       } else {
         Logger().e("No Image Selected");

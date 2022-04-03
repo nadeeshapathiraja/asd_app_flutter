@@ -54,3 +54,21 @@ Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
       'name': instance.name,
       'img': instance.img,
     };
+
+ItemModel _$ItemModelFromJson(Map<String, dynamic> json) => ItemModel(
+      id: json['id'] as String,
+      uid: json['uid'] as String,
+      categoryId: json['categoryId'] as String,
+      name: json['name'] as String,
+      img: json['img'] as String,
+      audioFile: json['audioFile'] as String,
+    );
+
+Map<String, dynamic> _$ItemModelToJson(ItemModel instance) => <String, dynamic>{
+      'id': instance.id,
+      'uid': instance.uid,
+      'categoryId': instance.categoryId,
+      'name': instance.name,
+      'img': instance.img,
+      'audioFile': instance.audioFile,
+    };

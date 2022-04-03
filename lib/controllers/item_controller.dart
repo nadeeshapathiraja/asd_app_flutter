@@ -21,6 +21,7 @@ class ItemController {
     UploadTask? task = uploadItemImg(img);
     final snapshot = await task?.whenComplete(() {});
     final downloadUrl = await snapshot?.ref.getDownloadURL();
+    Logger().d(downloadUrl);
 
     //Get the unique document
     String docId = item.doc().id;
