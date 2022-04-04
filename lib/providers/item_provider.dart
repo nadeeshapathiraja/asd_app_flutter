@@ -118,6 +118,11 @@ class ItemProvider extends ChangeNotifier {
               _image,
               _audioFile.text,
             );
+            _name.clear();
+            _categoryId.clear();
+            _image = File("");
+            _audioFile.clear();
+
             DialogBox().dialogbox(
               context,
               DialogType.SUCCES,
