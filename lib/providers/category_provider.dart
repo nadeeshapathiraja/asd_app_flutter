@@ -112,6 +112,8 @@ class CategoryProvider extends ChangeNotifier {
               _name.text,
               _image,
             );
+            _name.clear();
+            _image = File("");
             DialogBox().dialogbox(
               context,
               DialogType.SUCCES,
