@@ -25,6 +25,7 @@ class CategoryProvider extends ChangeNotifier {
   late UserModel _userModel;
   //Get usermodel data for identify user
   UserModel get userModel => _userModel;
+
   //For get user data
   late User _user;
   //Returning firebase user  objects
@@ -143,7 +144,7 @@ class CategoryProvider extends ChangeNotifier {
     }
   }
 
-  //Store user data in user model
+  //get user data in user model
   Future<void> fetchUserData(String id) async {
     _userModel = (await _databaseController.getUserData(id))!;
     notifyListeners();
