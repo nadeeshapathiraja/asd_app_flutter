@@ -71,7 +71,7 @@ class _CatergoryListState extends State<CatergoryList> {
                       SizedBox(height: 30),
 
                       //Category list
-                      Consumer<UserProvider>(
+                      Consumer<CategoryProvider>(
                         builder: (context, value, child) {
                           return StreamBuilder<QuerySnapshot>(
                             stream: CategoryController()
@@ -115,7 +115,9 @@ class _CatergoryListState extends State<CatergoryList> {
                                               size: size,
                                               text:
                                                   "Are you sure to delete the category?",
-                                              onTap: () {},
+                                              onTap: () {
+                                                value.changeId(list[index].id);
+                                              },
                                             );
                                           },
                                         );
