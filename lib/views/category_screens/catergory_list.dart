@@ -41,91 +41,103 @@ class _CatergoryListState extends State<CatergoryList> {
             ),
           ),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-                top: 10.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  //main Navbar
-                  CustomMainNavBar(),
-                  SizedBox(height: 50),
-                  CustomOutlineButton(
-                    size: size,
-                    text: 'Add New Category',
-                    height: 60,
-                    width: size.width,
-                    onTap: () {
-                      UtilFunction.navigateTo(context, AddCategory());
-                    },
-                  ),
-                  SizedBox(height: 30),
+            child: SizedBox(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  top: 10.0,
+                ),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      //main Navbar
+                      CustomMainNavBar(),
+                      SizedBox(height: 50),
 
-                  Consumer<CategoryProvider>(
-                    builder: (context, value, child) {
-                      return StreamBuilder<QuerySnapshot>(
-                        stream: CategoryController()
-                            .getCategory("byIN7SAGxebBy7WyLsRdzKnXddF2"),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return const CustomText(text: "No Category");
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return CircularProgressIndicator();
-                          }
-                          Logger().w(snapshot.data!.docs.length);
+                      //Add new category
+                      CustomOutlineButton(
+                        size: size,
+                        text: 'Add New Category',
+                        height: 60,
+                        width: size.width,
+                        onTap: () {
+                          UtilFunction.navigateTo(context, AddCategory());
+                        },
+                      ),
+                      SizedBox(height: 30),
 
-                          //List always clear before load
-                          list.clear();
+                      //Category list
+                      Consumer<UserProvider>(
+                        builder: (context, value, child) {
+                          return StreamBuilder<QuerySnapshot>(
+                            stream: CategoryController()
+                                // .getCategory(value.userModel.uid),
+                                // .getCategory("byIN7SAGxebBy7WyLsRdzKnXddF2"),
+                                .testStream(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return const CustomText(text: "No Category");
+                              }
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              }
+                              Logger().w(snapshot.data!.docs.length);
+                              // Logger().d(value.userModel.uid);
 
-                          //Add category by category to list
-                          for (var item in snapshot.data!.docs) {
-                            Map<String, dynamic> data =
-                                item.data() as Map<String, dynamic>;
+                              //List always clear before load
+                              list.clear();
 
-                            var model = CategoryModel.fromJson(data);
+                              //Add category by category to list
+                              for (var item in snapshot.data!.docs) {
+                                Map<String, dynamic> data =
+                                    item.data() as Map<String, dynamic>;
 
-                            list.add(model);
-                          }
+                                var model = CategoryModel.fromJson(data);
 
-                          return Expanded(
-                            child: ListView.separated(
-                              itemBuilder: (context, index) {
-                                return CategoryTile(
-                                  text: "Fruits",
-                                  onDeleteTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return CustomDialogbox(
-                                          size: size,
-                                          text:
-                                              "Are you sure to delete the category?",
-                                          onTap: () {},
+                                list.add(model);
+                              }
+
+                              return Expanded(
+                                child: ListView.separated(
+                                  itemBuilder: (context, index) {
+                                    return CategoryTile(
+                                      text: list[index].name,
+                                      onDeleteTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return CustomDialogbox(
+                                              size: size,
+                                              text:
+                                                  "Are you sure to delete the category?",
+                                              onTap: () {},
+                                            );
+                                          },
                                         );
+                                      },
+                                      onEditTap: () {
+                                        UtilFunction.navigateTo(
+                                            context, EditCategory());
                                       },
                                     );
                                   },
-                                  onEditTap: () {
-                                    UtilFunction.navigateTo(
-                                        context, EditCategory());
-                                  },
-                                );
-                              },
-                              separatorBuilder: (context, index) =>
-                                  SizedBox(height: 30),
-                              itemCount: list.length,
-                            ),
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: 30),
+                                  itemCount: list.length,
+                                ),
+                              );
+                            },
                           );
                         },
-                      );
-                    },
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),

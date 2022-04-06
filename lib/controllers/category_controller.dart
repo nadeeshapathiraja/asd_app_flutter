@@ -47,7 +47,10 @@ class CategoryController {
     }
   }
 
-  //Get All Category data
-  Stream<QuerySnapshot> getCategory(String uid) =>
-      category.where('uid', isEqualTo: uid).snapshots();
+  // //Get All Category data
+  // Stream<QuerySnapshot> getCategory(String uid) =>
+  //     category.where('uid', isEqualTo: uid).snapshots();
+
+  Stream<QuerySnapshot> testStream() =>
+      FirebaseFirestore.instance.collection('category').snapshots();
 }
