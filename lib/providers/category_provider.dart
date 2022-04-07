@@ -46,7 +46,7 @@ class CategoryProvider extends ChangeNotifier {
   File get getImg => _image;
 
   //For edit and delete id
-  late String _cateId = '';
+  late String _cateId;
   String get SelectedId => _cateId;
   void changeId(cateId) {
     _cateId = cateId;

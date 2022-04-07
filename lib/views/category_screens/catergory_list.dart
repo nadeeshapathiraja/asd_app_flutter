@@ -117,6 +117,8 @@ class _CatergoryListState extends State<CatergoryList> {
                                                   "Are you sure to delete the category?",
                                               onTap: () {
                                                 value.changeId(list[index].id);
+                                                UtilFunction.navigateTo(
+                                                    context, CatergoryList());
                                               },
                                             );
                                           },
