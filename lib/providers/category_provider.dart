@@ -26,6 +26,9 @@ class CategoryProvider extends ChangeNotifier {
   //Get usermodel data for identify user
   UserModel get userModel => _userModel;
 
+  late CategoryModel _categoryModel;
+  CategoryModel get categoryModelData => _categoryModel;
+
   //For get user data
   late User _user;
   //Returning firebase user  objects

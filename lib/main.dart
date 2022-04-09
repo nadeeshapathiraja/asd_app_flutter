@@ -11,6 +11,7 @@ import 'package:game_app/providers/mode_change_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/views/category_screens/catergory_list.dart';
+import 'package:game_app/views/category_screens/display_catergory.dart';
 import 'package:game_app/views/item_screens/add_item.dart';
 import 'package:game_app/views/splash_screen/splash.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: CatergoryList(),
+      home: DisplayCatergory(),
       //Responsive design
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget,

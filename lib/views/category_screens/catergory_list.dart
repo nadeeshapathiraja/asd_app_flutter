@@ -74,10 +74,7 @@ class _CatergoryListState extends State<CatergoryList> {
                       Consumer<CategoryProvider>(
                         builder: (context, value, child) {
                           return StreamBuilder<QuerySnapshot>(
-                            stream: CategoryController()
-                                // .getCategory(value.userModel.uid),
-                                // .getCategory("byIN7SAGxebBy7WyLsRdzKnXddF2"),
-                                .testStream(),
+                            stream: CategoryController().testStream(),
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
                                 return const CustomText(text: "No Category");
@@ -126,7 +123,12 @@ class _CatergoryListState extends State<CatergoryList> {
                                       },
                                       onEditTap: () {
                                         UtilFunction.navigateTo(
-                                            context, EditCategory());
+                                          context,
+                                          EditCategory(
+                                            categoryModel:
+                                                value.categoryModelData,
+                                          ),
+                                        );
                                       },
                                     );
                                   },

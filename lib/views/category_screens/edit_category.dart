@@ -4,6 +4,7 @@ import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/models/objects.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
@@ -12,7 +13,11 @@ import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:provider/provider.dart';
 
 class EditCategory extends StatefulWidget {
-  const EditCategory({Key? key}) : super(key: key);
+  const EditCategory({
+    Key? key,
+    required this.categoryModel,
+  }) : super(key: key);
+  final CategoryModel categoryModel;
 
   @override
   _EditCategoryState createState() => _EditCategoryState();
