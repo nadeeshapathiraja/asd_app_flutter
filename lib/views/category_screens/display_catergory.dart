@@ -55,84 +55,76 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                     color: darkColor,
                   ),
                   Expanded(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        width: size.width,
-                        height: size.height,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: kwhite,
-                        ),
-                        child: Column(
-                          children: [
-                            GridView.count(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 3,
-                              mainAxisSpacing: 4,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              children: [
-                                Consumer<CategoryProvider>(
-                                  builder: (context, value, child) {
-                                    return StreamBuilder<QuerySnapshot>(
-                                      stream: CategoryController()
-                                          // .getCategory(value.userModel.uid),
-                                          // .getCategory("byIN7SAGxebBy7WyLsRdzKnXddF2"),
-                                          .testStream(),
-                                      builder: (context, snapshot) {
-                                        if (snapshot.hasError) {
-                                          return const CustomText(
-                                              text: "No Category");
-                                        }
-                                        if (snapshot.connectionState ==
-                                            ConnectionState.waiting) {
-                                          return CircularProgressIndicator();
-                                        }
-                                        Logger().w(snapshot.data!.docs.length);
+                    child: Container(
+                      width: size.width,
+                      height: size.height,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: kwhite,
+                      ),
+                      child: GridView.count(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 3,
+                        mainAxisSpacing: 4,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        children: [
+                          Consumer<CategoryProvider>(
+                            builder: (context, value, child) {
+                              return StreamBuilder<QuerySnapshot>(
+                                stream: CategoryController()
+                                    // .getCategory(value.userModel.uid),
+                                    // .getCategory("byIN7SAGxebBy7WyLsRdzKnXddF2"),
+                                    .testStream(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return const CustomText(
+                                        text: "No Category");
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return CircularProgressIndicator();
+                                  }
+                                  Logger().w(snapshot.data!.docs.length);
 
-                                        //List always clear before load
-                                        list.clear();
+                                  //List always clear before load
+                                  list.clear();
 
-                                        //Add category by category to list
-                                        for (var item in snapshot.data!.docs) {
-                                          Map<String, dynamic> data = item
-                                              .data() as Map<String, dynamic>;
+                                  //Add category by category to list
+                                  for (var item in snapshot.data!.docs) {
+                                    Map<String, dynamic> data =
+                                        item.data() as Map<String, dynamic>;
 
-                                          var model =
-                                              CategoryModel.fromJson(data);
+                                    var model = CategoryModel.fromJson(data);
 
-                                          list.add(model);
-                                        }
+                                    list.add(model);
+                                  }
 
-                                        return Expanded(
-                                          child: ListView.separated(
-                                            itemBuilder: (context, index) {
-                                              return CustomCard(
-                                                size: size,
-                                                assetName: list[index].img,
-                                                title: list[index].name,
-                                                onTap: () {
-                                                  UtilFunction.navigateTo(
-                                                    context,
-                                                    DisplayItemsScreen(),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            separatorBuilder:
-                                                (context, index) =>
-                                                    SizedBox(height: 30),
-                                            itemCount: list.length,
-                                          ),
+                                  return Expanded(
+                                    child: ListView.separated(
+                                      itemBuilder: (context, index) {
+                                        return CustomCard(
+                                          size: size,
+                                          assetName: list[index].img,
+                                          title: list[index].name,
+                                          onTap: () {
+                                            UtilFunction.navigateTo(
+                                              context,
+                                              DisplayItemsScreen(),
+                                            );
+                                          },
                                         );
                                       },
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(height: 30),
+                                      itemCount: list.length,
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   )
