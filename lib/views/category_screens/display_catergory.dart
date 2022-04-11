@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_card.dart';
+import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/providers/category_provider.dart';
+import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
@@ -62,69 +64,103 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                         borderRadius: BorderRadius.circular(15),
                         color: kwhite,
                       ),
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 3,
-                        mainAxisSpacing: 4,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        children: [
-                          Consumer<CategoryProvider>(
-                            builder: (context, value, child) {
-                              return StreamBuilder<QuerySnapshot>(
-                                stream: CategoryController()
-                                    // .getCategory(value.userModel.uid),
-                                    // .getCategory("byIN7SAGxebBy7WyLsRdzKnXddF2"),
-                                    .testStream(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasError) {
-                                    return const CustomText(
-                                        text: "No Category");
-                                  }
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return CircularProgressIndicator();
-                                  }
-                                  Logger().w(snapshot.data!.docs.length);
+                      child: Consumer<UserProvider>(
+                        builder: (context, value, child) {
+                          return StreamBuilder<QuerySnapshot>(
+                            stream: CategoryController().testStream(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return const CustomText(text: "No Category");
+                              }
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CustomLoader();
+                              }
+                              Logger().w(snapshot.data!.docs.length);
 
-                                  //List always clear before load
-                                  list.clear();
+                              //List always clear before load
+                              list.clear();
 
-                                  //Add category by category to list
-                                  for (var item in snapshot.data!.docs) {
-                                    Map<String, dynamic> data =
-                                        item.data() as Map<String, dynamic>;
+                              //Add category by category to list
+                              for (var item in snapshot.data!.docs) {
+                                Map<String, dynamic> data =
+                                    item.data() as Map<String, dynamic>;
 
-                                    var model = CategoryModel.fromJson(data);
+                                var model = CategoryModel.fromJson(data);
 
-                                    list.add(model);
-                                  }
+                                // list.add(model);
+                                // filter values
 
-                                  return Expanded(
-                                    child: ListView.separated(
-                                      itemBuilder: (context, index) {
-                                        return CustomCard(
-                                          size: size,
-                                          assetName: list[index].img,
-                                          title: list[index].name,
-                                          onTap: () {
-                                            UtilFunction.navigateTo(
-                                              context,
-                                              DisplayItemsScreen(),
-                                            );
-                                          },
-                                        );
-                                      },
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(height: 30),
-                                      itemCount: list.length,
-                                    ),
-                                  );
-                                },
+                                // if (value.fetchUserData(value.userModel.uid) ==
+                                //     null) {
+                                //   Logger().e("Error");
+                                // } else {
+                                //   Logger().d("good");
+                                // }
+                                if (model.uid == value.user.uid) {
+                                  list.add(model);
+                                }
+                                // if (model.uid ==
+                                //     "XXywK8k3NkOUaT8g9rzABgVCBdr2") {
+                                //   list.add(model);
+                                // }
+                              }
+
+                              // return Expanded(
+                              //   child: ListView.separated(
+                              //     itemBuilder: (context, index) {
+                              //       return GridView(
+                              //         gridDelegate:
+                              //             SliverGridDelegateWithFixedCrossAxisCount(
+                              //           crossAxisCount: 3,
+                              //           crossAxisSpacing: 3,
+                              //           mainAxisSpacing: 4,
+                              //         ),
+                              //         shrinkWrap: true,
+                              //         scrollDirection: Axis.vertical,
+                              //         children: [
+                              // CustomCard(
+                              //   size: size,
+                              //   assetName: list[index].img,
+                              //   title: list[index].name,
+                              //   onTap: () {
+                              //     UtilFunction.navigateTo(
+                              //       context,
+                              //       DisplayItemsScreen(),
+                              //     );
+                              //   },
+                              // ),
+                              //         ],
+                              //       );
+                              //     },
+                              //     separatorBuilder: (context, index) =>
+                              //         SizedBox(height: 30),
+                              //     itemCount: list.length,
+                              //   ),
+                              // );
+                              return Expanded(
+                                child: GridView.builder(
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) => CustomCard(
+                                    size: size,
+                                    assetName: list[index].img,
+                                    title: list[index].name,
+                                    onTap: () {
+                                      UtilFunction.navigateTo(
+                                        context,
+                                        DisplayItemsScreen(),
+                                      );
+                                    },
+                                  ),
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                  ),
+                                ),
                               );
                             },
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ),
                   )

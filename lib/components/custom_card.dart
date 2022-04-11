@@ -31,7 +31,6 @@ class _CustomCardState extends State<CustomCard> {
         child: Column(
           children: [
             Container(
-              width: widget.size.width * 0.4,
               height: 35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),

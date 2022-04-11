@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: DisplayCatergory(),
+      home: SplashScreen(),
       //Responsive design
       builder: (context, widget) => ResponsiveWrapper.builder(
         widget,
