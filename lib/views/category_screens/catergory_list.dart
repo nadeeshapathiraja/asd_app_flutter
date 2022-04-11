@@ -71,76 +71,85 @@ class _CatergoryListState extends State<CatergoryList> {
                       SizedBox(height: 30),
 
                       //Category list
-                      Consumer<CategoryProvider>(
-                        builder: (context, value, child) {
-                          return StreamBuilder<QuerySnapshot>(
-                            stream: CategoryController().testStream(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasError) {
-                                return const CustomText(text: "No Category");
-                              }
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return CircularProgressIndicator();
-                              }
-                              Logger().w(snapshot.data!.docs.length);
-                              // Logger().d(value.userModel.uid);
+                      StreamBuilder<QuerySnapshot>(
+                        stream: CategoryController().testStream(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return const CustomText(text: "No Category");
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
+                          Logger().w(snapshot.data!.docs.length);
+                          // Logger().d(value.userModel.uid);
 
-                              //List always clear before load
-                              list.clear();
+                          //List always clear before load
+                          list.clear();
 
-                              //Add category by category to list
-                              for (var item in snapshot.data!.docs) {
-                                Map<String, dynamic> data =
-                                    item.data() as Map<String, dynamic>;
+                          //Add category by category to list
+                          for (var item in snapshot.data!.docs) {
+                            Map<String, dynamic> data =
+                                item.data() as Map<String, dynamic>;
 
-                                var model = CategoryModel.fromJson(data);
+                            var model = CategoryModel.fromJson(data);
 
-                                list.add(model);
-                              }
+                            String userid = Provider.of<UserProvider>(context,
+                                    listen: false)
+                                .userModel
+                                .uid;
 
-                              return Expanded(
-                                child: ListView.separated(
-                                  itemBuilder: (context, index) {
-                                    return CategoryTile(
-                                      text: list[index].name,
-                                      onDeleteTap: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return CustomDialogbox(
-                                              size: size,
-                                              text:
-                                                  "Are you sure to delete the category?",
-                                              onTap: () {
-                                                value.changeId(list[index].id);
-                                                UtilFunction.navigateTo(
-                                                    context, CatergoryList());
-                                              },
-                                            );
+                            if (model.uid == userid) {
+                              list.add(model);
+                            }
+                          }
+
+                          return Expanded(
+                            child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                return CategoryTile(
+                                  text: list[index].name,
+                                  onDeleteTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return CustomDialogbox(
+                                          size: size,
+                                          text:
+                                              "Are you sure to delete the category?",
+                                          onTap: () {
+                                            Provider.of<CategoryProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .changeId(list[index].id);
+                                            UtilFunction.navigateTo(
+                                                context, CatergoryList());
                                           },
-                                        );
-                                      },
-                                      onEditTap: () {
-                                        UtilFunction.navigateTo(
-                                          context,
-                                          EditCategory(
-                                            categoryModel:
-                                                value.categoryModelData,
-                                          ),
                                         );
                                       },
                                     );
                                   },
-                                  separatorBuilder: (context, index) =>
-                                      SizedBox(height: 30),
-                                  itemCount: list.length,
-                                ),
-                              );
-                            },
+                                  onEditTap: () {
+                                    UtilFunction.navigateTo(
+                                      context,
+                                      EditCategory(
+                                        categoryModel:
+                                            Provider.of<CategoryProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .categoryModelData,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: 30),
+                              itemCount: list.length,
+                            ),
                           );
                         },
-                      ),
+                      )
                     ],
                   ),
                 ),
