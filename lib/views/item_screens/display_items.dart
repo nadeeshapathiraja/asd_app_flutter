@@ -60,7 +60,6 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                     child: SingleChildScrollView(
                       child: Container(
                         width: size.width,
-                        // height: size.height * 0.8,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: kwhite,
@@ -73,45 +72,10 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                                 //Custom Card for display catergories
                                 CustomCard(
                                   size: size,
-                                  assetName: "apple.png",
+                                  assetName:
+                                      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tourism_in_London795.jpg/800px-Tourism_in_London795.jpg",
                                   title: "Apple",
                                   onTap: () {},
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                CustomCard(
-                                  size: size,
-                                  assetName: "banana.png",
-                                  title: "Banana",
-                                  onTap: () {},
-                                ),
-                                SizedBox(
-                                  height: 200,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                //Custom Card for display catergories
-                                CustomCard(
-                                  size: size,
-                                  assetName: "mango.png",
-                                  title: "Mango",
-                                  onTap: () {},
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                CustomCard(
-                                  size: size,
-                                  assetName: "orange.png",
-                                  title: "Orange",
-                                  onTap: () {},
-                                ),
-                                SizedBox(
-                                  height: 200,
                                 ),
                               ],
                             ),

@@ -11,6 +11,7 @@ import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/home_screen/home_screen.dart';
 import 'package:game_app/views/item_screens/display_items.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -108,6 +109,7 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                                             context,
                                             DisplayItemsScreen(),
                                           );
+                                          Logger().i(list[index].name);
                                         },
                                       ),
                                     ],

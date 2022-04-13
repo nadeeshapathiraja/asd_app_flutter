@@ -118,6 +118,7 @@ class _CatergoryListState extends State<CatergoryList> {
                                           text:
                                               "Are you sure to delete the category?",
                                           onTap: () {
+                                            Logger().i(list[index].id);
                                             Provider.of<CategoryProvider>(
                                                     context,
                                                     listen: false)
