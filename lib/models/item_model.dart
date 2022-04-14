@@ -7,7 +7,7 @@ class ItemModel {
   late String categoryId;
   late String name;
   late String img;
-  late String audioFile;
+  late String audio;
 
   ItemModel({
     required this.id,
@@ -15,7 +15,7 @@ class ItemModel {
     required this.categoryId,
     required this.name,
     required this.img,
-    required this.audioFile,
+    required this.audio,
   });
 
   factory ItemModel.fromJson(Map<String, dynamic> json) =>

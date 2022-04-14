@@ -6,6 +6,7 @@ import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/category_controller.dart';
+import 'package:game_app/controllers/item_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -76,10 +77,10 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                       child: Consumer<UserProvider>(
                         builder: (context, value, child) {
                           return StreamBuilder<QuerySnapshot>(
-                            stream: CategoryController().testStream(),
+                            stream: ItemController().getItems(),
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
-                                return const CustomText(text: "No Category");
+                                return const CustomText(text: "No Items");
                               }
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
@@ -134,34 +135,6 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                       ),
                     ),
                   )
-                  // Expanded(
-                  //   child: SingleChildScrollView(
-                  //     child: Container(
-                  //       width: size.width,
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(15),
-                  //         color: kwhite,
-                  //       ),
-                  //       child: Column(
-                  //         children: [
-                  //           Row(
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             children: [
-                  //               //Custom Card for display catergories
-                  //               CustomCard(
-                  //                 size: size,
-                  //                 assetName:
-                  //                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tourism_in_London795.jpg/800px-Tourism_in_London795.jpg",
-                  //                 title: "Apple",
-                  //                 onTap: () {},
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
                 ],
               )),
         ),

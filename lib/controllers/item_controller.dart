@@ -50,6 +50,6 @@ class ItemController {
   }
 
   //get all item data
-  Stream<QuerySnapshot> testStream() =>
+  Stream<QuerySnapshot> getItems() =>
       FirebaseFirestore.instance.collection('item').snapshots();
 }

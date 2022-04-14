@@ -61,7 +61,7 @@ ItemModel _$ItemModelFromJson(Map<String, dynamic> json) => ItemModel(
       categoryId: json['categoryId'] as String,
       name: json['name'] as String,
       img: json['img'] as String,
-      audioFile: json['audioFile'] as String,
+      audio: json['audio'] as String,
     );
 
 Map<String, dynamic> _$ItemModelToJson(ItemModel instance) => <String, dynamic>{
@@ -70,5 +70,5 @@ Map<String, dynamic> _$ItemModelToJson(ItemModel instance) => <String, dynamic>{
       'categoryId': instance.categoryId,
       'name': instance.name,
       'img': instance.img,
-      'audioFile': instance.audioFile,
+      'audio': instance.audio,
     };
