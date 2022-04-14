@@ -24,6 +24,7 @@ class CustomGameCard extends StatefulWidget {
 class _CustomGameCardState extends State<CustomGameCard> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Card(
       elevation: 3,
       child: InkWell(
@@ -33,6 +34,7 @@ class _CustomGameCardState extends State<CustomGameCard> {
           children: [
             Container(
               height: 35,
+              width: size.width * 0.4,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: activeColor,
