@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_card.dart';
+import 'package:game_app/components/custom_game_card.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
@@ -65,7 +66,7 @@ class _GameCatergoryScreenState extends State<GameCatergoryScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     //Custom Card for display catergories
-                                    CustomCard(
+                                    CustomGameCard(
                                       size: size,
                                       assetName: "animals.png",
                                       title: "Animal",
@@ -77,7 +78,7 @@ class _GameCatergoryScreenState extends State<GameCatergoryScreen> {
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    CustomCard(
+                                    CustomGameCard(
                                       size: size,
                                       assetName: "vehicle.png",
                                       title: "Vehicle",
@@ -95,7 +96,7 @@ class _GameCatergoryScreenState extends State<GameCatergoryScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     //Custom Card for display catergories
-                                    CustomCard(
+                                    CustomGameCard(
                                       size: size,
                                       assetName: "vegi.png",
                                       title: "Vegetable",

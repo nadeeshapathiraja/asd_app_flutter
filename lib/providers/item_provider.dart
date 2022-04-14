@@ -98,7 +98,7 @@ class ItemProvider extends ChangeNotifier {
     return isValid;
   }
 
-  //add Category
+  //add Item
   Future<void> ItemState(BuildContext context) async {
     try {
       if (inputValidation()) {

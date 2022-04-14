@@ -51,6 +51,7 @@ class CategoryProvider extends ChangeNotifier {
   //For edit and delete id
   late String _cateId;
   String get SelectedId => _cateId;
+
   void changeId(cateId) {
     _cateId = cateId;
     Logger().i(_cateId);

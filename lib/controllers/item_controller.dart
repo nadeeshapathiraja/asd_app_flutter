@@ -48,4 +48,8 @@ class ItemController {
       return null;
     }
   }
+
+  //get all item data
+  Stream<QuerySnapshot> testStream() =>
+      FirebaseFirestore.instance.collection('item').snapshots();
 }

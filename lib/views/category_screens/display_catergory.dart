@@ -29,18 +29,18 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        width: size.width,
-        height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Constants.imageAssets("bg.jpg")),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Constants.imageAssets("bg.jpg")),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Padding(
+          child: SafeArea(
+            child: Padding(
               padding: const EdgeInsets.only(
                 left: 10.0,
                 right: 10.0,
@@ -125,11 +125,13 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                         },
                       ),
                     ),
-                  )
+                  ),
                 ],
-              )),
+              ),
+            ),
+          ),
         ),
       ),
-    ));
+    );
   }
 }
