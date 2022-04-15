@@ -47,7 +47,7 @@ class CategoryController {
     }
   }
 
-  // //Get All Category data
+  // // //Get All Category data
   // Stream<QuerySnapshot> getCategory(String uid) =>
   //     category.where('uid', isEqualTo: uid).snapshots();
 

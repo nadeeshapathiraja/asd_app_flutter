@@ -8,6 +8,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/controllers/item_controller.dart';
 import 'package:game_app/models/objects.dart';
+import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
@@ -16,7 +17,9 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class DisplayItemsScreen extends StatefulWidget {
-  const DisplayItemsScreen({Key? key}) : super(key: key);
+  DisplayItemsScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _DisplayItemsScreenState createState() => _DisplayItemsScreenState();
@@ -24,6 +27,7 @@ class DisplayItemsScreen extends StatefulWidget {
 
 class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
   List<ItemModel> list = [];
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -108,16 +112,18 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                                   itemCount: list.length,
                                   itemBuilder: (context, index) => Column(
                                     children: [
-                                      // Image.network(list[index].img),
+                                      Text(Provider.of<ItemProvider>(context,
+                                              listen: false)
+                                          .selectedId),
                                       CustomCard(
                                         size: size,
                                         assetName: list[index].img,
                                         title: list[index].name,
                                         onTap: () {
-                                          UtilFunction.navigateTo(
-                                            context,
-                                            DisplayItemsScreen(),
-                                          );
+                                          // UtilFunction.navigateTo(
+                                          //   context,
+                                          //   DisplayItemsScreen(),
+                                          // );
                                           Logger().i(list[index].name);
                                         },
                                       ),

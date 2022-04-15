@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/db_controller.dart';
@@ -31,7 +32,7 @@ class ItemProvider extends ChangeNotifier {
 
   final _name = TextEditingController();
   final _uid = TextEditingController();
-  final _categoryId = TextEditingController();
+  String _categoryId = "";
   final _audioFile = TextEditingController();
   bool _isLoading = false;
   final ImagePicker _picker = ImagePicker();
@@ -39,7 +40,6 @@ class ItemProvider extends ChangeNotifier {
   //Get all Values in Category screen
   TextEditingController get getName => _name;
   TextEditingController get getUserId => _uid;
-  TextEditingController get getCategoryId => _categoryId;
   TextEditingController get getAudioFile => _audioFile;
   bool get isLoading => _isLoading;
 
@@ -47,6 +47,13 @@ class ItemProvider extends ChangeNotifier {
   File _image = File("");
   //Get image file
   File get getItemImg => _image;
+
+//Change selected Category Id
+  void changeCategory(categoryID) {
+    _categoryId = categoryID;
+  }
+
+  String get selectedId => _categoryId;
 
   Future<void> takePhoto(ImageSource source) async {
     try {
@@ -113,13 +120,12 @@ class ItemProvider extends ChangeNotifier {
 
             await _itemController.saveItem(
               user.uid,
-              _categoryId.text,
+              _categoryId,
               _name.text,
               _image,
               _audioFile.text,
             );
             _name.clear();
-            _categoryId.clear();
             _image = File("");
             _audioFile.clear();
 

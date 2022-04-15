@@ -55,10 +55,7 @@ class _AddItemState extends State<AddItem> {
                           color: darkColor,
                         ),
                         const SizedBox(height: 30),
-                        CustomInput(
-                          controller: value.getCategoryId,
-                          lableText: "categoryId",
-                        ),
+
                         const SizedBox(height: 30),
                         CustomInput(
                           controller: value.getName,

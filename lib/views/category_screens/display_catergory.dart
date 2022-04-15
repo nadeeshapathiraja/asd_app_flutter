@@ -7,6 +7,8 @@ import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/models/objects.dart';
+import 'package:game_app/providers/category_provider.dart';
+import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
@@ -65,62 +67,63 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                         borderRadius: BorderRadius.circular(15),
                         color: kwhite,
                       ),
-                      child: Consumer<UserProvider>(
-                        builder: (context, value, child) {
-                          return StreamBuilder<QuerySnapshot>(
-                            stream: CategoryController().testStream(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasError) {
-                                return const CustomText(text: "No Category");
-                              }
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return CustomLoader();
-                              }
-                              Logger().w(snapshot.data!.docs.length);
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: CategoryController().testStream(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return const CustomText(text: "No Category");
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CustomLoader();
+                          }
+                          Logger().w(snapshot.data!.docs.length);
 
-                              //List always clear before load
-                              list.clear();
+                          //List always clear before load
+                          list.clear();
 
-                              //Add category by category to list
-                              for (var item in snapshot.data!.docs) {
-                                Map<String, dynamic> data =
-                                    item.data() as Map<String, dynamic>;
+                          //Add category by category to list
+                          for (var item in snapshot.data!.docs) {
+                            Map<String, dynamic> data =
+                                item.data() as Map<String, dynamic>;
 
-                                var model = CategoryModel.fromJson(data);
+                            var model = CategoryModel.fromJson(data);
 
-                                if (model.uid == value.user.uid) {
-                                  list.add(model);
-                                }
-                              }
+                            if (model.uid ==
+                                Provider.of<UserProvider>(context,
+                                        listen: false)
+                                    .userModel
+                                    .uid) {
+                              list.add(model);
+                            }
+                          }
 
-                              return Expanded(
-                                child: GridView.builder(
-                                  itemCount: list.length,
-                                  itemBuilder: (context, index) => Column(
-                                    children: [
-                                      // Image.network(list[index].img),
-                                      CustomCard(
-                                        size: size,
-                                        assetName: list[index].img,
-                                        title: list[index].name,
-                                        onTap: () {
-                                          UtilFunction.navigateTo(
-                                            context,
-                                            DisplayItemsScreen(),
-                                          );
-                                          Logger().i(list[index].name);
-                                        },
-                                      ),
-                                    ],
+                          return Expanded(
+                            child: GridView.builder(
+                              itemCount: list.length,
+                              itemBuilder: (context, index) => Column(
+                                children: [
+                                  CustomCard(
+                                    size: size,
+                                    assetName: list[index].img,
+                                    title: list[index].name,
+                                    onTap: () {
+                                      Provider.of<ItemProvider>(context,
+                                              listen: false)
+                                          .changeCategory(list[index].id);
+                                      UtilFunction.navigateTo(
+                                        context,
+                                        DisplayItemsScreen(),
+                                      );
+                                    },
                                   ),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                  ),
-                                ),
-                              );
-                            },
+                                ],
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                              ),
+                            ),
                           );
                         },
                       ),
