@@ -36,6 +36,7 @@ class ItemProvider extends ChangeNotifier {
   final _audioFile = TextEditingController();
   bool _isLoading = false;
   final ImagePicker _picker = ImagePicker();
+  String _categoryName = "";
 
   //Get all Values in Category screen
   TextEditingController get getName => _name;
@@ -49,11 +50,13 @@ class ItemProvider extends ChangeNotifier {
   File get getItemImg => _image;
 
 //Change selected Category Id
-  void changeCategory(categoryID) {
+  void changeCategory(categoryID, categoryName) {
     _categoryId = categoryID;
+    _categoryName = categoryName;
   }
 
   String get selectedId => _categoryId;
+  String get selectedCategoryName => _categoryName;
 
   Future<void> takePhoto(ImageSource source) async {
     try {

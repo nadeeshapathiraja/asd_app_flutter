@@ -11,6 +11,10 @@ class ItemController {
   // Create a CollectionReference called category that references the firestore collection
   CollectionReference item = FirebaseFirestore.instance.collection('item');
 
+  // Create a CollectionReference called category that references the firestore collection
+  CollectionReference category =
+      FirebaseFirestore.instance.collection('category');
+
   Future<void> saveItem(
     String uid,
     String categoryId,

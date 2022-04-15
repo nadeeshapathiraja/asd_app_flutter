@@ -110,7 +110,10 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                                     onTap: () {
                                       Provider.of<ItemProvider>(context,
                                               listen: false)
-                                          .changeCategory(list[index].id);
+                                          .changeCategory(
+                                        list[index].id,
+                                        list[index].name,
+                                      );
                                       UtilFunction.navigateTo(
                                         context,
                                         DisplayItemsScreen(),

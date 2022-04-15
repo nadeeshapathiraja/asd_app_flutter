@@ -32,18 +32,18 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        width: size.width,
-        height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Constants.imageAssets("bg.jpg")),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Constants.imageAssets("bg.jpg")),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Padding(
+          child: SafeArea(
+            child: Padding(
               padding: const EdgeInsets.only(
                 left: 10.0,
                 right: 10.0,
@@ -62,7 +62,8 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                         width: size.width * 0.25,
                       ),
                       CustomText(
-                        text: "Fruits",
+                        text: Provider.of<ItemProvider>(context, listen: false)
+                            .selectedCategoryName,
                         fontWeight: FontWeight.w700,
                         fontsize: 40,
                         color: darkColor,
@@ -78,73 +79,72 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                         borderRadius: BorderRadius.circular(15),
                         color: kwhite,
                       ),
-                      child: Consumer<UserProvider>(
-                        builder: (context, value, child) {
-                          return StreamBuilder<QuerySnapshot>(
-                            stream: ItemController().getItems(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasError) {
-                                return const CustomText(text: "No Items");
-                              }
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return CustomLoader();
-                              }
-                              Logger().w(snapshot.data!.docs.length);
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: ItemController().getItems(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return const CustomText(text: "No Items");
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CustomLoader();
+                          }
+                          Logger().w(snapshot.data!.docs.length);
 
-                              //List always clear before load
-                              list.clear();
+                          //List always clear before load
+                          list.clear();
 
-                              //Add category by category to list
-                              for (var item in snapshot.data!.docs) {
-                                Map<String, dynamic> data =
-                                    item.data() as Map<String, dynamic>;
+                          //Add category by category to list
+                          for (var item in snapshot.data!.docs) {
+                            Map<String, dynamic> data =
+                                item.data() as Map<String, dynamic>;
 
-                                var model = ItemModel.fromJson(data);
+                            var model = ItemModel.fromJson(data);
 
-                                if (model.uid == value.user.uid) {
-                                  list.add(model);
-                                }
-                              }
+                            if (model.uid ==
+                                Provider.of<UserProvider>(context,
+                                        listen: false)
+                                    .userModel
+                                    .uid) {
+                              list.add(model);
+                            }
+                          }
 
-                              return Expanded(
-                                child: GridView.builder(
-                                  itemCount: list.length,
-                                  itemBuilder: (context, index) => Column(
-                                    children: [
-                                      Text(Provider.of<ItemProvider>(context,
-                                              listen: false)
-                                          .selectedId),
-                                      CustomCard(
-                                        size: size,
-                                        assetName: list[index].img,
-                                        title: list[index].name,
-                                        onTap: () {
-                                          // UtilFunction.navigateTo(
-                                          //   context,
-                                          //   DisplayItemsScreen(),
-                                          // );
-                                          Logger().i(list[index].name);
-                                        },
-                                      ),
-                                    ],
+                          return Expanded(
+                            child: GridView.builder(
+                              itemCount: list.length,
+                              itemBuilder: (context, index) => Column(
+                                children: [
+                                  CustomCard(
+                                    size: size,
+                                    assetName: list[index].img,
+                                    title: list[index].name,
+                                    onTap: () {
+                                      UtilFunction.navigateTo(
+                                        context,
+                                        DisplayItemsScreen(),
+                                      );
+                                      Logger().i(list[index].name);
+                                    },
                                   ),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                  ),
-                                ),
-                              );
-                            },
+                                ],
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                              ),
+                            ),
                           );
                         },
                       ),
                     ),
-                  )
+                  ),
                 ],
-              )),
+              ),
+            ),
+          ),
         ),
       ),
-    ));
+    );
   }
 }
