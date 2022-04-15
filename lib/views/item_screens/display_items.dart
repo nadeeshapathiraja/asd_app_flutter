@@ -106,7 +106,12 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                                         listen: false)
                                     .userModel
                                     .uid) {
-                              list.add(model);
+                              if (model.categoryId ==
+                                  Provider.of<ItemProvider>(context,
+                                          listen: false)
+                                      .selectedId) {
+                                list.add(model);
+                              }
                             }
                           }
 
