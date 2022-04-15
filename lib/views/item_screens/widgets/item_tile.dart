@@ -69,11 +69,8 @@ class ItemTile extends StatelessWidget {
             width: size.width * 0.42,
             height: 100,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Image.asset(
-                Constants.imageAssets(imgName),
-              ),
-            ),
+                padding: const EdgeInsets.all(10.0),
+                child: Image.network(imgName)),
           ),
         ],
       ),

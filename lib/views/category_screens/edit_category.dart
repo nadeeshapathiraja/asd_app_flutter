@@ -15,9 +15,7 @@ import 'package:provider/provider.dart';
 class EditCategory extends StatefulWidget {
   const EditCategory({
     Key? key,
-    required this.categoryModel,
   }) : super(key: key);
-  final CategoryModel categoryModel;
 
   @override
   _EditCategoryState createState() => _EditCategoryState();

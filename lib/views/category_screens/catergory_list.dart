@@ -8,12 +8,14 @@ import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/controllers/user_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/providers/category_provider.dart';
+import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/category_screens/add_category.dart';
 import 'package:game_app/views/category_screens/edit_category.dart';
 import 'package:game_app/views/category_screens/widgets/category_tile.dart';
+import 'package:game_app/views/item_screens/item_list.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
@@ -109,6 +111,18 @@ class _CatergoryListState extends State<CatergoryList> {
                               itemBuilder: (context, index) {
                                 return CategoryTile(
                                   text: list[index].name,
+                                  ontap: () {
+                                    Provider.of<ItemProvider>(context,
+                                            listen: false)
+                                        .changeCategory(
+                                      list[index].id,
+                                      list[index].name,
+                                    );
+                                    UtilFunction.navigateTo(
+                                      context,
+                                      ItemList(),
+                                    );
+                                  },
                                   onDeleteTap: () {
                                     showDialog(
                                       context: context,
@@ -118,7 +132,6 @@ class _CatergoryListState extends State<CatergoryList> {
                                           text:
                                               "Are you sure to delete the category?",
                                           onTap: () {
-                                            Logger().i(list[index].id);
                                             Provider.of<CategoryProvider>(
                                                     context,
                                                     listen: false)
@@ -131,15 +144,12 @@ class _CatergoryListState extends State<CatergoryList> {
                                     );
                                   },
                                   onEditTap: () {
+                                    Provider.of<CategoryProvider>(context,
+                                            listen: false)
+                                        .changeId(list[index].id);
                                     UtilFunction.navigateTo(
                                       context,
-                                      EditCategory(
-                                        categoryModel:
-                                            Provider.of<CategoryProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .categoryModelData,
-                                      ),
+                                      EditCategory(),
                                     );
                                   },
                                 );

@@ -11,18 +11,18 @@ class CategoryTile extends StatelessWidget {
     required this.onDeleteTap,
     required this.onEditTap,
     required this.text,
+    required this.ontap,
   }) : super(key: key);
 
   final String text;
   final Function() onEditTap;
   final Function() onDeleteTap;
+  final Function() ontap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        UtilFunction.navigateTo(context, ItemList());
-      },
+      onTap: ontap,
       child: Container(
         width: double.infinity,
         height: 80,

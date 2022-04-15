@@ -5,12 +5,14 @@ import 'package:game_app/utils/app_colors.dart';
 class CustomLoader extends StatelessWidget {
   const CustomLoader({
     Key? key,
+    this.color = kwhite,
   }) : super(key: key);
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return SpinKitFadingFour(
-      color: kwhite,
+      color: color,
       size: 40.0,
     );
   }
