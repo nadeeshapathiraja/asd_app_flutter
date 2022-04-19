@@ -1,4 +1,6 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_animation.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_game_navigation_row.dart';
 import 'package:game_app/components/custom_lable_box.dart';
@@ -17,6 +19,24 @@ class GameTwo extends StatefulWidget {
 }
 
 class _GameTwoState extends State<GameTwo> {
+  bool isPlaying = false;
+  final controller = ConfettiController();
+
+  void initState() {
+    super.initState();
+    controller.addListener(() {
+      setState(() {
+        isPlaying = controller.state == ConfettiControllerState.playing;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -177,6 +197,9 @@ class _GameTwoState extends State<GameTwo> {
                                     letter: "n",
                                     ontap: () {
                                       value.changeN();
+                                      if (isPlaying == false) {
+                                        controller.play();
+                                      }
                                     },
                                   ),
 
@@ -187,6 +210,7 @@ class _GameTwoState extends State<GameTwo> {
                         );
                       },
                     ),
+                    CustomAnimation(controller: controller),
                   ],
                 ),
               )),

@@ -36,7 +36,7 @@ class _AddItemState extends State<AddItem> {
           child: Consumer<ItemProvider>(
             builder: (context, value, child) {
               return SafeArea(
-                child: SingleChildScrollView(
+                child: Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 20.0,

@@ -137,19 +137,6 @@ class _ItemListState extends State<ItemList> {
                     ),
                   ),
                 ),
-                // Row(
-                //   children: [
-                // ItemTile(
-                //   size: size,
-                //   text: "Apple",
-                //   imgName: "apple.png",
-                //   onEditTap: () {
-                //     UtilFunction.navigateTo(context, EditItem());
-                //   },
-                //   onVoiceTap: () {},
-                // ),
-                //   ],
-                // ),
               ],
             ),
           ),

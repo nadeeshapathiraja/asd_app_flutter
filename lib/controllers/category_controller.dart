@@ -47,10 +47,20 @@ class CategoryController {
     }
   }
 
-  // // //Get All Category data
-  // Stream<QuerySnapshot> getCategory(String uid) =>
-  //     category.where('uid', isEqualTo: uid).snapshots();
-
+  //Get All Category data
   Stream<QuerySnapshot> testStream() =>
       FirebaseFirestore.instance.collection('category').snapshots();
+
+//Update Category
+  Future<void> updateCategory(
+    String uid,
+    String name,
+    File? img,
+  ) async {
+    return category
+        .doc('ABC123')
+        .update({'company': 'Stokes and Sons'})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
 }

@@ -69,6 +69,9 @@ dependencies:
   #audio Player
   #assets_audio_player: ^3.0.4+1
 
+  #animations
+  confetti: ^0.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
