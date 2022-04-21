@@ -171,8 +171,19 @@ class _GameThreeState extends State<GameThree> {
                                   ),
 
                             CustomGameNavigationRow(
-                              onNextPress: () {},
+                              onNextPress: () {
+                                if (value.gPress == true) {
+                                  value.dPress = false;
+                                  value.oPress = false;
+                                  value.gPress = false;
+                                }
+                              },
                               onBackPress: () {
+                                if (value.gPress == true) {
+                                  value.dPress = false;
+                                  value.oPress = false;
+                                  value.gPress = false;
+                                }
                                 UtilFunction.goBack(context);
                               },
                             ),

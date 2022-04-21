@@ -9,6 +9,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/game/game_two_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
 import 'package:provider/provider.dart';
 
 class GameTwo extends StatefulWidget {
@@ -204,7 +205,25 @@ class _GameTwoState extends State<GameTwo> {
                                   ),
 
                             CustomGameNavigationRow(
-                              onNextPress: () {},
+                              onNextPress: () {
+                                if (value.nPress == true) {
+                                  value.tPress = false;
+                                  value.rPress = false;
+                                  value.aPress = false;
+                                  value.iPress = false;
+                                  value.nPress = false;
+                                }
+                              },
+                              onBackPress: () {
+                                if (value.nPress == true) {
+                                  value.tPress = false;
+                                  value.rPress = false;
+                                  value.aPress = false;
+                                  value.iPress = false;
+                                  value.nPress = false;
+                                }
+                                UtilFunction.goBack(context);
+                              },
                             ),
                           ],
                         );

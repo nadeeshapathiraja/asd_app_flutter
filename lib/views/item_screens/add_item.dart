@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game_app/components/custom_bottom_sheet.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_item_capcher.dart';
@@ -8,7 +7,6 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class AddItem extends StatefulWidget {
@@ -33,36 +31,32 @@ class _AddItemState extends State<AddItem> {
               fit: BoxFit.cover,
             ),
           ),
-          child: Consumer<ItemProvider>(
-            builder: (context, value, child) {
-              return SafeArea(
-                child: Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 20.0,
-                      top: 10.0,
-                    ),
-                    child: Column(
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 20.0,
+                  top: 10.0,
+                ),
+                child: Consumer<ItemProvider>(
+                  builder: (context, value, child) {
+                    return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //main Navbar
                         CustomMainNavBar(),
                         const SizedBox(height: 30),
                         const CustomText(
-                          text: "Add New Fruit",
+                          text: "Add New Item",
                           fontsize: 40,
                           color: darkColor,
                         ),
-                        const SizedBox(height: 30),
-
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 50),
                         CustomInput(
                           controller: value.getName,
-                          lableText: "Name",
+                          lableText: "Item Name",
                         ),
-                        const SizedBox(height: 30),
-
                         const SizedBox(height: 30),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -114,6 +108,7 @@ class _AddItemState extends State<AddItem> {
                             ),
                           ),
                         ),
+
                         const SizedBox(height: 50),
                         CustomButton(
                           size: size,
@@ -123,11 +118,11 @@ class _AddItemState extends State<AddItem> {
                           textValue: "Done",
                         ),
                       ],
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ),
           ),
         ),
       ),
