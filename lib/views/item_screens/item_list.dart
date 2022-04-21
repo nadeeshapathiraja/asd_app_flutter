@@ -130,6 +130,7 @@ class _ItemListState extends State<ItemList> {
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
+                              mainAxisSpacing: 0,
                             ),
                           ),
                         );

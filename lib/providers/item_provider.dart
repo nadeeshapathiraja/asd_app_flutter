@@ -121,26 +121,38 @@ class ItemProvider extends ChangeNotifier {
             notifyListeners();
             await fetchUserData(user.uid);
 
-            await _itemController.saveItem(
-              user.uid,
-              _categoryId,
-              _name.text,
-              _image,
-              _audioFile.text,
-            );
-            _name.clear();
-            _image = File("");
-            _audioFile.clear();
+            if (inputValidation()) {
+              await _itemController.saveItem(
+                user.uid,
+                _categoryId,
+                _name.text,
+                _image,
+                _audioFile.text,
+              );
 
-            DialogBox().dialogbox(
-              context,
-              DialogType.SUCCES,
-              'Added Data',
-              'Entered Information',
-              () {
-                UtilFunction.navigateTo(context, ItemList());
-              },
-            );
+              setLoading();
+              DialogBox().dialogbox(
+                context,
+                DialogType.SUCCES,
+                'Added Data',
+                'Entered Information',
+                () {
+                  UtilFunction.navigateTo(context, ItemList());
+                },
+              );
+              _name.clear();
+              _image = File("");
+              _audioFile.clear();
+            } else {
+              setLoading();
+              DialogBox().dialogbox(
+                context,
+                DialogType.ERROR,
+                'Invalidated Data',
+                'Please Enter Correct Information',
+                () {},
+              );
+            }
           }
         });
 
