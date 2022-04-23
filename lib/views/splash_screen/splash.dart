@@ -1,5 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/providers/user_provider.dart';
+import 'package:game_app/utils/constants.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-      Duration(seconds: 1),
+      Duration(seconds: 2),
       () {
         Provider.of<UserProvider>(context, listen: false)
             .initializedUser(context);
@@ -30,16 +32,18 @@ class _SplashScreenState extends State<SplashScreen> {
         width: size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(
-              Icons.gamepad,
-              size: 100,
+          children: [
+            Pulse(
+              duration: Duration(seconds: 1),
+              child: Image.asset(
+                Constants.imageAssets("logo.png"),
+              ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 30),
             Text(
-              "Game App",
+              "ASD Project",
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 40,
                 color: Color(0xff838383),
               ),
             ),
