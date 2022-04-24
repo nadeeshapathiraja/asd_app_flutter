@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_card.dart';
+import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/controllers/video_controller.dart';
+import 'package:game_app/models/objects.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/video_screens/video_screen_list.dart';
+import 'package:logger/logger.dart';
 
 class VideoCatergory extends StatefulWidget {
   const VideoCatergory({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class VideoCatergory extends StatefulWidget {
 }
 
 class _VideoCatergoryState extends State<VideoCatergory> {
+  List<VideoModel> list = [];
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,45 +52,62 @@ class _VideoCatergoryState extends State<VideoCatergory> {
                     color: darkColor,
                   ),
                   Expanded(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        width: size.width,
-                        // height: size.height * 0.8,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: kwhite,
-                        ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                //Custom Card for display catergories
-                                CustomCard(
-                                  size: size,
-                                  assetName: "apple.png",
-                                  title: "Fruits",
-                                  onTap: () {
-                                    UtilFunction.navigateTo(
-                                        context, VideoListScreen());
-                                  },
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                CustomCard(
-                                  size: size,
-                                  assetName: "vegi.png",
-                                  title: "Vegitables",
-                                  onTap: () {},
-                                ),
-                                SizedBox(
-                                  height: 200,
-                                ),
-                              ],
+                    child: Container(
+                      width: size.width,
+                      // height: size.height * 0.8,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: kwhite,
+                      ),
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: VideoController().getVideos(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return const CustomText(text: "No Items");
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CustomLoader();
+                          }
+                          Logger().w(snapshot.data!.docs.length);
+
+                          //List always clear before load
+                          list.clear();
+
+                          //Add category by category to list
+                          for (var video in snapshot.data!.docs) {
+                            Map<String, dynamic> data =
+                                video.data() as Map<String, dynamic>;
+
+                            var model = VideoModel.fromJson(data);
+
+                            list.add(model);
+                          }
+
+                          return Expanded(
+                            child: GridView.builder(
+                              itemCount: list.length,
+                              itemBuilder: (context, index) => Column(
+                                children: [
+                                  CustomCard(
+                                    size: size,
+                                    assetName: list[index].thumbnail,
+                                    title: list[index].name,
+                                    onTap: () {
+                                      Logger().i(list[index].name);
+                                    },
+                                  ),
+                                ],
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 0,
+                                crossAxisSpacing: 1,
+                              ),
                             ),
-                          ],
-                        ),
+                          );
+                        },
                       ),
                     ),
                   )
