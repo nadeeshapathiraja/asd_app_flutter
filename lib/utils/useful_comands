@@ -1,5 +1,8 @@
-//////Genarate model auto///////////
+//////build model auto(New)///////////
 flutter packages pub run build_runner build
+
+//////build model auto(old)///////////
+flutter packages pub run build_runner build --delete-conflicting-outputs
 
 /////////Cache repair/////////////////
 flutter pub cache repair

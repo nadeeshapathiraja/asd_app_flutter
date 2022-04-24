@@ -27,16 +27,16 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
 VideoModel _$VideoModelFromJson(Map<String, dynamic> json) => VideoModel(
       id: json['id'] as String,
       name: json['name'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-      videoUrl: json['videoUrl'] as String,
+      thumbnail: json['thumbnail'] as String,
+      url: json['url'] as String,
     );
 
 Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'thumbnailUrl': instance.thumbnailUrl,
-      'videoUrl': instance.videoUrl,
+      'thumbnail': instance.thumbnail,
+      'url': instance.url,
     };
 
 CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>

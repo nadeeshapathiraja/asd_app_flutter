@@ -4,14 +4,14 @@ part of 'objects.dart';
 class VideoModel {
   late String id;
   late String name;
-  late String thumbnailUrl;
-  late String videoUrl;
+  late String thumbnail;
+  late String url;
 
   VideoModel({
     required this.id,
     required this.name,
-    required this.thumbnailUrl,
-    required this.videoUrl,
+    required this.thumbnail,
+    required this.url,
   });
 
   factory VideoModel.fromJson(Map<String, dynamic> json) =>
