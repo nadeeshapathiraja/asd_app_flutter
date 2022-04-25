@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "661760875300",
-    "project_id": "asdproject-ffae5",
-    "storage_bucket": "asdproject-ffae5.appspot.com"
+    "project_number": "199716748430",
+    "project_id": "asd-project-8409b",
+    "storage_bucket": "asd-project-8409b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:661760875300:android:483173ee6e21b2c95f31b1",
+        "mobilesdk_app_id": "1:199716748430:android:47c429d02209972be8dddf",
         "android_client_info": {
           "package_name": "com.example.game_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "661760875300-t84d21qrmep3umhhkvqnt31aelmfh3ri.apps.googleusercontent.com",
+          "client_id": "199716748430-vel4l5upbprjomd637uf40r4g7ddu0j3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBXxl2waWtx9V5TKm6NXKOypGlJtyyuUcs"
+          "current_key": "AIzaSyCvOsmO1wIHsDyZeJkVWS7irIv7WigDZgs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "661760875300-t84d21qrmep3umhhkvqnt31aelmfh3ri.apps.googleusercontent.com",
+              "client_id": "199716748430-vel4l5upbprjomd637uf40r4g7ddu0j3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -83,7 +83,6 @@ class AuthController {
         email: email,
         password: password,
       );
-      UtilFunction.navigateTo(context, HomeScreen());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         DialogBox().dialogbox(
