@@ -46,7 +46,7 @@ class _CustomCardState extends State<CustomCard> {
             ),
             SizedBox(
               width: widget.size.width * 0.5,
-              height: 150,
+              height: 110,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Image.network(widget.assetName),
