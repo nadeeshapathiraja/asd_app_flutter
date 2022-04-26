@@ -41,17 +41,16 @@ class AuthController {
           age,
           asd_level,
         );
+        DialogBox().dialogbox(
+          context,
+          DialogType.SUCCES,
+          'Your registration Success',
+          'Please Login Now',
+          () {
+            UtilFunction.pushRemoveRoute(context, LogInScreen());
+          },
+        );
       }
-
-      DialogBox().dialogbox(
-        context,
-        DialogType.SUCCES,
-        'Your registration Success',
-        'Please Login Now',
-        () {
-          UtilFunction.pushRemoveRoute(context, LogInScreen());
-        },
-      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         DialogBox().dialogbox(
@@ -79,11 +78,14 @@ class AuthController {
   Future<void> loginUser(
       String email, String password, BuildContext context) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      UtilFunction.pushRemoveRoute(context, HomeScreen());
+      if (userCredential.user != null) {
+        UtilFunction.pushRemoveRoute(context, HomeScreen());
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         DialogBox().dialogbox(
