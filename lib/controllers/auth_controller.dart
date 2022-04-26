@@ -49,7 +49,7 @@ class AuthController {
         'Your registration Success',
         'Please Login Now',
         () {
-          UtilFunction.navigateTo(context, LogInScreen());
+          UtilFunction.pushRemoveRoute(context, LogInScreen());
         },
       );
     } on FirebaseAuthException catch (e) {
@@ -83,6 +83,7 @@ class AuthController {
         email: email,
         password: password,
       );
+      UtilFunction.pushRemoveRoute(context, HomeScreen());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         DialogBox().dialogbox(
