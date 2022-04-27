@@ -137,6 +137,8 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
+                                mainAxisSpacing: 0,
+                                crossAxisSpacing: 0,
                               ),
                             ),
                           );

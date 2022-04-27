@@ -32,6 +32,7 @@ class _CustomCardState extends State<CustomCard> {
           children: [
             Container(
               height: 35,
+              width: widget.size.width * 0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: activeColor,
@@ -47,10 +48,7 @@ class _CustomCardState extends State<CustomCard> {
             SizedBox(
               width: widget.size.width * 0.5,
               height: 110,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Image.network(widget.assetName),
-              ),
+              child: Image.network(widget.assetName),
             ),
           ],
         ),

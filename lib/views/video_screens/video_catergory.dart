@@ -86,6 +86,12 @@ class _VideoCatergoryState extends State<VideoCatergory> {
 
                           return Expanded(
                             child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 0,
+                                crossAxisSpacing: 0,
+                              ),
                               itemCount: list.length,
                               itemBuilder: (context, index) => Column(
                                 children: [
@@ -98,12 +104,6 @@ class _VideoCatergoryState extends State<VideoCatergory> {
                                     },
                                   ),
                                 ],
-                              ),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 0,
-                                crossAxisSpacing: 1,
                               ),
                             ),
                           );
