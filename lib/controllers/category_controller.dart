@@ -63,4 +63,13 @@ class CategoryController {
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }
+
+  //Delete Category
+  Future<void> deleteCategory(String categoryId) {
+    return category
+        .doc(categoryId)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
 }

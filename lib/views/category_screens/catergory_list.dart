@@ -5,7 +5,6 @@ import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_outline_button.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/category_controller.dart';
-import 'package:game_app/controllers/user_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/providers/item_provider.dart';
@@ -131,11 +130,9 @@ class _CatergoryListState extends State<CatergoryList> {
                                           size: size,
                                           text:
                                               "Are you sure to delete the category?",
-                                          onTap: () {
-                                            Provider.of<CategoryProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .changeId(list[index].id);
+                                          onTap: () async {
+                                            await CategoryController()
+                                                .deleteCategory(list[index].id);
                                             UtilFunction.navigateTo(
                                                 context, CatergoryList());
                                           },
