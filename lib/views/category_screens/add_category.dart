@@ -99,6 +99,7 @@ class _AddCategoryState extends State<AddCategory> {
                         const SizedBox(height: 50),
                         CustomButton(
                           size: size,
+                          isLoading: value.isLoading,
                           onTap: () {
                             value.CategoryState(context);
                           },

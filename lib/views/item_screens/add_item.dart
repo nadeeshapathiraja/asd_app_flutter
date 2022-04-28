@@ -112,6 +112,7 @@ class _AddItemState extends State<AddItem> {
                         const SizedBox(height: 50),
                         CustomButton(
                           size: size,
+                          isLoading: value.isLoading,
                           onTap: () {
                             value.ItemState(context);
                           },
