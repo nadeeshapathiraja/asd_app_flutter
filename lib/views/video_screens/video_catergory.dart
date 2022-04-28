@@ -91,6 +91,7 @@ class _VideoCatergoryState extends State<VideoCatergory> {
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 0,
                                 crossAxisSpacing: 0,
+                                childAspectRatio: 1.4,
                               ),
                               itemCount: list.length,
                               itemBuilder: (context, index) => Column(
