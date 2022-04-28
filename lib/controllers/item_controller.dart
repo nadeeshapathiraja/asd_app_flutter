@@ -52,4 +52,26 @@ class ItemController {
   //get all item data
   Stream<QuerySnapshot> getItems() =>
       FirebaseFirestore.instance.collection('item').snapshots();
+
+  //Update Category
+  Future<void> updateCategory(
+    String uid,
+    String name,
+    File? img,
+  ) async {
+    return item
+        .doc('ABC123')
+        .update({'company': 'Stokes and Sons'})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  //Delete Category
+  Future<void> deleteCategory(String itemId) {
+    return item
+        .doc(itemId)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
 }

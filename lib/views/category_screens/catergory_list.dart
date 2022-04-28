@@ -133,7 +133,7 @@ class _CatergoryListState extends State<CatergoryList> {
                                           onTap: () async {
                                             await CategoryController()
                                                 .deleteCategory(list[index].id);
-                                            UtilFunction.navigateTo(
+                                            UtilFunction.pushRemoveRoute(
                                                 context, CatergoryList());
                                           },
                                         );
@@ -146,7 +146,11 @@ class _CatergoryListState extends State<CatergoryList> {
                                         .changeId(list[index].id);
                                     UtilFunction.navigateTo(
                                       context,
-                                      EditCategory(),
+                                      EditCategory(
+                                        id: list[index].id,
+                                        name: list[index].name,
+                                        url: list[index].img,
+                                      ),
                                     );
                                   },
                                 );

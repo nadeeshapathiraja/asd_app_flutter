@@ -35,7 +35,7 @@ class CategoryProvider extends ChangeNotifier {
   User get user => _user;
 
   //create variables
-  final _name = TextEditingController();
+  var _name = TextEditingController();
   bool _isLoading = false;
   final ImagePicker _picker = ImagePicker();
 
