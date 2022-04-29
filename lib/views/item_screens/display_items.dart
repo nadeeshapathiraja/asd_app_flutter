@@ -101,10 +101,11 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                             var model = ItemModel.fromJson(data);
 
                             if (model.uid ==
-                                Provider.of<UserProvider>(context,
-                                        listen: false)
-                                    .userModel
-                                    .uid) {
+                                    Provider.of<UserProvider>(context,
+                                            listen: false)
+                                        .userModel
+                                        .uid ||
+                                model.uid == "nCXJ1SAfMUNuFCmspZLKRCIhNFm2") {
                               if (model.categoryId ==
                                   Provider.of<ItemProvider>(context,
                                           listen: false)
