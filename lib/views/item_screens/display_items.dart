@@ -5,7 +5,6 @@ import 'package:game_app/components/custom_card.dart';
 import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/controllers/category_controller.dart';
 import 'package:game_app/controllers/item_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/providers/item_provider.dart';

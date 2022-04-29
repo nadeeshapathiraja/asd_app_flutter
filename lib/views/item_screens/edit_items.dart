@@ -5,7 +5,6 @@ import 'package:game_app/components/custom_dialogbox.dart';
 import 'package:game_app/components/custom_input.dart';
 import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_text.dart';
-import 'package:game_app/controllers/item_controller.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';

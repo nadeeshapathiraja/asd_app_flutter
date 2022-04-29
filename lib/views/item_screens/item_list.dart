@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:game_app/components/custom_card.dart';
 import 'package:game_app/components/custom_loader.dart';
 import 'package:game_app/components/custom_main_navbar.dart';
 import 'package:game_app/components/custom_outline_button.dart';
@@ -13,7 +12,6 @@ import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/item_screens/add_item.dart';
-import 'package:game_app/views/item_screens/display_items.dart';
 import 'package:game_app/views/item_screens/edit_items.dart';
 import 'package:game_app/views/item_screens/widgets/item_tile.dart';
 import 'package:logger/logger.dart';

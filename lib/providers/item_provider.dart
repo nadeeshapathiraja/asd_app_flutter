@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
 import 'package:game_app/controllers/db_controller.dart';

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/item_screens/item_list.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile({
