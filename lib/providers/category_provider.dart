@@ -19,7 +19,7 @@ class CategoryProvider extends ChangeNotifier {
   //Database controller object
   final DatabaseController _databaseController = DatabaseController();
 
-  final CategoryController _categoryController = CategoryController();
+  final instances _categoryController = instances();
 
   //UserModel object
   late UserModel _userModel;

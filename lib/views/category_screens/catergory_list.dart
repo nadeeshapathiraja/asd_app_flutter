@@ -73,7 +73,7 @@ class _CatergoryListState extends State<CatergoryList> {
 
                       //Category list
                       StreamBuilder<QuerySnapshot>(
-                        stream: CategoryController().testStream(),
+                        stream: instances().testStream(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return const CustomText(text: "No Category");
@@ -131,7 +131,7 @@ class _CatergoryListState extends State<CatergoryList> {
                                           text:
                                               "Are you sure to delete the category?",
                                           onTap: () async {
-                                            await CategoryController()
+                                            await instances()
                                                 .deleteCategory(list[index].id);
                                             UtilFunction.pushRemoveRoute(
                                                 context, CatergoryList());

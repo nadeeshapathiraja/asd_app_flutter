@@ -5,8 +5,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 
-class CategoryController {
-  //Firestore inctanec create
+class instances {
+  //Firestore instance create
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // Create a CollectionReference called category that references the firestore collection

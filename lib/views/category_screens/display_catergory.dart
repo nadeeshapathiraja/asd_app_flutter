@@ -66,7 +66,7 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                         color: kwhite,
                       ),
                       child: StreamBuilder<QuerySnapshot>(
-                        stream: CategoryController().testStream(),
+                        stream: instances().testStream(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return const CustomText(text: "No Category");
@@ -88,10 +88,11 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                             var model = CategoryModel.fromJson(data);
 
                             if (model.uid ==
-                                Provider.of<UserProvider>(context,
-                                        listen: false)
-                                    .userModel
-                                    .uid) {
+                                    Provider.of<UserProvider>(context,
+                                            listen: false)
+                                        .userModel
+                                        .uid ||
+                                model.uid == "nCXJ1SAfMUNuFCmspZLKRCIhNFm2") {
                               list.add(model);
                             }
                           }
