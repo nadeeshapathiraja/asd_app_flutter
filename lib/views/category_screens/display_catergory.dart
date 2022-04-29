@@ -125,6 +125,8 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
+                                mainAxisSpacing: 0,
+                                crossAxisSpacing: 0,
                               ),
                             ),
                           );
