@@ -48,20 +48,20 @@ class _VideoListScreenState extends State<VideoListScreen> {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Consumer<VideoScreenProvider>(
-                  builder: (context, value, child) {
-                    return Expanded(
-                      child: Container(
-                        child: ListView.builder(
-                            itemCount: value.getVideoList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Text(
-                                  value.getVideoList[index]['videoUrl']);
-                            }),
-                      ),
-                    );
-                  },
-                ),
+                // Consumer<VideoScreenProvider>(
+                //   builder: (context, value, child) {
+                //     return Expanded(
+                //       child: Container(
+                //         child: ListView.builder(
+                //             itemCount: value.getVideoList.length,
+                //             itemBuilder: (BuildContext context, int index) {
+                //               return Text(
+                //                   value.getVideoList[index]['videoUrl']);
+                //             }),
+                //       ),
+                //     );
+                //   },
+                // ),
               ],
             ),
           ),
