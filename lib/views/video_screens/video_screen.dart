@@ -1,18 +1,31 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
-import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:provider/provider.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideoListScreen extends StatefulWidget {
-  const VideoListScreen({Key? key}) : super(key: key);
+class VideoScreen extends StatefulWidget {
+  VideoScreen({
+    Key? key,
+    required this.url,
+  }) : super(key: key);
+  late String url;
 
   @override
-  State<VideoListScreen> createState() => _VideoListScreenState();
+  State<VideoScreen> createState() => _VideoScreenState();
 }
 
-class _VideoListScreenState extends State<VideoListScreen> {
+class _VideoScreenState extends State<VideoScreen> {
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: 'TTb4Dkyt2pA',
+    flags: YoutubePlayerFlags(
+      isLive: false,
+      mute: false,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -26,43 +39,36 @@ class _VideoListScreenState extends State<VideoListScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-              top: 10.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomSwitchBtn(),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    //Custom Back button
-                    CustomBackButton(),
-                    SizedBox(
-                      width: size.width * 0.25,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                // Consumer<VideoScreenProvider>(
-                //   builder: (context, value, child) {
-                //     return Expanded(
-                //       child: Container(
-                //         child: ListView.builder(
-                //             itemCount: value.getVideoList.length,
-                //             itemBuilder: (BuildContext context, int index) {
-                //               return Text(
-                //                   value.getVideoList[index]['videoUrl']);
-                //             }),
-                //       ),
-                //     );
-                //   },
-                // ),
-              ],
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 10.0,
+                right: 10.0,
+                top: 10.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomSwitchBtn(),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      //Custom Back button
+                      CustomBackButton(),
+                      SizedBox(
+                        width: size.width * 0.25,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+
+                  //Youtube player
+                  YoutubePlayer(
+                    controller: _controller,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

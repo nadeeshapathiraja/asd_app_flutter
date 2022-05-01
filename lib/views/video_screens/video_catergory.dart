@@ -8,6 +8,8 @@ import 'package:game_app/controllers/video_controller.dart';
 import 'package:game_app/models/objects.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:game_app/utils/util_functions.dart';
+import 'package:game_app/views/video_screens/video_screen.dart';
 import 'package:logger/logger.dart';
 
 class VideoCatergory extends StatefulWidget {
@@ -102,6 +104,10 @@ class _VideoCatergoryState extends State<VideoCatergory> {
                                     title: list[index].name,
                                     onTap: () {
                                       Logger().i(list[index].name);
+                                      UtilFunction.navigateTo(
+                                        context,
+                                        VideoScreen(url: list[index].url),
+                                      );
                                     },
                                   ),
                                 ],
