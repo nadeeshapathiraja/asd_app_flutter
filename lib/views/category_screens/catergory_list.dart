@@ -144,13 +144,16 @@ class _CatergoryListState extends State<CatergoryList> {
                                     Provider.of<CategoryProvider>(context,
                                             listen: false)
                                         .changeId(list[index].id);
+                                    Provider.of<CategoryProvider>(context,
+                                            listen: false)
+                                        .changeCategoryName(list[index].name);
+                                    Provider.of<CategoryProvider>(context,
+                                            listen: false)
+                                        .changeCategoryImg(list[index].img);
+
                                     UtilFunction.navigateTo(
                                       context,
-                                      EditCategory(
-                                        id: list[index].id,
-                                        name: list[index].name,
-                                        url: list[index].img,
-                                      ),
+                                      EditCategory(),
                                     );
                                   },
                                 );

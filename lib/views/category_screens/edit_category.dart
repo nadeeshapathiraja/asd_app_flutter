@@ -12,15 +12,9 @@ import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:provider/provider.dart';
 
 class EditCategory extends StatefulWidget {
-  const EditCategory({
+  EditCategory({
     Key? key,
-    required this.id,
-    this.name,
-    this.url,
   }) : super(key: key);
-  final String id;
-  final String? name;
-  final String? url;
 
   @override
   _EditCategoryState createState() => _EditCategoryState();
@@ -64,10 +58,10 @@ class _EditCategoryState extends State<EditCategory> {
                           color: darkColor,
                         ),
                         const SizedBox(height: 50),
+
                         CustomInput(
                           controller: value.categoryName,
                           lableText: "Category Name",
-                          hintText: widget.id,
                         ),
                         const SizedBox(height: 30),
                         Row(
@@ -83,17 +77,23 @@ class _EditCategoryState extends State<EditCategory> {
                               },
                               child: Stack(
                                 children: [
-                                  value.getImg.path != ''
-                                      ? Image.file(
-                                          value.getImg,
-                                          fit: BoxFit.fill,
-                                          width: size.width * 0.4,
+                                  value.path != null
+                                      ? SizedBox(
+                                          width: size.width * 0.5,
+                                          height: 110,
+                                          child: Image.network(value.path),
                                         )
-                                      : Image.asset(
-                                          Constants.imageAssets("logo.png"),
-                                          width: 150,
-                                          height: 150,
-                                        ),
+                                      : value.getImg.path != ''
+                                          ? Image.file(
+                                              value.getImg,
+                                              fit: BoxFit.fill,
+                                              width: size.width * 0.4,
+                                            )
+                                          : Image.asset(
+                                              Constants.imageAssets("logo.png"),
+                                              width: 150,
+                                              height: 150,
+                                            ),
                                   Positioned(
                                     bottom: 20,
                                     right: 20,

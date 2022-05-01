@@ -61,13 +61,13 @@ class instances {
 
   //Update Category
   Future<void> updateCategory(
-    String uid,
+    String categoryId,
     String name,
     File? img,
   ) async {
     return category
-        .doc('ABC123')
-        .update({'company': 'Stokes and Sons'})
+        .doc(categoryId)
+        .update({'name': name, 'img': img})
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }

@@ -48,14 +48,27 @@ class CategoryProvider extends ChangeNotifier {
   //Get image file
   File get getImg => _image;
 
+  late String imgPath;
+  String get path => imgPath;
+
   //For edit and delete id
   late String _cateId;
-  String get SelectedId => _cateId;
 
   void changeId(cateId) {
     _cateId = cateId;
-    Logger().i(_cateId);
+    // Logger().i(_cateId);
   }
+
+  Future<void> changeCategoryImg(catimg) async {
+    imgPath = catimg;
+    Logger().i(imgPath);
+  }
+
+  void changeCategoryName(catename) {
+    _name.text = catename;
+  }
+
+  String get SelectedId => _cateId;
 
   Future<void> takePhoto(ImageSource source) async {
     try {
