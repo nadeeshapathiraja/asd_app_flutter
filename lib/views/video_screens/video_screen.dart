@@ -13,16 +13,13 @@ import '../../providers/user_provider.dart';
 class VideoScreen extends StatefulWidget {
   VideoScreen({
     Key? key,
-    required this.url,
   }) : super(key: key);
-  late String url;
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  String get url => url;
   late YoutubePlayerController _controller;
 
   @override

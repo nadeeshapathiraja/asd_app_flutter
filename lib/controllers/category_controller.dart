@@ -50,7 +50,16 @@ class instances {
   Stream<QuerySnapshot> testStream() =>
       FirebaseFirestore.instance.collection('category').snapshots();
 
-//Update Category
+  //Delete Category
+  Future<void> deleteCategory(String categoryId) {
+    return category
+        .doc(categoryId)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
+
+  //Update Category
   Future<void> updateCategory(
     String uid,
     String name,
@@ -61,14 +70,5 @@ class instances {
         .update({'company': 'Stokes and Sons'})
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));
-  }
-
-  //Delete Category
-  Future<void> deleteCategory(String categoryId) {
-    return category
-        .doc(categoryId)
-        .delete()
-        .then((value) => print("User Deleted"))
-        .catchError((error) => print("Failed to delete user: $error"));
   }
 }

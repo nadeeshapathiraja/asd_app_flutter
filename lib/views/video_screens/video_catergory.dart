@@ -112,7 +112,7 @@ class _VideoCatergoryState extends State<VideoCatergory> {
                                           .selectedUrl = list[index].url;
                                       UtilFunction.navigateTo(
                                         context,
-                                        VideoScreen(url: list[index].url),
+                                        VideoScreen(),
                                       );
                                     },
                                   ),
