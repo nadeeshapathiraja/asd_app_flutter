@@ -6,11 +6,14 @@ import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/controllers/video_controller.dart';
 import 'package:game_app/models/objects.dart';
+import 'package:game_app/providers/user_provider.dart';
+import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/video_screens/video_screen.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class VideoCatergory extends StatefulWidget {
   const VideoCatergory({Key? key}) : super(key: key);
@@ -104,6 +107,9 @@ class _VideoCatergoryState extends State<VideoCatergory> {
                                     title: list[index].name,
                                     onTap: () {
                                       Logger().i(list[index].name);
+                                      Provider.of<VideoScreenProvider>(context,
+                                              listen: false)
+                                          .selectedUrl = list[index].url;
                                       UtilFunction.navigateTo(
                                         context,
                                         VideoScreen(url: list[index].url),

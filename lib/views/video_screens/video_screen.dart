@@ -3,8 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
+import 'package:game_app/providers/video_screen_provider.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../../providers/user_provider.dart';
 
 class VideoScreen extends StatefulWidget {
   VideoScreen({
@@ -18,13 +22,20 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'TTb4Dkyt2pA',
-    flags: YoutubePlayerFlags(
-      isLive: false,
-      mute: false,
-    ),
-  );
+  String get url => url;
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    String videoUrl = "https://www.youtube.com/watch?v=TTb4Dkyt2pA";
+    videoUrl =
+        Provider.of<VideoScreenProvider>(context, listen: false).selectedUrl;
+    _controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
