@@ -77,17 +77,17 @@ class _EditCategoryState extends State<EditCategory> {
                               },
                               child: Stack(
                                 children: [
-                                  value.path != null
-                                      ? SizedBox(
-                                          width: size.width * 0.5,
-                                          height: 110,
-                                          child: Image.network(value.path),
+                                  value.getImg.path != ''
+                                      ? Image.file(
+                                          value.getImg,
+                                          fit: BoxFit.fill,
+                                          width: size.width * 0.4,
                                         )
-                                      : value.getImg.path != ''
-                                          ? Image.file(
-                                              value.getImg,
-                                              fit: BoxFit.fill,
-                                              width: size.width * 0.4,
+                                      : value.path != null
+                                          ? SizedBox(
+                                              width: size.width * 0.5,
+                                              height: 110,
+                                              child: Image.network(value.path),
                                             )
                                           : Image.asset(
                                               Constants.imageAssets("logo.png"),
@@ -112,6 +112,8 @@ class _EditCategoryState extends State<EditCategory> {
                         CustomButton(
                           size: size,
                           onTap: () {
+                            value.path == '';
+                            value.categoryName == '';
                             UtilFunction.navigateTo(context, CatergoryList());
                           },
                           textValue: "Done",
