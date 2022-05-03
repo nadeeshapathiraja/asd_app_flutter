@@ -111,7 +111,6 @@ class ItemProvider extends ChangeNotifier {
   Future<void> ItemState(BuildContext context) async {
     try {
       if (inputValidation()) {
-        setLoading(true);
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
           if (user == null) {
             UtilFunction.navigateTo(context, const LogInScreen());
@@ -121,6 +120,7 @@ class ItemProvider extends ChangeNotifier {
             await fetchUserData(user.uid);
 
             if (inputValidation()) {
+              setLoading(true);
               await _itemController.saveItem(
                 user.uid,
                 _categoryId,

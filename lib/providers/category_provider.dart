@@ -125,7 +125,6 @@ class CategoryProvider extends ChangeNotifier {
   Future<void> CategoryState(BuildContext context) async {
     try {
       if (inputValidation()) {
-        setLoading(true);
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
           if (user == null) {
             UtilFunction.navigateTo(context, const LogInScreen());
@@ -133,6 +132,7 @@ class CategoryProvider extends ChangeNotifier {
             _user = user;
             notifyListeners();
             await fetchUserData(user.uid);
+            setLoading(true);
             await _categoryController.saveCategory(
               user.uid,
               _name.text,

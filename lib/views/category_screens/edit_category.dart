@@ -112,7 +112,7 @@ class _EditCategoryState extends State<EditCategory> {
                         CustomButton(
                           size: size,
                           onTap: () {
-                            value.path == '';
+                            value.getImg.path == '';
                             value.categoryName == '';
                             UtilFunction.navigateTo(context, CatergoryList());
                           },
