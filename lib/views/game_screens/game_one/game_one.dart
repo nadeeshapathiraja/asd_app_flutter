@@ -185,8 +185,10 @@ class _GameOneState extends State<GameOne> {
                                     letter: "d",
                                     ontap: () {
                                       value.changeD();
-                                      if (isPlaying == false) {
-                                        controller.play();
+                                      if (value.dPress == true) {
+                                        if (isPlaying == false) {
+                                          controller.play();
+                                        }
                                       }
                                     },
                                   ),
@@ -227,6 +229,9 @@ class _GameOneState extends State<GameOne> {
                         UtilFunction.goBack(context);
                       },
                       onNextPress: () {
+                        Logger().i(
+                            Provider.of<GameOneProvider>(context, listen: false)
+                                .clickCount);
                         UtilFunction.navigateTo(context, GameThree());
                       },
                     ),

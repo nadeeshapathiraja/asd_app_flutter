@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_game_card.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
@@ -58,7 +59,15 @@ class _GameCatergoryScreenState extends State<GameCatergoryScreen> {
                           color: kwhite,
                         ),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: CustomButton(
+                                  size: size,
+                                  onTap: () {},
+                                  textValue: "Reports"),
+                            ),
                             Column(
                               children: [
                                 Row(
