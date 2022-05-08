@@ -3,11 +3,15 @@ import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_game_card.dart';
 import 'package:game_app/components/custom_switch_btn.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/providers/mode_change_provider.dart';
+import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
 import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/game_screens/game_one/game_one.dart';
 import 'package:game_app/views/game_screens/game_two/game_two.dart';
+import 'package:game_app/views/report_screen/report_screen.dart';
+import 'package:provider/provider.dart';
 
 class GameCatergoryScreen extends StatefulWidget {
   const GameCatergoryScreen({Key? key}) : super(key: key);
@@ -61,13 +65,21 @@ class _GameCatergoryScreenState extends State<GameCatergoryScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: CustomButton(
-                                  size: size,
-                                  onTap: () {},
-                                  textValue: "Reports"),
-                            ),
+                            Provider.of<ModeProvider>(context, listen: false)
+                                    .getMode
+                                ? Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: CustomButton(
+                                        size: size,
+                                        onTap: () {
+                                          UtilFunction.navigateTo(
+                                            context,
+                                            ReportScreen(),
+                                          );
+                                        },
+                                        textValue: "Reports"),
+                                  )
+                                : CustomText(text: ""),
                             Column(
                               children: [
                                 Row(
