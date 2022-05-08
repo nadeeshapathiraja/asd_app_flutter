@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/components/custom_text.dart';
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({Key? key}) : super(key: key);
@@ -21,30 +22,31 @@ class _ReportScreenState extends State<ReportScreen> {
           DataTable(
             columns: [
               DataColumn(
-                label: Text(
-                  'ID',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                label: CustomText(
+                  text: "ID",
+                  fontsize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               DataColumn(
-                label: Text(
-                  'Name',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                label: CustomText(
+                  text: "Category",
+                  fontsize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               DataColumn(
-                label: Text(
-                  'Profession',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                label: CustomText(
+                  text: "Game",
+                  fontsize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              DataColumn(
+                label: CustomText(
+                  text: "Count",
+                  fontsize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -52,29 +54,25 @@ class _ReportScreenState extends State<ReportScreen> {
               DataRow(
                 cells: [
                   DataCell(Text('1')),
-                  DataCell(Text('Stephen')),
-                  DataCell(Text('Actor')),
-                ],
-              ),
-              DataRow(
-                cells: [
-                  DataCell(Text('5')),
-                  DataCell(Text('John')),
-                  DataCell(Text('Student')),
-                ],
-              ),
-              DataRow(
-                cells: [
+                  DataCell(Text('Animals')),
+                  DataCell(Text('Bird')),
                   DataCell(Text('10')),
-                  DataCell(Text('Harry')),
-                  DataCell(Text('Leader')),
                 ],
               ),
               DataRow(
                 cells: [
-                  DataCell(Text('15')),
-                  DataCell(Text('Peter')),
-                  DataCell(Text('Scientist')),
+                  DataCell(Text('2')),
+                  DataCell(Text('Animals')),
+                  DataCell(Text('Dog')),
+                  DataCell(Text('5')),
+                ],
+              ),
+              DataRow(
+                cells: [
+                  DataCell(Text('3')),
+                  DataCell(Text('Vehicles')),
+                  DataCell(Text('Train')),
+                  DataCell(Text('12')),
                 ],
               ),
             ],
