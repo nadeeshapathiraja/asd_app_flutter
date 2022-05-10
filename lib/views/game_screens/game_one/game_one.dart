@@ -202,37 +202,27 @@ class _GameOneState extends State<GameOne> {
                                 width: 200,
                               ),
                             ),
-                            // CustomGameNavigationRow(
-                            //   onBackPress: () {
-                            //     value.bPress = false;
-                            //     value.iPress = false;
-                            //     value.rPress = false;
-                            //     value.dPress = false;
-                            //     UtilFunction.goBack(context);
-                            //   },
-                            //   onNextPress: () {
-                            //     if (value.dPress == true) {
-                            //       value.bPress = false;
-                            //       value.iPress = false;
-                            //       value.rPress = false;
-                            //       value.dPress = false;
-                            //       UtilFunction.navigateTo(context, GameThree());
-                            //     }
-                            //   },
-                            // ),
+                            CustomGameNavigationRow(
+                              onBackPress: () {
+                                value.bPress = false;
+                                value.iPress = false;
+                                value.rPress = false;
+                                value.dPress = false;
+                                UtilFunction.goBack(context);
+                              },
+                              onNextPress: () {
+                                Logger().i(value.clickCount);
+                                if (value.dPress == true) {
+                                  value.bPress = false;
+                                  value.iPress = false;
+                                  value.rPress = false;
+                                  value.dPress = false;
+                                  UtilFunction.navigateTo(context, GameThree());
+                                }
+                              },
+                            ),
                           ],
                         );
-                      },
-                    ),
-                    CustomGameNavigationRow(
-                      onBackPress: () {
-                        UtilFunction.goBack(context);
-                      },
-                      onNextPress: () {
-                        Logger().i(
-                            Provider.of<GameOneProvider>(context, listen: false)
-                                .clickCount);
-                        UtilFunction.navigateTo(context, GameThree());
                       },
                     ),
                     CustomAnimation(controller: controller),

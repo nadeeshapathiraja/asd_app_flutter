@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
+import 'package:game_app/providers/game/game_one_provider.dart';
+import 'package:game_app/providers/item_provider.dart';
+import 'package:provider/provider.dart';
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({Key? key}) : super(key: key);
@@ -9,6 +12,7 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+  RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +20,7 @@ class _ReportScreenState extends State<ReportScreen> {
         children: <Widget>[
           Center(
               child: Text(
-            'People-Chart',
+            'Child Progress Report',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           )),
           DataTable(
@@ -44,7 +48,7 @@ class _ReportScreenState extends State<ReportScreen> {
               ),
               DataColumn(
                 label: CustomText(
-                  text: "Count",
+                  text: "Fail Count",
                   fontsize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -56,7 +60,14 @@ class _ReportScreenState extends State<ReportScreen> {
                   DataCell(Text('1')),
                   DataCell(Text('Animals')),
                   DataCell(Text('Bird')),
-                  DataCell(Text('10')),
+                  DataCell(
+                    Text(
+                      Provider.of<GameOneProvider>(context, listen: false)
+                          .clickCount
+                          .toString()
+                          .replaceAll(regex, ''),
+                    ),
+                  ),
                 ],
               ),
               DataRow(
@@ -64,7 +75,14 @@ class _ReportScreenState extends State<ReportScreen> {
                   DataCell(Text('2')),
                   DataCell(Text('Animals')),
                   DataCell(Text('Dog')),
-                  DataCell(Text('5')),
+                  DataCell(
+                    Text(
+                      Provider.of<GameOneProvider>(context, listen: false)
+                          .clickCount
+                          .toString()
+                          .replaceAll(regex, ''),
+                    ),
+                  ),
                 ],
               ),
               DataRow(
@@ -72,7 +90,14 @@ class _ReportScreenState extends State<ReportScreen> {
                   DataCell(Text('3')),
                   DataCell(Text('Vehicles')),
                   DataCell(Text('Train')),
-                  DataCell(Text('12')),
+                  DataCell(
+                    Text(
+                      Provider.of<GameOneProvider>(context, listen: false)
+                          .clickCount
+                          .toString()
+                          .replaceAll(regex, ''),
+                    ),
+                  ),
                 ],
               ),
             ],
