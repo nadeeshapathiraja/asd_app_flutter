@@ -6,12 +6,14 @@ class GameTwoProvider extends ChangeNotifier {
   bool aPress = false;
   bool iPress = false;
   bool nPress = false;
+  double count = 0;
 
   bool get clickT => tPress;
   bool get clickR => rPress;
   bool get clickA => aPress;
   bool get clickI => iPress;
   bool get clickN => nPress;
+  double get clickCount => count;
 
   void changeT() {
     tPress = true;
@@ -21,6 +23,8 @@ class GameTwoProvider extends ChangeNotifier {
   void changeR() {
     if (tPress == true) {
       rPress = true;
+    } else {
+      count++;
     }
     notifyListeners();
   }
@@ -28,6 +32,8 @@ class GameTwoProvider extends ChangeNotifier {
   void changeA() {
     if (rPress == true) {
       aPress = true;
+    } else {
+      count++;
     }
     notifyListeners();
   }
@@ -35,6 +41,8 @@ class GameTwoProvider extends ChangeNotifier {
   void changeI() {
     if (aPress == true) {
       iPress = true;
+    } else {
+      count++;
     }
     notifyListeners();
   }
@@ -42,6 +50,8 @@ class GameTwoProvider extends ChangeNotifier {
   void changeN() {
     if (iPress == true) {
       nPress = true;
+    } else {
+      count++;
     }
     notifyListeners();
   }

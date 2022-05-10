@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/game/game_one_provider.dart';
+import 'package:game_app/providers/game/game_three_provider.dart';
+import 'package:game_app/providers/game/game_two_provider.dart';
 import 'package:game_app/providers/item_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -77,7 +79,7 @@ class _ReportScreenState extends State<ReportScreen> {
                   DataCell(Text('Dog')),
                   DataCell(
                     Text(
-                      Provider.of<GameOneProvider>(context, listen: false)
+                      Provider.of<GameThreeProvider>(context, listen: false)
                           .clickCount
                           .toString()
                           .replaceAll(regex, ''),
@@ -92,7 +94,7 @@ class _ReportScreenState extends State<ReportScreen> {
                   DataCell(Text('Train')),
                   DataCell(
                     Text(
-                      Provider.of<GameOneProvider>(context, listen: false)
+                      Provider.of<GameTwoProvider>(context, listen: false)
                           .clickCount
                           .toString()
                           .replaceAll(regex, ''),
