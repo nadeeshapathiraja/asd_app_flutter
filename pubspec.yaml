@@ -66,6 +66,7 @@ dependencies:
 
   # Add file Picker
   file_picker: ^4.4.0
+  open_file: ^3.2.1
 
   #audio Player
   #assets_audio_player: ^3.0.4+1

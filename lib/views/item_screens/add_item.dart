@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -7,6 +8,7 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
+import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
 
 class AddItem extends StatefulWidget {
@@ -96,25 +98,22 @@ class _AddItemState extends State<AddItem> {
                           ],
                         ),
                         const SizedBox(height: 30),
-                        // CustomInput(
-                        //   controller: value.getAudioFile,
-                        //   lableText: "How is it pronounced?",
-                        //   iconBtn: IconButton(
-                        //     onPressed: () {},
-                        //     icon: Icon(
-                        //       Icons.mic,
-                        //       size: 30,
-                        //       color: primaryColor,
-                        //     ),
-                        //   ),
-                        // ),
+
                         ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
                             shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(20.0),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            final result =
+                                await FilePicker.platform.pickFiles();
+
+                            if (result == null) return;
+
+                            final file = result.files.first;
+                            value.openFile(file);
+                          },
                           icon: Icon(
                             Icons.mic,
                             size: 30,
