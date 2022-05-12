@@ -96,17 +96,37 @@ class _AddItemState extends State<AddItem> {
                           ],
                         ),
                         const SizedBox(height: 30),
-                        CustomInput(
-                          controller: value.getAudioFile,
-                          lableText: "How is it pronounced?",
-                          iconBtn: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.mic,
-                              size: 30,
-                              color: primaryColor,
+                        // CustomInput(
+                        //   controller: value.getAudioFile,
+                        //   lableText: "How is it pronounced?",
+                        //   iconBtn: IconButton(
+                        //     onPressed: () {},
+                        //     icon: Icon(
+                        //       Icons.mic,
+                        //       size: 30,
+                        //       color: primaryColor,
+                        //     ),
+                        //   ),
+                        // ),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20.0),
                             ),
                           ),
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.mic,
+                            size: 30,
+                            color: primaryColor,
+                          ),
+                          label: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              child: CustomText(
+                                text: "How is it pronounced?",
+                                color: kwhite,
+                                fontsize: 15,
+                              )),
                         ),
 
                         const SizedBox(height: 50),
