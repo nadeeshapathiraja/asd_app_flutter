@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_backbutton.dart';
@@ -26,10 +27,13 @@ class DisplayItemsScreen extends StatefulWidget {
 
 class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
   List<ItemModel> list = [];
+  AudioPlayer audioPlayer = AudioPlayer();
+  bool playing = false;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -88,7 +92,6 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                               ConnectionState.waiting) {
                             return CustomLoader();
                           }
-                          Logger().w(snapshot.data!.docs.length);
 
                           //List always clear before load
                           list.clear();
@@ -124,12 +127,8 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                                     size: size,
                                     assetName: list[index].img,
                                     title: list[index].name,
-                                    onTap: () {
-                                      UtilFunction.navigateTo(
-                                        context,
-                                        DisplayItemsScreen(),
-                                      );
-                                      Logger().i(list[index].name);
+                                    onTap: () async {
+                                      getAudio(list[index].audio);
                                     },
                                   ),
                                 ],
@@ -153,5 +152,25 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> getAudio(String url) async {
+    if (playing) {
+      //pause song
+      var res = await audioPlayer.pause();
+      if (res == 1) {
+        setState(() {
+          playing = false;
+        });
+      }
+    } else {
+      //play song
+      var res = await audioPlayer.play(url, isLocal: true);
+      if (res == 1) {
+        setState(() {
+          playing = true;
+        });
+      }
+    }
   }
 }

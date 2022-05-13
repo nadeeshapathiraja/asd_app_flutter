@@ -69,7 +69,7 @@ dependencies:
   open_file: ^3.2.1
 
   #audio Player
-  #assets_audio_player: ^3.0.4+1
+  audioplayers: ^0.20.1
 
   #animations
   confetti: ^0.6.0

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:game_app/providers/auth/login_provider.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/providers/category_provider.dart';
@@ -17,6 +18,15 @@ import 'package:responsive_framework/responsive_framework.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  // //Set only Landscape in child mode
+  // if (Provider.of<ModeProvider>(context, listen: false).changeMode == false) {
+  //   SystemChrome.setPreferredOrientations([
+  //     DeviceOrientation.landscapeLeft,
+  //     DeviceOrientation.landscapeRight,
+  //   ]);
+  // }
+
   runApp(
     MultiProvider(
       providers: [

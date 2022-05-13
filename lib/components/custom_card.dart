@@ -9,12 +9,14 @@ class CustomCard extends StatefulWidget {
     this.onTap,
     required this.assetName,
     required this.title,
+    this.slider,
   }) : super(key: key);
 
   final Size size;
   final Function()? onTap;
   final String title;
   final String assetName;
+  final Widget? slider;
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -48,7 +50,10 @@ class _CustomCardState extends State<CustomCard> {
             SizedBox(
               width: widget.size.width * 0.5,
               height: 110,
-              child: Image.network(widget.assetName),
+              child: Image.network(
+                widget.assetName,
+                fit: BoxFit.fill,
+              ),
             ),
           ],
         ),
