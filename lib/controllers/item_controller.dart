@@ -16,12 +16,19 @@ class ItemController {
     String categoryId,
     String name,
     File img,
-    String audio,
+    File audio,
   ) async {
+    //Image upload
     UploadTask? task = uploadItemImg(img);
     final snapshot = await task?.whenComplete(() {});
     final downloadUrl = await snapshot?.ref.getDownloadURL();
     Logger().d(downloadUrl);
+
+    //Audio file upload
+    UploadTask? task2 = uploadItemAudio(audio);
+    final snapshot2 = await task2?.whenComplete(() {});
+    final downloadUrl2 = await snapshot2?.ref.getDownloadURL();
+    Logger().d(downloadUrl2);
 
     //Get the unique document
     String docId = item.doc().id;
@@ -32,11 +39,11 @@ class ItemController {
       'categoryId': categoryId,
       'name': name,
       'img': downloadUrl,
-      'audio': audio,
+      'audio': downloadUrl2,
     });
   }
 
-  //Upload file to db
+  //Upload Image file to db
   UploadTask? uploadItemImg(File file) {
     try {
       final fileName = basename(file.path);
@@ -49,18 +56,32 @@ class ItemController {
     }
   }
 
+  //Upload Audio file to db
+  UploadTask? uploadItemAudio(File audioFile) {
+    try {
+      final fileName = basename(audioFile.path);
+      final destination = 'itemAudio/$fileName';
+      final ref = FirebaseStorage.instance.ref(destination);
+      return ref.putFile(audioFile);
+    } catch (e) {
+      Logger().e(e);
+      return null;
+    }
+  }
+
   //get all item data
   Stream<QuerySnapshot> getItems() =>
       FirebaseFirestore.instance.collection('item').snapshots();
 
   //Update Category
   Future<void> updateCategory(
+    String id,
     String uid,
     String name,
     File? img,
   ) async {
     return item
-        .doc('ABC123')
+        .doc(id)
         .update({'company': 'Stokes and Sons'})
         .then((value) => print("User Updated"))
         .catchError((error) => print("Failed to update user: $error"));

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_awesome_dialogbox.dart';
@@ -11,6 +12,7 @@ import 'package:game_app/utils/util_functions.dart';
 import 'package:game_app/views/item_screens/item_list.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
+import 'package:open_file/open_file.dart';
 
 import '../views/authentication/login_screen/login_screen.dart';
 
@@ -32,7 +34,6 @@ class ItemProvider extends ChangeNotifier {
   final _name = TextEditingController();
   final _uid = TextEditingController();
   String _categoryId = "";
-  final _audioFile = TextEditingController();
   bool _isLoading = false;
   final ImagePicker _picker = ImagePicker();
   String _categoryName = "";
@@ -40,13 +41,15 @@ class ItemProvider extends ChangeNotifier {
   //Get all Values in Category screen
   TextEditingController get getName => _name;
   TextEditingController get getUserId => _uid;
-  TextEditingController get getAudioFile => _audioFile;
   bool get isLoading => _isLoading;
 
-  //Image file
+  //Get Image file
   File _image = File("");
-  //Get image file
   File get getItemImg => _image;
+
+  //Get Audio file
+  File _audioFile = File("");
+  File get getAudioFile => _audioFile;
 
 //Change selected Category Id
   void changeCategory(categoryID, categoryName) {
@@ -90,6 +93,27 @@ class ItemProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> takeAudio() async {
+    try {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.audio,
+        allowMultiple: false,
+      );
+      if (result == null) return;
+
+      final path = result.files.single.path!;
+
+      _audioFile = File(path);
+
+      final file = result.files.first;
+      openFile(file);
+
+      Logger().i(_audioFile);
+    } catch (e) {
+      Logger().e(e);
+    }
+  }
+
   //Change Loading State
   void setLoading([bool val = false]) {
     _isLoading = val;
@@ -126,7 +150,7 @@ class ItemProvider extends ChangeNotifier {
                 _categoryId,
                 _name.text,
                 _image,
-                _audioFile.text,
+                _audioFile,
               );
 
               setLoading();
@@ -141,7 +165,7 @@ class ItemProvider extends ChangeNotifier {
               );
               _name.clear();
               _image = File("");
-              _audioFile.clear();
+              _audioFile = File("");
             } else {
               setLoading();
               DialogBox().dialogbox(
@@ -176,5 +200,10 @@ class ItemProvider extends ChangeNotifier {
   Future<void> fetchUserData(String id) async {
     _userModel = (await _databaseController.getUserData(id))!;
     notifyListeners();
+  }
+
+//File picker and open file
+  void openFile(PlatformFile file) {
+    OpenFile.open(file.path!);
   }
 }

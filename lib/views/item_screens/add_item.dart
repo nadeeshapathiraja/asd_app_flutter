@@ -106,13 +106,7 @@ class _AddItemState extends State<AddItem> {
                             ),
                           ),
                           onPressed: () async {
-                            final result =
-                                await FilePicker.platform.pickFiles();
-
-                            if (result == null) return;
-
-                            final file = result.files.first;
-                            value.openFile(file);
+                            value.takeAudio();
                           },
                           icon: Icon(
                             Icons.mic,
