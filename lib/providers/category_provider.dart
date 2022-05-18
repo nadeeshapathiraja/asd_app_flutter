@@ -138,6 +138,7 @@ class CategoryProvider extends ChangeNotifier {
               _name.text,
               _image,
             );
+            setLoading();
             _name.clear();
             _image = File("");
             DialogBox().dialogbox(

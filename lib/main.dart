@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:game_app/providers/auth/login_provider.dart';
 import 'package:game_app/providers/auth/register_provider.dart';
 import 'package:game_app/providers/category_provider.dart';

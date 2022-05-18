@@ -68,9 +68,10 @@ class ItemTile extends StatelessWidget {
           SizedBox(
             width: size.width * 0.42,
             height: 100,
-            child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Image.network(imgName)),
+            child: Image.network(
+              imgName,
+              fit: BoxFit.fill,
+            ),
           ),
         ],
       ),

@@ -12,8 +12,6 @@ import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/providers/user_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class DisplayItemsScreen extends StatefulWidget {
@@ -118,28 +116,32 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                             }
                           }
 
-                          return Expanded(
-                            child: GridView.builder(
-                              itemCount: list.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  CustomCard(
-                                    size: size,
-                                    assetName: list[index].img,
-                                    title: list[index].name,
-                                    onTap: () async {
-                                      getAudio(list[index].audio);
-                                    },
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: GridView.builder(
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) => Column(
+                                    children: [
+                                      CustomCard(
+                                        size: size,
+                                        assetName: list[index].img,
+                                        title: list[index].name,
+                                        onTap: () async {
+                                          getAudio(list[index].audio);
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    mainAxisSpacing: 0,
+                                    crossAxisSpacing: 0,
+                                  ),
+                                ),
                               ),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 0,
-                                crossAxisSpacing: 0,
-                              ),
-                            ),
+                            ],
                           );
                         },
                       ),

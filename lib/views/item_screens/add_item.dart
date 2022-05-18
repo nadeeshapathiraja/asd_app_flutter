@@ -1,4 +1,3 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/components/custom_button.dart';
 import 'package:game_app/components/custom_input.dart';
@@ -8,7 +7,6 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/item_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
 
 class AddItem extends StatefulWidget {

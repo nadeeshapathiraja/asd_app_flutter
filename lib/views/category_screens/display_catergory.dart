@@ -97,37 +97,41 @@ class _DisplayCatergoryState extends State<DisplayCatergory> {
                             }
                           }
 
-                          return Expanded(
-                            child: GridView.builder(
-                              itemCount: list.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  CustomCard(
-                                    size: size,
-                                    assetName: list[index].img,
-                                    title: list[index].name,
-                                    onTap: () {
-                                      Provider.of<ItemProvider>(context,
-                                              listen: false)
-                                          .changeCategory(
-                                        list[index].id,
-                                        list[index].name,
-                                      );
-                                      UtilFunction.navigateTo(
-                                        context,
-                                        DisplayItemsScreen(),
-                                      );
-                                    },
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: GridView.builder(
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) => Column(
+                                    children: [
+                                      CustomCard(
+                                        size: size,
+                                        assetName: list[index].img,
+                                        title: list[index].name,
+                                        onTap: () {
+                                          Provider.of<ItemProvider>(context,
+                                                  listen: false)
+                                              .changeCategory(
+                                            list[index].id,
+                                            list[index].name,
+                                          );
+                                          UtilFunction.navigateTo(
+                                            context,
+                                            DisplayItemsScreen(),
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    mainAxisSpacing: 0,
+                                    crossAxisSpacing: 0,
+                                  ),
+                                ),
                               ),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 0,
-                                crossAxisSpacing: 0,
-                              ),
-                            ),
+                            ],
                           );
                         },
                       ),
