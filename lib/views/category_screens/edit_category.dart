@@ -7,8 +7,6 @@ import 'package:game_app/components/custom_text.dart';
 import 'package:game_app/providers/category_provider.dart';
 import 'package:game_app/utils/app_colors.dart';
 import 'package:game_app/utils/constants.dart';
-import 'package:game_app/utils/util_functions.dart';
-import 'package:game_app/views/category_screens/catergory_list.dart';
 import 'package:provider/provider.dart';
 
 class EditCategory extends StatefulWidget {
@@ -77,23 +75,17 @@ class _EditCategoryState extends State<EditCategory> {
                               },
                               child: Stack(
                                 children: [
-                                  value.getImg.path != ''
-                                      ? Image.file(
-                                          value.getImg,
+                                  value.path != ''
+                                      ? Image.network(
+                                          value.path,
                                           fit: BoxFit.fill,
                                           width: size.width * 0.4,
                                         )
-                                      : value.path != null
-                                          ? SizedBox(
-                                              width: size.width * 0.5,
-                                              height: 110,
-                                              child: Image.network(value.path),
-                                            )
-                                          : Image.asset(
-                                              Constants.imageAssets("logo.png"),
-                                              width: 150,
-                                              height: 150,
-                                            ),
+                                      : Image.asset(
+                                          Constants.imageAssets("logo.png"),
+                                          width: 150,
+                                          height: 150,
+                                        ),
                                   Positioned(
                                     bottom: 20,
                                     right: 20,
@@ -111,10 +103,9 @@ class _EditCategoryState extends State<EditCategory> {
                         const SizedBox(height: 50),
                         CustomButton(
                           size: size,
+                          isLoading: value.isLoading,
                           onTap: () {
-                            value.getImg.path == '';
-                            value.categoryName == '';
-                            UtilFunction.navigateTo(context, CatergoryList());
+                            value.CategoryChangeState(context);
                           },
                           textValue: "Done",
                         ),

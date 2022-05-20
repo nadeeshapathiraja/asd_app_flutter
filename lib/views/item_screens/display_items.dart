@@ -59,9 +59,7 @@ class _DisplayItemsScreenState extends State<DisplayItemsScreen> {
                     children: [
                       //Custom Back button
                       CustomBackButton(),
-                      SizedBox(
-                        width: size.width * 0.25,
-                      ),
+
                       CustomText(
                         text: Provider.of<ItemProvider>(context, listen: false)
                             .selectedCategoryName,

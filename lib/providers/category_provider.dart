@@ -61,7 +61,6 @@ class CategoryProvider extends ChangeNotifier {
 
   Future<void> changeCategoryImg(catimg) async {
     imgPath = catimg;
-    Logger().i(imgPath);
   }
 
   void changeCategoryName(catename) {
@@ -174,5 +173,53 @@ class CategoryProvider extends ChangeNotifier {
   Future<void> fetchUserData(String id) async {
     _userModel = (await _databaseController.getUserData(id))!;
     notifyListeners();
+  }
+
+  Future<void> CategoryChangeState(BuildContext context) async {
+    try {
+      if (inputValidation()) {
+        FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+          if (user == null) {
+            UtilFunction.navigateTo(context, const LogInScreen());
+          } else {
+            _user = user;
+            notifyListeners();
+            await fetchUserData(user.uid);
+            setLoading(true);
+            await _categoryController.updateCategory(
+              _cateId,
+              _name.text,
+              _image,
+            );
+            setLoading();
+            _name.clear();
+            _image = File("");
+            DialogBox().dialogbox(
+              context,
+              DialogType.SUCCES,
+              'Update Success',
+              'Entered Information',
+              () {
+                UtilFunction.navigateTo(context, CatergoryList());
+              },
+            );
+          }
+        });
+
+        setLoading();
+      } else {
+        setLoading();
+        DialogBox().dialogbox(
+          context,
+          DialogType.ERROR,
+          'Invalidated Data',
+          'Please Enter Correct Information',
+          () {},
+        );
+      }
+    } catch (e) {
+      setLoading();
+      Logger().e(e);
+    }
   }
 }

@@ -55,7 +55,7 @@ class instances {
     return category
         .doc(categoryId)
         .delete()
-        .then((value) => print("User Deleted"))
+        .then((value) => print("Category Deleted"))
         .catchError((error) => print("Failed to delete user: $error"));
   }
 
@@ -65,10 +65,17 @@ class instances {
     String name,
     File? img,
   ) async {
+    UploadTask? task2 = uploadImg(img!);
+    final snapshot2 = await task2!.whenComplete(() {});
+    final downloadUrl2 = await snapshot2.ref.getDownloadURL();
     return category
         .doc(categoryId)
-        .update({'name': name, 'img': img})
-        .then((value) => print("User Updated"))
+        .update({
+          'name': name,
+          'img': downloadUrl2,
+        })
+        // .update({'name': name})
+        .then((value) => Logger().i("Update Success"))
         .catchError((error) => print("Failed to update user: $error"));
   }
 }
