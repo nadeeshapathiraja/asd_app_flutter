@@ -34,118 +34,133 @@ class _ItemListState extends State<ItemList> {
     final size = MediaQuery.of(context).size;
     AudioPlayer audioPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
     return Scaffold(
-      body: Container(
-        width: size.width,
-        height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(Constants.imageAssets("bg.jpg")),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: SizedBox(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 20.0,
-              right: 20.0,
-              top: 10.0,
+      body: SafeArea(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Constants.imageAssets("bg.jpg")),
+              fit: BoxFit.cover,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                //main Navbar
-                CustomMainNavBar(),
-                const SizedBox(height: 30),
-                CustomText(
-                  text: Provider.of<ItemProvider>(context, listen: false)
-                      .selectedCategoryName,
-                  fontsize: 40,
-                  color: darkColor,
-                ),
-                const SizedBox(height: 30),
-                CustomOutlineButton(
-                  size: size,
-                  text: 'Add',
-                  height: 60,
-                  width: size.width,
-                  onTap: () {
-                    UtilFunction.navigateTo(context, AddItem());
-                  },
-                ),
-                const SizedBox(height: 30),
-                Expanded(
-                  child: Container(
-                    child: StreamBuilder<QuerySnapshot>(
-                      stream: ItemController().getItems(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return const CustomText(text: "No Items");
-                        }
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return CustomLoader(
-                            color: kGrey,
-                          );
-                        }
+          ),
+          child: SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 20.0,
+                right: 20.0,
+                top: 10.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //main Navbar
+                  CustomMainNavBar(),
+                  const SizedBox(height: 30),
+                  CustomText(
+                    text: Provider.of<ItemProvider>(context, listen: false)
+                        .selectedCategoryName,
+                    fontsize: 40,
+                    color: darkColor,
+                  ),
+                  const SizedBox(height: 30),
+                  CustomOutlineButton(
+                    size: size,
+                    text: 'Add',
+                    height: 60,
+                    width: size.width,
+                    onTap: () {
+                      UtilFunction.navigateTo(context, AddItem());
+                    },
+                  ),
+                  const SizedBox(height: 30),
+                  Expanded(
+                    child: Container(
+                      child: StreamBuilder<QuerySnapshot>(
+                        stream: ItemController().getItems(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return const CustomText(text: "No Items");
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CustomLoader(
+                              color: kGrey,
+                            );
+                          }
 
-                        //List always clear before load
-                        list.clear();
+                          //List always clear before load
+                          list.clear();
 
-                        //Add category by category to list
-                        for (var item in snapshot.data!.docs) {
-                          Map<String, dynamic> data =
-                              item.data() as Map<String, dynamic>;
+                          //Add category by category to list
+                          for (var item in snapshot.data!.docs) {
+                            Map<String, dynamic> data =
+                                item.data() as Map<String, dynamic>;
 
-                          var model = ItemModel.fromJson(data);
+                            var model = ItemModel.fromJson(data);
 
-                          if (model.uid ==
-                              Provider.of<UserProvider>(context, listen: false)
-                                  .userModel
-                                  .uid) {
-                            if (model.categoryId ==
-                                Provider.of<ItemProvider>(context,
+                            if (model.uid ==
+                                Provider.of<UserProvider>(context,
                                         listen: false)
-                                    .selectedId) {
-                              list.add(model);
+                                    .userModel
+                                    .uid) {
+                              if (model.categoryId ==
+                                  Provider.of<ItemProvider>(context,
+                                          listen: false)
+                                      .selectedId) {
+                                list.add(model);
+                              }
                             }
                           }
-                        }
 
-                        return Column(
-                          children: [
-                            Expanded(
-                              child: GridView.builder(
-                                itemCount: list.length,
-                                itemBuilder: (context, index) => Column(
-                                  children: [
-                                    ItemTile(
-                                      size: size,
-                                      text: list[index].name,
-                                      imgName: list[index].img,
-                                      onEditTap: () {
-                                        UtilFunction.navigateTo(
-                                            context, EditItem());
-                                      },
-                                      onVoiceTap: () {
-                                        getAudio(list[index].audio);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 0,
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: GridView.builder(
+                                  itemCount: list.length,
+                                  itemBuilder: (context, index) => Column(
+                                    children: [
+                                      ItemTile(
+                                        size: size,
+                                        text: list[index].name,
+                                        imgName: list[index].img,
+                                        onEditTap: () {
+                                          String CategoryId =
+                                              Provider.of<ItemProvider>(context,
+                                                      listen: false)
+                                                  .selectedId;
+                                          Provider.of<ItemProvider>(context,
+                                                  listen: false)
+                                              .changeItem(
+                                            CategoryId,
+                                            list[index].id,
+                                            list[index].name,
+                                            list[index].img,
+                                          );
+                                          UtilFunction.navigateTo(
+                                              context, EditItem());
+                                        },
+                                        onVoiceTap: () {
+                                          getAudio(list[index].audio);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 0,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        );
-                      },
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -70,7 +70,7 @@ class ItemTile extends StatelessWidget {
             height: 100,
             child: Image.network(
               imgName,
-              fit: BoxFit.fill,
+              fit: BoxFit.fitWidth,
             ),
           ),
         ],

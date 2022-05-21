@@ -57,8 +57,21 @@ class ItemProvider extends ChangeNotifier {
     _categoryName = categoryName;
   }
 
+//For edit and delete id
+  late String _itemId;
+  late String imgPath;
+  String get path => imgPath;
+
+  void changeItem(categoryID, itemId, itemName, itemImg) {
+    _categoryId = categoryID;
+    _itemId = itemId;
+    _name.text = itemName;
+    imgPath = itemImg;
+  }
+
   String get selectedId => _categoryId;
   String get selectedCategoryName => _categoryName;
+  String get ItemId => _itemId;
 
   Future<void> takePhoto(ImageSource source) async {
     try {
@@ -158,6 +171,70 @@ class ItemProvider extends ChangeNotifier {
                 context,
                 DialogType.SUCCES,
                 'Added Data',
+                'Entered Information',
+                () {
+                  UtilFunction.navigateTo(context, ItemList());
+                },
+              );
+              _name.clear();
+              _image = File("");
+              _audioFile = File("");
+            } else {
+              setLoading();
+              DialogBox().dialogbox(
+                context,
+                DialogType.ERROR,
+                'Invalidated Data',
+                'Please Enter Correct Information',
+                () {},
+              );
+            }
+          }
+        });
+
+        setLoading();
+      } else {
+        setLoading();
+        DialogBox().dialogbox(
+          context,
+          DialogType.ERROR,
+          'Invalidated Data',
+          'Please Enter Correct Information',
+          () {},
+        );
+      }
+    } catch (e) {
+      setLoading();
+      Logger().e(e);
+    }
+  }
+
+  //Update Item
+  Future<void> ItemUpdateState(BuildContext context) async {
+    try {
+      if (inputValidation()) {
+        FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+          if (user == null) {
+            UtilFunction.navigateTo(context, const LogInScreen());
+          } else {
+            _user = user;
+            notifyListeners();
+            await fetchUserData(user.uid);
+
+            if (inputValidation()) {
+              setLoading(true);
+              await _itemController.updateItem(
+                ItemId,
+                _name.text,
+                _image,
+                _audioFile,
+              );
+
+              setLoading();
+              DialogBox().dialogbox(
+                context,
+                DialogType.SUCCES,
+                'Update Success',
                 'Entered Information',
                 () {
                   UtilFunction.navigateTo(context, ItemList());

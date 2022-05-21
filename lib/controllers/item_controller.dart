@@ -74,25 +74,40 @@ class ItemController {
       FirebaseFirestore.instance.collection('item').snapshots();
 
   //Update Category
-  Future<void> updateCategory(
-    String id,
-    String uid,
+  Future<void> updateItem(
+    String itemId,
     String name,
-    File? img,
+    File img,
+    File audio,
   ) async {
+    //Image upload
+    UploadTask? task3 = uploadItemImg(img);
+    final snapshot3 = await task3?.whenComplete(() {});
+    final downloadUrl3 = await snapshot3?.ref.getDownloadURL();
+    Logger().d(downloadUrl3);
+
+    //Audio file upload
+    UploadTask? task4 = uploadItemAudio(audio);
+    final snapshot4 = await task4?.whenComplete(() {});
+    final downloadUrl4 = await snapshot4?.ref.getDownloadURL();
+    Logger().d(downloadUrl4);
     return item
-        .doc(id)
-        .update({'company': 'Stokes and Sons'})
-        .then((value) => print("User Updated"))
+        .doc(itemId)
+        .update({
+          'name': name,
+          'audio': downloadUrl4,
+          'img': downloadUrl3,
+        })
+        .then((value) => print("Updated Success"))
         .catchError((error) => print("Failed to update user: $error"));
   }
 
   //Delete Category
-  Future<void> deleteCategory(String itemId) {
+  Future<void> deleteItem(String itemId) {
     return item
         .doc(itemId)
         .delete()
-        .then((value) => print("User Deleted"))
+        .then((value) => print("Item Deleted"))
         .catchError((error) => print("Failed to delete user: $error"));
   }
 }
