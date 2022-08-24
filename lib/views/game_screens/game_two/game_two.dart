@@ -1,5 +1,6 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:game_app/components/custom_animation.dart';
 import 'package:game_app/components/custom_backbutton.dart';
 import 'package:game_app/components/custom_game_navigation_row.dart';
@@ -25,6 +26,10 @@ class _GameTwoState extends State<GameTwo> {
 
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     controller.addListener(() {
       setState(() {
         isPlaying = controller.state == ConfettiControllerState.playing;
@@ -34,7 +39,14 @@ class _GameTwoState extends State<GameTwo> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.dispose();
+
     controller.dispose();
   }
 
