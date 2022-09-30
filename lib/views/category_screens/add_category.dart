@@ -69,7 +69,7 @@ class _AddCategoryState extends State<AddCategory> {
                                       CustomBottomSheet(context: context),
                                 );
                               },
-                              child: Stack(
+                              child: Stack( 
                                 children: [
                                   value.getImg.path != ''
                                       ? Image.file(
